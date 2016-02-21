@@ -73,16 +73,16 @@
 			"channels": ["animation"]
 		},
 		{
-			"title": "",
-			"url": "",
-			"host": "vimeo",
-			"channels": []
+			"title": "Crystal Castles - Magic Spells",
+			"url": "https://www.youtube.com/embed/UPWOWufBXO8",
+			"host": "youtube",
+			"channels": ["music"]
 		},
 		{
-			"title": "",
-			"url": "",
-			"host": "vimeo",
-			"channels": []
+			"title": "Flying Lotus - Zodiac Shit",
+			"url": "https://www.youtube.com/embed/0ScYz9sNaQk",
+			"host": "youtube",
+			"channels": ["music", "animation"]
 		},
 		{
 			"title": "",
