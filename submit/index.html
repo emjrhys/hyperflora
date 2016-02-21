@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="../css/main.css">
+  </head>
+  <body>
+    <input id="video_title" type="text" placeholder="Title">
+    <input id="video_url" type="text" placeholder="URL">
+    <div>
+      <label for="youtube"><input name="source" type="radio" id="youtube" value="youtube">YouTube</label>
+      <label for="vimeo"><input name="source" type="radio" id="vimeo" value="vimeo">Vimeo</label>
+    </div>
+    <input id="video_channels" type="text" placeholder="Channels">
+    <button type="button" onclick="submit()">Submit</button>
+
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../https://cdn.firebase.com/js/client/2.4.1/firebase.js"></script>
+    <script>
+      var videoRef = new Firebase('http://hyperflora.firebaseio.com');
+
+      $('#video_channels').selectize({
+          delimiter: ',',
+          persist: false,
+          create: function(input) {
+              return {
+                  value: input,
+                  text: input
+              }
+          }
+      });
+
+      function submit() {
+        var title = $("#video_title").val(),
+            url   = $("#video_url").val(),
+            chans = $("#video_channels").val().split(", "),
+            host  = $("input[name=source]:checked").val();
+
+        videoRef.push({
+          'title': title || null,
+          'url': url || null,
+          'host': host || null,
+          'chans': chans || null
+        });
+      }
+    </script>
+  </body>
+</html>
