@@ -82,6 +82,13 @@
 			"channels": ["animation"]
 		},
 		{
+			"title": "Crystal Castles - Magic Spells",
+			"url": "https://www.youtube.com/embed/UPWOWufBXO8",
+			"host": "youtube",
+			"channels": ["music"]
+		},
+		{
+
 			"title": "Toro Y Moi \"So Many Details\"",
 			"url": "https://www.youtube.com/embed/O0_ardwzTrA",
 			"host": "youtube",
@@ -110,6 +117,12 @@
 			"url": "https://www.youtube.com/embed/e-P5IFTqB98",
 			"host": "youtube",
 			"channels": ["science and technology"]
+		},
+		{
+			"title": "Flying Lotus - Zodiac Shit",
+			"url": "https://www.youtube.com/embed/0ScYz9sNaQk",
+			"host": "youtube",
+			"channels": ["music", "animation"]
 		},
 		{
 			"title": "",
