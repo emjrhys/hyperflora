@@ -1,0 +1,100 @@
+{
+	"videos": [
+		{
+			"title": "Xilent - Boss Wave (Official Video)",
+			"url": "https://www.youtube.com/embed/4wTLjEqj5Xk",
+			"host": "youtube",
+			"channels": ["music"]
+		},
+		{
+			"title": "DIGITIZED",
+			"url": "https://player.vimeo.com/video/49535080",
+			"host": "vimeo",
+			"channels": ["animation"]
+		},
+		{
+			"title": "Land",
+			"url": "https://player.vimeo.com/video/74114715",
+			"host": "vimeo",
+			"channels": ["animation"]
+		},
+		{
+			"title": "the Wikidrummer",
+			"url": "https://www.youtube.com/embed/mY-f68J5PPo",
+			"host": "youtube",
+			"channels": ["music"]
+		},
+		{
+			"title": "Dynamics of the Subway / Haisuinonasa (Official Video)",
+			"url": "https://player.vimeo.com/video/49367868",
+			"host": "vimeo",
+			"channels": ["music"]
+		},
+		{
+			"title": "OSCILLATE",
+			"url": "https://player.vimeo.com/video/65475425",
+			"host": "vimeo",
+			"channels": []
+		},
+		{
+			"title": "LSD ABC",
+			"url": "https://player.vimeo.com/video/68149082",
+			"host": "vimeo",
+			"channels": ["animation"]
+		},
+		{
+			"title": "PROTEIGON",
+			"url": "https://player.vimeo.com/video/33480080",
+			"host": "vimeo",
+			"channels": ["animation"]
+		},
+		{
+			"title": "Blockhead - The Music Scene",
+			"url": "https://www.youtube.com/embed/NhheiPTdZCw",
+			"host": "youtube",
+			"channels": ["music"]
+		},
+		{
+			"title": "Rone - Bye Bye Macadam (Official Video)",
+			"url": "https://www.youtube.com/embed/kfoJUeyMsOE",
+			"host": "youtube",
+			"channels": ["music"]
+		},
+		{
+			"title": "Glass Animals - Pools",
+			"url": "https://www.youtube.com/embed/HQYC2EfzZZw",
+			"host": "youtube",
+			"channels": ["music"]
+		},
+		{
+			"title": "Moviebox",
+			"url": "https://player.vimeo.com/video/22669883",
+			"host": "vimeo",
+			"channels": ["animation"]
+		},
+		{
+			"title": "",
+			"url": "",
+			"host": "vimeo",
+			"channels": []
+		},
+		{
+			"title": "",
+			"url": "",
+			"host": "vimeo",
+			"channels": []
+		},
+		{
+			"title": "",
+			"url": "",
+			"host": "vimeo",
+			"channels": []
+		},
+		{
+			"title": "",
+			"url": "",
+			"host": "vimeo",
+			"channels": []
+		}
+	]
+}
