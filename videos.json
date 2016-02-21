@@ -3,8 +3,6 @@
 		"music",
 		"animation",
 		"science",
-		"space",
-		"comedy",
 		"animals",
 		"food",
 		"experimental",
@@ -248,6 +246,48 @@
 			"channels": ["music", "animals"]
 		},
 		{
+			"title": "De Jeugd Van Tegenwoordig - Manon",
+			"url": "player.vimeo.com/video/139601645",
+			"host": "vimeo",
+			"channels": ["music", "animals"]
+		},
+		{
+			"title": "Keith Ape “IT G MA Remix” f/ A$AP Ferg, Father, Dumbfoundead & Waka Flocka Flame",
+			"url": "https://player.vimeo.com/video/134832171",
+			"host": "vimeo",
+			"channels": ["music"]
+		},
+		{
+			"title": "A$AP Rocky [L$D]",
+			"url": "https://player.vimeo.com/video/128252959",
+			"host": "vimeo",
+			"channels": ["music"]
+		},
+		{
+			"title": "An Endless String of Time and Space",
+			"url": "https://player.vimeo.com/video/127438821",
+			"host": "vimeo",
+			"channels": ["science"]
+		},
+		{
+			"title": "Supersymmetry",
+			"url": "https://player.vimeo.com/video/122291819",
+			"host": "vimeo",
+			"channels": ["science"]
+		},
+		{
+			"title": "Onward Internet",
+			"url": "https://player.vimeo.com/videos/120957975",
+			"host": "vimeo",
+			"channels": ["science"]
+		},
+		{
+			"title": "Blooms: Strobe-Animated Sculptures",
+			"url": "https://player.vimeo.com/video/116582567",
+			"host": "vimeo",
+			"channels": ["science"]
+		},
+		{
 			"title": "",
 			"url": "",
 			"host": "",
@@ -258,7 +298,15 @@
 			"url": "",
 			"host": "",
 			"channels": [""]
-		},
+		}
+		,
+		{
+			"title": "",
+			"url": "",
+			"host": "",
+			"channels": [""]
+		}
+		,
 		{
 			"title": "",
 			"url": "",
