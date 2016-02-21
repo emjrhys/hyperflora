@@ -7,7 +7,8 @@
 		"comedy",
 		"animals",
 		"food",
-		"experimental"
+		"experimental",
+		"philosophy"
 	],
 	"videos": [
 		{
@@ -107,6 +108,14 @@
 			"channels": ["experimental"]
 		},
 		{
+
+			"title": "Yearbook",
+			"url": "https://www.youtube.com/embed/YTV7gNpECW0",
+			"host": "youtube",
+			"channels": ["animation", "philosophy"]
+		},
+		{
+
 			"title": "Puzzle Facade",
 			"url": "https://player.vimeo.com/video/79616059",
 			"host": "vimeo",
@@ -116,7 +125,7 @@
 			"title": "Black Holes Explained – From Birth to Death",
 			"url": "https://www.youtube.com/embed/e-P5IFTqB98",
 			"host": "youtube",
-			"channels": ["science and technology", "animation"          ]
+			"channels": ["science", "animation"]
 		},
 		{
 			"title": "Flying Lotus - Zodiac Shit",
@@ -189,6 +198,72 @@
 			"url": "https://player.vimeo.com/video/81920704",
 			"host": "vimeo",
 			"channels": ["animation", "music"]
+		},
+		{
+			"title": "A Truncated Story of Infinity",
+			"url": "player.vimeo.com/video/101882592",
+			"host": "vimeo",
+			"channels": ["philosophy"]
+		},
+		{
+			"title": "Deathsong",
+			"url": "player.vimeo.com/video/134235213",
+			"host": "vimeo",
+			"channels": ["animation", "philosophy"]
+		},
+		{
+			"title": "Paul White - The Doldrums",
+			"url": "https://www.youtube.com/embed/n3yGeN1NDkU",
+			"host": "youtube",
+			"channels": ["animation", "music"]
+		},
+		{
+			"title": "OK Go + Pilobolus - All Is Not Lost",
+			"url": "https://www.youtube.com/embed/ur-y7oOto14",
+			"host": "youtube",
+			"channels": ["music"]
+		},
+		{
+			"title": "“MY AFRICA” Gilad Kahana",
+			"url": "player.vimeo.com/video/121112821",
+			"host": "vimeo",
+			"channels": ["music", "animation"]
+		},
+		{
+			"title": "TAME IMPALA ‘The Less I Know The Better’",
+			"url": "player.vimeo.com/video/147173661",
+			"host": "vimeo",
+			"channels": ["music"]
+		},
+		{
+			"title": "Slowly Rising",
+			"url": "player.vimeo.com/video/142716939",
+			"host": "vimeo",
+			"channels": ["music", "animation"]
+		},
+		{
+			"title": "",
+			"url": "",
+			"host": "",
+			"channels": [""]
+		},
+		{
+			"title": "",
+			"url": "",
+			"host": "",
+			"channels": [""]
+		},
+		{
+			"title": "",
+			"url": "",
+			"host": "",
+			"channels": [""]
+		},
+		{
+			"title": "",
+			"url": "",
+			"host": "",
+			"channels": [""]
 		}
 	]
 }
