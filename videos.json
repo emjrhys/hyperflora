@@ -1,4 +1,13 @@
 {
+	"channels": [
+		"music",
+		"animation",
+		"technology",
+		"space",
+		"comedy",
+		"animals",
+		"experimental"
+	],
 	"videos": [
 		{
 			"title": "Xilent - Boss Wave (Official Video)",
@@ -77,6 +86,31 @@
 			"url": "https://www.youtube.com/embed/UPWOWufBXO8",
 			"host": "youtube",
 			"channels": ["music"]
+		},
+		{
+
+			"title": "Toro Y Moi \"So Many Details\"",
+			"url": "https://www.youtube.com/embed/O0_ardwzTrA",
+			"host": "youtube",
+			"channels": ["music"]
+		},
+		{
+			"title": "Purity Ring - Fineshrine",
+			"url": "https://www.youtube.com/embed/Xqw4wo8vdY8",
+			"host": "youtube",
+			"channels": ["music"]
+		},
+		{
+			"title": "Time remap - Anamorphose temporelle",
+			"url": "https://player.vimeo.com/video/7878518",
+			"host": "vimeo",
+			"channels": ["experimental"]
+		},
+		{
+			"title": "",
+			"url": "",
+			"host": "vimeo",
+			"channels": []
 		},
 		{
 			"title": "Flying Lotus - Zodiac Shit",
