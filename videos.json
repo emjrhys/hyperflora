@@ -2,7 +2,7 @@
 	"channels": [
 		"music",
 		"animation",
-		"technology",
+		"science and technology",
 		"space",
 		"comedy",
 		"animals",
@@ -43,7 +43,7 @@
 			"title": "OSCILLATE",
 			"url": "https://player.vimeo.com/video/65475425",
 			"host": "vimeo",
-			"channels": []
+			"channels": ["animation"]
 		},
 		{
 			"title": "LSD ABC",
@@ -100,16 +100,16 @@
 			"channels": ["experimental"]
 		},
 		{
-			"title": "",
-			"url": "",
+			"title": "Puzzle Facade",
+			"url": "https://player.vimeo.com/video/79616059",
 			"host": "vimeo",
-			"channels": []
+			"channels": ["science and technology"]
 		},
 		{
-			"title": "",
-			"url": "",
-			"host": "vimeo",
-			"channels": []
+			"title": "Black Holes Explained – From Birth to Death",
+			"url": "https://www.youtube.com/embed/e-P5IFTqB98",
+			"host": "youtube",
+			"channels": ["science and technology"]
 		},
 		{
 			"title": "",
