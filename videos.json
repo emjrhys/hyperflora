@@ -2,18 +2,19 @@
 	"channels": [
 		"music",
 		"animation",
-		"science and technology",
+		"science",
 		"space",
 		"comedy",
 		"animals",
+		"food",
 		"experimental"
 	],
 	"videos": [
 		{
-			"title": "Xilent - Boss Wave (Official Video)",
+			"title": "Xilent - Boss Wave",
 			"url": "https://www.youtube.com/embed/4wTLjEqj5Xk",
 			"host": "youtube",
-			"channels": ["music"]
+			"channels": ["music", "animation"]
 		},
 		{
 			"title": "DIGITIZED",
@@ -34,10 +35,10 @@
 			"channels": ["music"]
 		},
 		{
-			"title": "Dynamics of the Subway / Haisuinonasa (Official Video)",
+			"title": "Dynamics of the Subway / Haisuinonasa",
 			"url": "https://player.vimeo.com/video/49367868",
 			"host": "vimeo",
-			"channels": ["music"]
+			"channels": ["music", "animation"]
 		},
 		{
 			"title": "OSCILLATE",
@@ -61,19 +62,19 @@
 			"title": "Blockhead - The Music Scene",
 			"url": "https://www.youtube.com/embed/NhheiPTdZCw",
 			"host": "youtube",
-			"channels": ["music"]
+			"channels": ["music", "animation"]
 		},
 		{
-			"title": "Rone - Bye Bye Macadam (Official Video)",
+			"title": "Rone - Bye Bye Macadam",
 			"url": "https://www.youtube.com/embed/kfoJUeyMsOE",
 			"host": "youtube",
-			"channels": ["music"]
+			"channels": ["music", "animation"]
 		},
 		{
 			"title": "Glass Animals - Pools",
 			"url": "https://www.youtube.com/embed/HQYC2EfzZZw",
 			"host": "youtube",
-			"channels": ["music"]
+			"channels": ["music", "animation"]
 		},
 		{
 			"title": "Moviebox",
@@ -88,7 +89,6 @@
 			"channels": ["music"]
 		},
 		{
-
 			"title": "Toro Y Moi \"So Many Details\"",
 			"url": "https://www.youtube.com/embed/O0_ardwzTrA",
 			"host": "youtube",
@@ -116,7 +116,7 @@
 			"title": "Black Holes Explained – From Birth to Death",
 			"url": "https://www.youtube.com/embed/e-P5IFTqB98",
 			"host": "youtube",
-			"channels": ["science and technology"]
+			"channels": ["science and technology", "animation"          ]
 		},
 		{
 			"title": "Flying Lotus - Zodiac Shit",
@@ -125,16 +125,70 @@
 			"channels": ["music", "animation"]
 		},
 		{
-			"title": "",
-			"url": "",
+			"title": "SOLIPSIST",
+			"url": "https://player.vimeo.com/video/37848135",
 			"host": "vimeo",
-			"channels": []
+			"channels": ["experimental"]
 		},
 		{
-			"title": "",
-			"url": "",
+			"title": "ROSE by Carte Noire",
+			"url": "https://player.vimeo.com/video/69161600",
 			"host": "vimeo",
-			"channels": []
+			"channels": ["food"]
+		},
+		{
+			"title": "VERT by Carte Noire",
+			"url": "https://player.vimeo.com/video/63603852",
+			"host": "vimeo",
+			"channels": ["food"]
+		},
+		{
+			"title": "ROUGE by Carte Noire",
+			"url": "https://player.vimeo.com/video/63601281",
+			"host": "vimeo",
+			"channels": ["food"]
+		},
+		{
+			"title": "JAUNE by Carte Noire",
+			"url": "https://player.vimeo.com/video/55692290",
+			"host": "vimeo",
+			"channels": ["food"]
+		},
+		{
+			"title": "Yung Jake - Datamosh",
+			"url": "https://www.youtube.com/embed/nS7QvOX8LVk",
+			"host": "youtube",
+			"channels": ["music", "animation"]
+		},
+		{
+			"title": "BOX",
+			"url": "https://player.vimeo.com/video/75361102",
+			"host": "vimeo",
+			"channels": ["animation"]
+		},
+		{
+			"title": "PIXELS",
+			"url": "https://player.vimeo.com/video/10829255",
+			"host": "vimeo",
+			"channels": ["animation"]
+		},
+		{
+			"title": "DDWIWDD (Dan Deacon “When I Was Done Dying”) | Off The Air",
+			"url": "https://www.youtube.com/embed/TuJqUvBj4rE",
+			"host": "youtube",
+			"channels": ["music", "animation"]
+		},
+		{
+			"title": "Acid Interstate",
+			"url": "https://www.youtube.com/embed/KVmvJlEZFOo",
+			"host": "youtube",
+			"channels": ["music"]
+		},
+		{
+			"title": "Morena - ✞ЯфPKiLLΔℤ",
+			"url": "https://player.vimeo.com/video/81920704",
+			"host": "vimeo",
+			"channels": ["animation", "music"]
 		}
 	]
 }
