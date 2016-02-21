@@ -11,7 +11,7 @@
 	],
 	"videos": [
 		{
-			"title": "Xilent - Boss Wave (Official Video)",
+			"title": "Xilent - Boss Wavehttps://vimeo.com/121112821",
 			"url": "https://www.youtube.com/embed/4wTLjEqj5Xk",
 			"host": "youtube",
 			"channels": ["music"]
@@ -65,7 +65,7 @@
 			"channels": ["music"]
 		},
 		{
-			"title": "Rone - Bye Bye Macadam (Official Video)",
+			"title": "Rone - Bye Bye Macadam",
 			"url": "https://www.youtube.com/embed/kfoJUeyMsOE",
 			"host": "youtube",
 			"channels": ["music"]
@@ -134,16 +134,70 @@
 			"channels": ["music", "animation"]
 		},
 		{
-			"title": "",
-			"url": "",
+			"title": "A Truncated Story of Infinity",
+			"url": "player.vimeo.com/video/101882592",
 			"host": "vimeo",
-			"channels": []
+			"channels": ["philosophy"]
+		},
+		{
+			"title": "Deathsong",
+			"url": "player.vimeo.com/video/134235213",
+			"host": "vimeo",
+			"channels": ["animation", "philosophy"]
+		},
+		{
+			"title": "Paul White - The Doldrums",
+			"url": "https://www.youtube.com/embed/n3yGeN1NDkU",
+			"host": "youtube",
+			"channels": ["animation", "music"]
+		},
+		{
+			"title": "OK Go + Pilobolus - All Is Not Lost",
+			"url": "https://www.youtube.com/embed/ur-y7oOto14",
+			"host": "youtube",
+			"channels": ["music"]
+		},
+		{
+			"title": "“MY AFRICA” Gilad Kahana",
+			"url": "player.vimeo.com/video/121112821",
+			"host": "vimeo",
+			"channels": ["music", "animation"]
+		},
+		{
+			"title": "TAME IMPALA ‘The Less I Know The Better’",
+			"url": "player.vimeo.com/video/147173661",
+			"host": "vimeo",
+			"channels": ["music"]
+		},
+		{
+			"title": "Slowly Rising",
+			"url": "player.vimeo.com/video/142716939",
+			"host": "vimeo",
+			"channels": ["music", "animation"]
 		},
 		{
 			"title": "",
 			"url": "",
-			"host": "vimeo",
-			"channels": []
+			"host": "",
+			"channels": [""]
+		},
+		{
+			"title": "",
+			"url": "",
+			"host": "",
+			"channels": [""]
+		},
+		{
+			"title": "",
+			"url": "",
+			"host": "",
+			"channels": [""]
+		},
+		{
+			"title": "",
+			"url": "",
+			"host": "",
+			"channels": [""]
 		}
 	]
 }
