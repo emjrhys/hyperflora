@@ -201,13 +201,13 @@
 		},
 		{
 			"title": "A Truncated Story of Infinity",
-			"url": "player.vimeo.com/video/101882592",
+			"url": "https://player.vimeo.com/video/101882592",
 			"host": "vimeo",
 			"channels": ["philosophy"]
 		},
 		{
 			"title": "Deathsong",
-			"url": "player.vimeo.com/video/134235213",
+			"url": "https://player.vimeo.com/video/134235213",
 			"host": "vimeo",
 			"channels": ["animation", "philosophy"]
 		},
@@ -225,27 +225,27 @@
 		},
 		{
 			"title": "“MY AFRICA” Gilad Kahana",
-			"url": "player.vimeo.com/video/121112821",
+			"url": "https://player.vimeo.com/video/121112821",
 			"host": "vimeo",
 			"channels": ["music", "animation"]
 		},
 		{
 			"title": "TAME IMPALA ‘The Less I Know The Better’",
-			"url": "player.vimeo.com/video/147173661",
+			"url": "https://player.vimeo.com/video/147173661",
 			"host": "vimeo",
 			"channels": ["music"]
 		},
 		{
 			"title": "Slowly Rising",
-			"url": "player.vimeo.com/video/142716939",
+			"url": "https://player.vimeo.com/video/142716939",
 			"host": "vimeo",
 			"channels": ["music", "animation"]
 		},
 		{
-			"title": "",
-			"url": "",
-			"host": "",
-			"channels": [""]
+			"title": "Meow Mix",
+			"url": "https://www.youtube.com/embed/GSMCRD35ch4",
+			"host": "youtube",
+			"channels": ["music", "animals"]
 		},
 		{
 			"title": "",
