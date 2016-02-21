@@ -44,7 +44,7 @@
 			"title": "OSCILLATE",
 			"url": "https://player.vimeo.com/video/65475425",
 			"host": "vimeo",
-			"channels": []
+			"channels": ["animation"]
 		},
 		{
 			"title": "LSD ABC",
@@ -108,10 +108,24 @@
 			"channels": ["experimental"]
 		},
 		{
+
 			"title": "Yearbook",
 			"url": "https://www.youtube.com/embed/YTV7gNpECW0",
 			"host": "youtube",
 			"channels": ["animation", "philosophy"]
+		},
+		{
+
+			"title": "Puzzle Facade",
+			"url": "https://player.vimeo.com/video/79616059",
+			"host": "vimeo",
+			"channels": ["science and technology"]
+		},
+		{
+			"title": "Black Holes Explained – From Birth to Death",
+			"url": "https://www.youtube.com/embed/e-P5IFTqB98",
+			"host": "youtube",
+			"channels": ["science"]
 		},
 		{
 			"title": "Flying Lotus - Zodiac Shit",
