@@ -17,17 +17,6 @@
     <script>
       var videoRef = new Firebase('http://hyperflora.firebaseio.com');
 
-      $('#video_channels').selectize({
-          delimiter: ',',
-          persist: false,
-          create: function(input) {
-              return {
-                  value: input,
-                  text: input
-              }
-          }
-      });
-
       function submit() {
         var title = $("#video_title").val(),
             url   = $("#video_url").val(),
@@ -38,7 +27,7 @@
           'title': title || null,
           'url': url || null,
           'host': host || null,
-          'chans': chans || null
+          'channels': chans || null
         });
       }
     </script>
