@@ -1,0 +1,17 @@
+#video-nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	
+	width: 100%;
+	padding: 0 30px;
+	box-sizing: border-box;
+
+	color: #fff;
+	background-color: #000;
+}
+
+#video-player {
+	width: 100%;
+	height: 100%;
+}

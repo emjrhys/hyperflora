@@ -1,0 +1,18 @@
+{
+  "name": "hyperflora",
+  "version": "1.0.0",
+  "homepage": "https://github.com/noahjl1/hyperflora",
+  "authors": [
+    "Noah Laferty <noah.lafferty@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+  }
+}
