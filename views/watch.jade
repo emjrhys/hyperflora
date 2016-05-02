@@ -3,4 +3,6 @@ extends layouts/main
 block content
   iframe(id='video-player', src=video.url+"?autoplay=1&iv_load_policy=3", frameborder='0')
   a(class='next', href='/watch') Next
-  
+
+block script
+  script(src='js/player.js')

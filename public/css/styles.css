@@ -16,6 +16,9 @@ time, mark, audio, video {
   border: 0;
   vertical-align: baseline; }
 
+html, body {
+  height: 100%; }
+
 h1 {
   text-align: center;
   margin: 40px; }
@@ -64,4 +67,9 @@ a {
   font-size: 1.1em;
   letter-spacing: 1px;
   color: #fff;
-  background-color: orange; }
+  background-color: orange;
+  opacity: 1;
+  transition: opacity 500ms; }
+
+.next.hidden {
+  opacity: .2; }

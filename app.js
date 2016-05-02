@@ -31,7 +31,7 @@ app.get('/watch', function (req, res) {
     console.log(videos);
     var vid = videos[Math.floor(Math.random() * videos.length)];
 
-    res.render('watch', { video: vid, title: "- " + vid.title });
+    res.render('watch', { video: vid, title: "| " + vid.title });
   });
 });
 
