@@ -21,13 +21,17 @@ app.get('/', function (req, res) {
 });
 
 app.get('/watch', function (req, res) {
-  var videoId = req.params.videoId || null;
+  db.once('value', function(dataSnapshot) {
+    var videos = [];
 
-  ref.once('value', function(data) {
-    res.render('watch', {
-      videos: data,
-      startVideo: videoId
+    dataSnapshot.forEach(function(child) {
+      videos.push(child.val());
     });
+
+    console.log(videos);
+    var vid = videos[Math.floor(Math.random() * videos.length)];
+
+    res.render('watch', { video: vid, title: "- " + vid.title });
   });
 });
 

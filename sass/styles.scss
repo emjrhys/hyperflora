@@ -43,13 +43,41 @@ a {
 
 	li {
 		border: 1px solid #ddd;
+		border-radius: 2px;
 		background-color: #eee;
 		width: 400px;
-		padding: 12px;
 		margin-bottom: 20px;
 
 		&:hover {
-			background-color: #ececec;
+			background-color: #e5e5e5;
 		}
 	}
+
+	a {
+		display: block;
+		padding: 12px;
+	}
+}
+
+#video-player {
+	width: 100vw;
+	height: 100vh;
+}
+
+.next {
+	display: block;
+	position: absolute;
+	bottom: 100px;
+	right: 0;
+	padding: 20px 40px;
+
+
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 1.1em;
+	letter-spacing: 1px;
+	color: #fff;
+	background-color: orange;
+
 }
