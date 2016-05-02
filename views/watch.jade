@@ -1,7 +1,10 @@
 extends layouts/main
 
 block content
-  iframe(id='video-player', src=video.url+"?autoplay=1&iv_load_policy=3", frameborder='0')
+  if video.host == "youtube"
+    iframe(id='video-player', src="https://www.youtube.com/embed/"+video.url+"?autoplay=1&iv_load_policy=3", frameborder='0')
+  else
+    iframe(id='video-player', src="https://player.vimeo.com/video/"+video.url+"?autoplay=1", frameborder='0')
   a(class='next', href='/watch') Next
 
 block script

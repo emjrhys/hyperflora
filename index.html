@@ -1,6 +1,5 @@
 <html>
   <head>
-    <link rel="stylesheet" href="../css/main.css">
     <style>
       body {
         text-align: center;
@@ -47,24 +46,27 @@
         <label for="vimeo"><input name="source" type="radio" id="vimeo" value="vimeo">Vimeo</label>
       </div>
       <input id="video_channels" type="text" placeholder="Channels">
-      <button type="button" onclick="submit()">Submit</button>
     </form>
 
-    <script src="../public/bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="../https://cdn.firebase.com/js/client/2.4.1/firebase.js"></script>
+    <button type="button" onclick="submit()">Submit</button>
+
+    <script src="public/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.4.1/firebase.js"></script>
     <script>
       var videoRef = new Firebase('http://hyperflora.firebaseio.com');
 
-      $('#video_channels').selectize({
-          delimiter: ',',
-          persist: false,
-          create: function(input) {
-              return {
-                  value: input,
-                  text: input
-              }
-          }
-      });
+      function youtube_parser(url){
+        var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+        var match = url.match(regExp);
+        return (match&&match[7].length==11)? match[7] : false;
+      }
+
+      function vimeo_parser(url){
+        var regExp = /https?:\/\/(?:www\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|)(\d+)(?:$|\/|\?)/;
+        var match = url.match(regExp);
+
+        if (match) return match[3];
+      }
 
       function submit() {
         var form = document.getElementById("submission");
@@ -72,6 +74,14 @@
             url   = $("#video_url").val(),
             chans = $("#video_channels").val().split(", "),
             host  = $("input[name=source]:checked").val();
+
+        if (host == "youtube") {
+          url = youtube_parser(url);
+        } else {
+          url = vimeo_parser(url);
+        }
+
+        console.log(url);
 
         videoRef.push({
           'title': title || null,

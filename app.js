@@ -13,11 +13,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.get('/', function (req, res) {
-  db.once('value', function(dataSnapshot) {
-    var videos = dataSnapshot.val();
-    console.log(videos);
-    res.render('home', { videos: videos });
-  });
+  res.render('home');
 });
 
 app.get('/watch', function (req, res) {
@@ -32,6 +28,14 @@ app.get('/watch', function (req, res) {
     var vid = videos[Math.floor(Math.random() * videos.length)];
 
     res.render('watch', { video: vid, title: "| " + vid.title });
+  });
+});
+
+app.get('/list', function (req, res) {
+  db.once('value', function(dataSnapshot) {
+    var videos = dataSnapshot.val();
+    console.log(videos);
+    res.render('list', { videos: videos });
   });
 });
 
