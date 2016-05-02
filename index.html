@@ -38,14 +38,16 @@
     </style>
   </head>
   <body>
-    <input id="video_title" type="text" placeholder="Title">
-    <input id="video_url" type="text" placeholder="URL">
-    <div>
-      <label for="youtube"><input name="source" type="radio" id="youtube" value="youtube">YouTube</label>
-      <label for="vimeo"><input name="source" type="radio" id="vimeo" value="vimeo">Vimeo</label>
-    </div>
-    <input id="video_channels" type="text" placeholder="Channels">
-    <button type="button" onclick="submit()">Submit</button>
+    <form id='submission'>
+      <input id="video_title" type="text" placeholder="Title">
+      <input id="video_url" type="text" placeholder="URL">
+      <div>
+        <label for="youtube"><input name="source" type="radio" id="youtube" value="youtube" checked>YouTube</label>
+        <label for="vimeo"><input name="source" type="radio" id="vimeo" value="vimeo">Vimeo</label>
+      </div>
+      <input id="video_channels" type="text" placeholder="Channels">
+      <button type="button" onclick="submit()">Submit</button>
+    </form>
 
     <script src="../public/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="../https://cdn.firebase.com/js/client/2.4.1/firebase.js"></script>
@@ -64,6 +66,7 @@
       });
 
       function submit() {
+        var form = document.getElementById("submission");
         var title = $("#video_title").val(),
             url   = $("#video_url").val(),
             chans = $("#video_channels").val().split(", "),
@@ -75,6 +78,8 @@
           'host': host || null,
           'chans': chans || null
         });
+
+        form.reset();
       }
     </script>
   </body>
