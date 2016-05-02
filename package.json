@@ -1,27 +1,27 @@
 {
   "name": "hyperflora",
   "version": "1.0.0",
+  "main": "app.js",
   "description": "",
   "dependencies": {
     "express": "^4.13.4",
-    "express-handlebars": "^3.0.0"
+    "firebase": "^2.4.1",
+    "jade": "^1.11.0"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-concat": "^2.6.0",
-    "gulp-cssnano": "^2.1.1",
-    "gulp-load-plugins": "^1.2.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-uglify": "^1.5.2",
-    "gulp-webserver": "^0.9.1"
+    "gulp-notify": "^2.2.0",
+    "gulp-sass": "^2.2.0"
   },
   "scripts": {
+    "start": "node app.js",
+    "test": "nodemon app.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/noahjl1/hyperflora.git"
   },
-  "author": "",
+  "author": "Noah Lafferty, Lisa Vuong, Bernard Wang",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/noahjl1/hyperflora/issues"

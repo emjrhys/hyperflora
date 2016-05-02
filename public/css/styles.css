@@ -1,0 +1,76 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline; }
+
+html, body {
+  height: 100%;
+  overflow: hidden; }
+
+h1 {
+  text-align: center;
+  margin: 40px; }
+
+a {
+  text-decoration: none;
+  color: #000; }
+
+.videos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 0;
+  list-style: none; }
+
+.videos h3 {
+  margin-bottom: 10px; }
+
+.videos li {
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  background-color: #eee;
+  width: 400px;
+  margin-bottom: 20px; }
+
+.videos li:hover {
+  background-color: #e5e5e5; }
+
+.videos a {
+  display: block;
+  padding: 12px; }
+
+#video-player {
+  width: 100vw;
+  height: 100vh; }
+
+.next {
+  display: block;
+  position: absolute;
+  bottom: 100px;
+  right: 0;
+  padding: 20px 40px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1.1em;
+  letter-spacing: 1px;
+  color: #fff;
+  background-color: orange;
+  opacity: 1;
+  transition: opacity 500ms; }
+
+.next.hidden {
+  opacity: .2; }
