@@ -1,5 +1,6 @@
 <html>
   <head>
+    <link rel='stylesheet' href='public/bower_components/selectize/dist/css/selectize.css'>
     <style>
       body {
         text-align: center;
@@ -45,12 +46,24 @@
         <label for="youtube"><input name="source" type="radio" id="youtube" value="youtube" checked>YouTube</label>
         <label for="vimeo"><input name="source" type="radio" id="vimeo" value="vimeo">Vimeo</label>
       </div>
-      <input id="video_channels" type="text" placeholder="Channels">
+      <select id="video_channels" placeholder="Channels">
+        <option value="animation">Animation</option>
+        <option value="music">Music</option>
+        <option value="food">Food</option>
+        <option value="philosophy">Philosophy</option>
+        <option value="science">Science</option>
+        <option value="experimental">Experimental</option>
+        <option value="animals">Animals</option>
+      </select>
     </form>
 
     <button type="button" onclick="submit()">Submit</button>
 
     <script src="public/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="public/bower_components/microplugin/src/microplugin.js"></script>
+    <script src="public/bower_components/sifter/sifter.min.js"></script>
+    <script src="public/bower_components/selectize/dist/js/selectize.js"></script>
+
     <script src="https://cdn.firebase.com/js/client/2.4.1/firebase.js"></script>
     <script>
       var videoRef = new Firebase('http://hyperflora.firebaseio.com');
@@ -68,11 +81,20 @@
         if (match) return match[3];
       }
 
+      var $select = $('#video_channels').selectize({
+        delimiter: ',',
+        persists: false,
+        maxItems: 3,
+        items: null
+      });
+
+      var selectizeControl = $select[0].selectize;
+
       function submit() {
         var form = document.getElementById("submission");
         var title = $("#video_title").val(),
             url   = $("#video_url").val(),
-            chans = $("#video_channels").val().split(", "),
+            chans = selectizeControl.getValue(),
             host  = $("input[name=source]:checked").val();
 
         if (host == "youtube") {
@@ -84,10 +106,10 @@
         console.log(url);
 
         videoRef.push({
-          'title': title || null,
-          'url'  : url   || null,
-          'host' : host  || null,
-          'chans': chans || null
+          'title'    : title || null,
+          'url'      : url   || null,
+          'host'     : host  || null,
+          'channels' : chans || null
         });
 
         form.reset();
