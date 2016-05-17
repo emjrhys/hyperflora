@@ -1,15 +1,20 @@
 /* TODO: Figure out something better to do with the next button */
 
-$('.next').mousemove(function() {
-	$('.next').removeClass('hidden');
+$('.nav-zone').mousemove(function() {
+	window.clearTimeout(timeoutHandle);
+	$('nav').removeClass('hidden');
+	timeoutHandle = window.setTimeout(hideNav, 1000);
 });
 
-$('.next').mouseleave(function() {
-	setTimeout(hideNext, 300);
+$('nav').mouseleave(function() {
+	timeoutHandle = window.setTimeout(hideNav, 1000);
 });
 
-function hideNext() {
-	$('.next').addClass('hidden');
-}
+$('nav').mouseenter(function() {
+	window.clearTimeout(timeoutHandle);
+	$('nav').removeClass('hidden');
+});
 
-setTimeout(hideNext, 1000);
+function hideNav() { $('nav').addClass('hidden'); }
+
+var timeoutHandle = window.setTimeout(hideNav, 2000);

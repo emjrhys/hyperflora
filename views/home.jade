@@ -1,22 +1,38 @@
 extends layouts/main
 
+block style
+  link(rel='stylesheet', href='css/home.css')
+
 block content
   h1 Hyperflora
-  //- ul(class='categories')
-    //- li
-    //-   a All
-    //- li
-    //-   a Animation
-    //- li
-    //-   a Music
-    //- li
-    //-   a Food
-    //- li
-    //-   a Science
-    //- li
-    //-   a Philosophy
     
-  h2
-    a(href='/watch') Watch Now!
-          
+  div(class='select') Select a channel  
+  ul(class='categories')
+    li
+      a(href='/watch') 
+        span Everything
+    li
+      a 
+        span Music
+    li
+      a 
+        span Animation
+    li
+      a 
+        span Food
+    li
+      a 
+        span Science
+    li
+      a 
+        span Philosophy
+    li
+      a 
+        span Experimental
+    li
+      a 
+        span Culture
+    li
+      a 
+        span Animals
         

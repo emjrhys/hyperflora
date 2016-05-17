@@ -1,0 +1,75 @@
+html, body {
+	height: 100%;
+	overflow: hidden;
+  background-color: #000;
+}
+
+.nav-zone {
+  position: absolute;
+  top: 0;
+
+  height: 300px;
+  width: 100%;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+
+  background-color: rgba(0, 0, 0, 1);
+  color: #fff;
+
+  transition: opacity 500ms;
+
+  h1 {
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  a {
+    padding: 0 20px;
+
+    color: #fff;
+    background-color: #000;
+    height: 100%;
+    line-height: 50px;
+  }
+
+  &.hidden {
+    opacity: 0;
+  }
+}
+
+
+
+#video-player {
+	width: 100vw;
+	height: calc(100%);
+}
+
+// .next {
+// 	display: block;
+// 	position: absolute;
+// 	top: 100px;
+// 	right: 0;
+// 	padding: 20px 40px;
+//
+// 	text-align: center;
+// 	text-transform: uppercase;
+// 	font-weight: bold;
+// 	font-size: 1.1em;
+// 	letter-spacing: 1px;
+// 	color: #fff;
+// 	background-color: orange;
+//
+// 	opacity: 1;
+//
+// 	transition: opacity 500ms;
+//
+// 	&.hidden {
+// 		opacity: .2;
+// 	}
+// }

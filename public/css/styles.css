@@ -17,8 +17,7 @@ time, mark, audio, video {
   vertical-align: baseline; }
 
 html, body {
-  height: 100%;
-  overflow: hidden; }
+  font-family: ''; }
 
 h1 {
   text-align: center;
@@ -51,26 +50,3 @@ a {
 .videos a {
   display: block;
   padding: 12px; }
-
-#video-player {
-  width: 100vw;
-  height: 100vh; }
-
-.next {
-  display: block;
-  position: absolute;
-  bottom: 100px;
-  right: 0;
-  padding: 20px 40px;
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 1.1em;
-  letter-spacing: 1px;
-  color: #fff;
-  background-color: orange;
-  opacity: 1;
-  transition: opacity 500ms; }
-
-.next.hidden {
-  opacity: .2; }
