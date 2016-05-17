@@ -1,0 +1,38 @@
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background-color: #000; }
+
+.nav-zone {
+  position: absolute;
+  top: 0;
+  height: 300px;
+  width: 100%; }
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  background-color: black;
+  color: #fff;
+  transition: opacity 500ms; }
+
+nav h1 {
+  margin: 0;
+  text-transform: uppercase; }
+
+nav a {
+  padding: 0 20px;
+  color: #fff;
+  background-color: #000;
+  height: 100%;
+  line-height: 50px; }
+
+nav.hidden {
+  opacity: 0; }
+
+#video-player {
+  width: 100vw;
+  height: calc(100%); }
