@@ -14,10 +14,8 @@ time, mark, audio, video {
   margin: 0;
   padding: 0;
   border: 0;
+  font-family: 'Circular';
   vertical-align: baseline; }
-
-html, body {
-  font-family: ''; }
 
 h1 {
   text-align: center;

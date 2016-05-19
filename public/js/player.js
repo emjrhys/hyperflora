@@ -3,11 +3,11 @@
 $('.nav-zone').mousemove(function() {
 	window.clearTimeout(timeoutHandle);
 	$('nav').removeClass('hidden');
-	timeoutHandle = window.setTimeout(hideNav, 1000);
+	timeoutHandle = window.setTimeout(hideNav, 1500);
 });
 
 $('nav').mouseleave(function() {
-	timeoutHandle = window.setTimeout(hideNav, 1000);
+	timeoutHandle = window.setTimeout(hideNav, 1500);
 });
 
 $('nav').mouseenter(function() {

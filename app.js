@@ -29,6 +29,8 @@ app.get('/watch', function (req, res) {
 
     res.render('watch', { video: vid, title: "| " + vid.title });
   });
+
+  // res.render('watch', { video: { host: "youtube", url: "", title: "Video"} });
 });
 
 app.get('/list', function (req, res) {
