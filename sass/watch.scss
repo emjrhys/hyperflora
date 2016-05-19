@@ -9,6 +9,13 @@ html, body {
   top: 0;
 
   width: 100%;
+
+	opacity: 1;
+	transition: opacity 500ms;
+
+	&.hidden {
+    opacity: 0;
+  }
 }
 
 .nav-zone {
@@ -26,7 +33,6 @@ nav {
   background-color: rgba(0, 0, 0, 1);
   color: #fff;
 
-  transition: opacity 500ms;
 
 	h1, h2, a {
 		width: 33%;
@@ -36,6 +42,12 @@ nav {
     margin: 0;
     text-transform: uppercase;
 		letter-spacing: 1px;
+
+		a {
+			background: url(../img/title.jpg) no-repeat;
+	   	-webkit-background-clip: text;
+	   	-webkit-text-fill-color: transparent;
+		}
   }
 
   a {
@@ -43,7 +55,8 @@ nav {
     background-color: #000;
     height: 100%;
     line-height: 50px;
-  }
+	}
+
 
 	.left {
 		text-align: left;
@@ -52,16 +65,13 @@ nav {
 
 	.center {
 		text-align: center;
+		width: 100%;
 	}
 
 	.right {
 		text-align: right;
 		padding-right: 30px;
 	}
-
-  &.hidden {
-    opacity: 0;
-  }
 }
 
 

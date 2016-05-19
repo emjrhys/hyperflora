@@ -7,7 +7,7 @@ body {
 .content {
   position: relative;
   z-index: 20;
-  padding-top: calc(20vw - 40px); }
+  padding: calc(20vw - 40px) 0 30px; }
 
 h1 {
   margin: 0 auto 10vw;

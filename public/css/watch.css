@@ -6,7 +6,12 @@ html, body {
 .nav-bar {
   position: absolute;
   top: 0;
-  width: 100%; }
+  width: 100%;
+  opacity: 1;
+  transition: opacity 500ms; }
+
+.nav-bar.hidden {
+  opacity: 0; }
 
 .nav-zone {
   width: 100%;
@@ -19,8 +24,7 @@ nav {
   height: 50px;
   width: 100%;
   background-color: black;
-  color: #fff;
-  transition: opacity 500ms; }
+  color: #fff; }
 
 nav h1, nav h2, nav a {
   width: 33%; }
@@ -29,6 +33,11 @@ nav h1 {
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 1px; }
+
+nav h1 a {
+  background: url(../img/title.jpg) no-repeat;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; }
 
 nav a {
   color: #fff;
@@ -41,14 +50,12 @@ nav .left {
   padding-left: 30px; }
 
 nav .center {
-  text-align: center; }
+  text-align: center;
+  width: 100%; }
 
 nav .right {
   text-align: right;
   padding-right: 30px; }
-
-nav.hidden {
-  opacity: 0; }
 
 #video-player {
   width: 100vw;
