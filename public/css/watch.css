@@ -27,7 +27,8 @@ nav h1, nav h2, nav a {
 
 nav h1 {
   margin: 0;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  letter-spacing: 1px; }
 
 nav a {
   color: #fff;

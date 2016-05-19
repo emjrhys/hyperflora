@@ -1,16 +1,23 @@
 body {
-  padding: 30px;
   background-color: #000;
   color: #fff;
   text-transform: uppercase;
   text-align: center; }
 
+.content {
+  position: relative;
+  z-index: 20;
+  padding-top: calc(20vw - 40px); }
+
 h1 {
-  margin: 150px 0 120px;
-  font-size: 4em; }
+  margin: 0 auto 10vw;
+  padding-left: 30px;
+  font-size: 4em;
+  letter-spacing: 30px; }
 
 .select {
-  margin-bottom: 10px; }
+  margin-bottom: 10px;
+  letter-spacing: 5px; }
 
 ul {
   list-style: none;
@@ -19,14 +26,178 @@ ul {
 li {
   max-width: 1200px;
   margin: 0 auto 20px;
-  background-color: #222; }
+  background-color: #222;
+  -webkit-box-shadow: 2px 10px 20px 2px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 2px 10px 20px 2px rgba(0, 0, 0, 0.4);
+  box-shadow: 2px 10px 20px 2px rgba(0, 0, 0, 0.4); }
+
+li.everything {
+  background: url(../img/all.jpg) no-repeat center center;
+  background-size: cover; }
+
+li.music {
+  background: url(../img/music.jpg) no-repeat center center;
+  background-size: cover; }
+
+li.animation {
+  background: url(../img/animation.jpg) no-repeat center center;
+  background-size: cover; }
+
+li.food {
+  background: url(../img/food.jpg) no-repeat center center;
+  background-size: cover; }
+
+li.science {
+  background: url(../img/science.jpg) no-repeat center center;
+  background-size: cover; }
+
+li.philosophy {
+  background: url(../img/philosophy.jpg) no-repeat center center;
+  background-size: cover; }
+
+li.experimental {
+  background: url(../img/experimental.jpg) no-repeat center center;
+  background-size: cover; }
+
+li.animals {
+  background: url(../img/animals.jpg) no-repeat center center;
+  background-size: cover; }
 
 a {
   display: block;
   padding: 80px 0;
   color: #fff;
-  font-size: 3em; }
+  font-size: 3em;
+  letter-spacing: 6px; }
 
-a xxx
-span {
+a span {
+  padding: 0px 12px 8px;
   border-bottom: 4px solid #fff; }
+
+/* Kaleidoscope */
+.kal_main {
+  position: absolute;
+  top: -30vw;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vw;
+  margin: auto; }
+
+.kal_cont {
+  width: 140%;
+  height: 140%;
+  left: -20%;
+  top: -20%;
+  position: relative;
+  margin: auto; }
+
+.kal_cont .ks {
+  -webkit-transform-origin: right top;
+  -moz-transform-origin: right top;
+  -o-transform-origin: right top;
+  transform-origin: right top;
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: 10;
+  overflow: hidden; }
+
+.kal_cont .ksc {
+  height: 100%;
+  width: 100%;
+  -webkit-transform: rotate(30deg);
+  -moz-transform: rotate(30deg);
+  -o-transform: rotate(30deg);
+  transform: rotate(30deg);
+  position: relative;
+  -webkit-transform-origin: left top;
+  -moz-transform-origin: left top;
+  -o-transform-origin: left top;
+  transform-origin: left top;
+  left: 100%;
+  top: 0;
+  background-image: url(../img/kal/space.jpg); }
+
+.grad_overlay {
+  position: absolute;
+  width: 100vw;
+  height: 70vw;
+  top: 30vw;
+  left: 0;
+  background-image: linear-gradient(to bottom, transparent, black);
+  z-index: 15; }
+
+/* styles for each sector */
+.kal_cont .s1 {
+  -webkit-transform: rotate(-30deg);
+  -moz-transform: rotate(-30deg);
+  -o-transform: rotate(-30deg);
+  transform: rotate(-30deg); }
+
+.kal_cont .s2 {
+  -webkit-transform: rotate(30deg) matrix(-1, 0, 0, 1, 0, 0);
+  -moz-transform: rotate(30deg) matrix(-1, 0, 0, 1, 0, 0);
+  -o-transform: rotate(30deg) matrix(-1, 0, 0, 1, 0, 0);
+  transform: rotate(30deg) matrix(-1, 0, 0, 1, 0, 0); }
+
+.kal_cont .s3 {
+  -webkit-transform: rotate(30deg);
+  -moz-transform: rotate(30deg);
+  -o-transform: rotate(30deg);
+  transform: rotate(30deg); }
+
+.kal_cont .s4 {
+  -webkit-transform: rotate(90deg) matrix(-1, 0, 0, 1, 0, 0);
+  -moz-transform: rotate(90deg) matrix(-1, 0, 0, 1, 0, 0);
+  -o-transform: rotate(90deg) matrix(-1, 0, 0, 1, 0, 0);
+  transform: rotate(90deg) matrix(-1, 0, 0, 1, 0, 0); }
+
+.kal_cont .s5 {
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg); }
+
+.kal_cont .s6 {
+  -webkit-transform: rotate(150deg) matrix(-1, 0, 0, 1, 0, 0);
+  -moz-transform: rotate(150deg) matrix(-1, 0, 0, 1, 0, 0);
+  -o-transform: rotate(150deg) matrix(-1, 0, 0, 1, 0, 0);
+  transform: rotate(150deg) matrix(-1, 0, 0, 1, 0, 0); }
+
+.kal_cont .s7 {
+  -webkit-transform: rotate(150deg);
+  -moz-transform: rotate(150deg);
+  -o-transform: rotate(150deg);
+  transform: rotate(150deg); }
+
+.kal_cont .s8 {
+  -webkit-transform: rotate(210deg) matrix(-1, 0, 0, 1, 0, 0);
+  -moz-transform: rotate(210deg) matrix(-1, 0, 0, 1, 0, 0);
+  -o-transform: rotate(210deg) matrix(-1, 0, 0, 1, 0, 0);
+  transform: rotate(210deg) matrix(-1, 0, 0, 1, 0, 0); }
+
+.kal_cont .s9 {
+  -webkit-transform: rotate(210deg);
+  -moz-transform: rotate(210deg);
+  -o-transform: rotate(210deg);
+  transform: rotate(210deg); }
+
+.kal_cont .s10 {
+  -webkit-transform: rotate(270deg) matrix(-1, 0, 0, 1, 0, 0);
+  -moz-transform: rotate(270deg) matrix(-1, 0, 0, 1, 0, 0);
+  -o-transform: rotate(270deg) matrix(-1, 0, 0, 1, 0, 0);
+  transform: rotate(270deg) matrix(-1, 0, 0, 1, 0, 0); }
+
+.kal_cont .s11 {
+  -webkit-transform: rotate(270deg);
+  -moz-transform: rotate(270deg);
+  -o-transform: rotate(270deg);
+  transform: rotate(270deg); }
+
+.kal_cont .s12 {
+  -webkit-transform: rotate(330deg) matrix(-1, 0, 0, 1, 0, 0);
+  -moz-transform: rotate(330deg) matrix(-1, 0, 0, 1, 0, 0);
+  -o-transform: rotate(330deg) matrix(-1, 0, 0, 1, 0, 0);
+  transform: rotate(330deg) matrix(-1, 0, 0, 1, 0, 0); }
