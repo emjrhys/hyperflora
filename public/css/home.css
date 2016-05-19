@@ -7,7 +7,7 @@ body {
 .content {
   position: relative;
   z-index: 20;
-  padding: calc(20vw - 40px) 0 30px; }
+  padding: calc(20vw - 40px) 0 0; }
 
 h1 {
   margin: 0 auto 10vw;
@@ -207,3 +207,17 @@ a span {
   -moz-transform: rotate(330deg) matrix(-1, 0, 0, 1, 0, 0);
   -o-transform: rotate(330deg) matrix(-1, 0, 0, 1, 0, 0);
   transform: rotate(330deg) matrix(-1, 0, 0, 1, 0, 0); }
+
+@media only screen and (max-width: 780px) {
+  h1 {
+    font-size: 3em;
+    letter-spacing: 20px;
+    padding-left: 20px; } }
+
+@media only screen and (max-width: 550px) {
+  h1 {
+    font-size: 2.4em;
+    letter-spacing: 10px;
+    padding-left: 10px; }
+  li {
+    font-size: .7em; } }
