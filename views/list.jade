@@ -5,6 +5,11 @@ block content
   ul(class='videos')
     each vid in videos
       li
-        a(href=vid.url, target="_blank")
-          h3= vid.title
-          p Channels: #{vid.channels.toString()}
+        if vid.host == "youtube"
+          a(href="https://youtube.com/watch?v="+vid.url, target="_blank")
+            h3= vid.title
+            p Channels: #{vid.channels.toString()}
+        else
+          a(href="https://vimeo.com/"+vid.url, target="_blank")
+            h3= vid.title
+            p Channels: #{vid.channels.toString()}
