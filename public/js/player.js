@@ -1,5 +1,3 @@
-/* TODO: Figure out something better to do with the next button */
-
 $('.nav-zone').mousemove(function() {
 	window.clearTimeout(timeoutHandle);
 	$('.nav-bar').removeClass('hidden');

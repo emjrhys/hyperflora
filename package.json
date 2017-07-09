@@ -4,12 +4,14 @@
   "main": "app.js",
   "description": "",
   "dependencies": {
+    "body-parser": "^1.17.2",
     "express": "^4.15.3",
+    "mongodb": "^2.2.30",
     "pug": "^2.0.0-rc.2"
   },
   "scripts": {
     "start": "node app.js",
-    "test": "nodemon app.js"
+    "dev": "nodemon app.js"
   },
   "repository": {
     "type": "git",

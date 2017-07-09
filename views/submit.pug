@@ -1,0 +1,9 @@
+extends layouts/main
+
+block style
+  link(rel='stylesheet', href='css/submit.css')
+  
+block content
+  form(action='/submit', method='POST')
+    input(type='text', placeholder='YouTube URL', name='url')
+    button(type='submit') Submit
