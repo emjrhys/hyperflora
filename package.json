@@ -4,14 +4,8 @@
   "main": "app.js",
   "description": "",
   "dependencies": {
-    "express": "^4.13.4",
-    "firebase": "^2.4.1",
-    "jade": "^1.11.0"
-  },
-  "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-notify": "^2.2.0",
-    "gulp-sass": "^2.2.0"
+    "express": "^4.15.3",
+    "pug": "^2.0.0-rc.2"
   },
   "scripts": {
     "start": "node app.js",
@@ -21,7 +15,7 @@
     "type": "git",
     "url": "git+https://github.com/noahjl1/hyperflora.git"
   },
-  "author": "Noah Lafferty, Lisa Vuong, Bernard Wang",
+  "author": "Noah Lafferty",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/noahjl1/hyperflora/issues"
