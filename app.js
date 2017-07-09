@@ -32,13 +32,15 @@ app.get('/submit', function (req, res) {
 
 app.post('/submit', function (req, res) {
   var vid_id = youtube_parser(req.body.url)
+  if (vid_id) {
+    db.collection('videos').save({ url: req.body.url, id: vid_id }, (err, result) => {
+      if (err) return console.log(err)
 
-  db.collection('videos').save({ url: req.body.url, id: vid_id }, (err, result) => {
-    if (err) return console.log(err)
-
-    console.log('Saved to database!')
-    res.redirect('/')
-  })
+      console.log('Saved to database!')
+      res.redirect('/')
+    })
+  }
+  res.render('error')
 })
 
 app.get('/list', function (req, res) {
