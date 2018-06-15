@@ -1,5 +1,5 @@
 const express      = require('express'),
-      youtube  = require('youtube-api'),
+      youtube      = require('youtube-api'),
       bodyParser   = require('body-parser'),
       cookieParser = require('cookie-parser'),
       pug          = require('pug'),
@@ -90,7 +90,7 @@ app.post('/submit', function (req, res) {
           if (err) return console.log(err)
 
           console.log('Saved to database!')
-          res.redirect('/list')
+          res.redirect('/admin')
         })
       })
     })
