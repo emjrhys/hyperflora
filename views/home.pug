@@ -14,19 +14,19 @@ block content
 
   section(class='content')
     h1 Hyperflora
-      
-    //- div(class='select') Select a channel 
+
+    //- div(class='select') Select a channel
     ul(class='categories')
       li(class='everything')
-        a(href='/watch') 
+        a(href='/watch')
           span Begin
+      li(class='music')
+        a(href='/watch?channel=music')
+          span Music
+      li(class='animation')
+        a(href='/watch?channel=animation')
+          span Animation
       //-
-        li(class='music')
-          a(href='/watch')
-            span Music
-        li(class='animation')
-          a(href='/watch')
-            span Animation
         li(class='food')
           a(href='/watch')
             span Food
@@ -45,6 +45,8 @@ block content
         li(class='animals')
           a(href='/watch')
             span Animals
-        
+            
+    a(href='/submit', class='submit') Submit a video
+
 block script
   script(src='js/home.js')

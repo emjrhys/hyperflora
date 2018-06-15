@@ -4,14 +4,18 @@
   "main": "app.js",
   "description": "",
   "dependencies": {
+    "bluebird": "^3.5.1",
     "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
     "express": "^4.15.3",
+    "google-auth-library": "^0.12.0",
+    "googleapis": "^23.0.0",
     "mongodb": "^2.2.30",
     "pug": "^2.0.0-rc.2"
   },
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "test": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -22,5 +26,8 @@
   "bugs": {
     "url": "https://github.com/noahjl1/hyperflora/issues"
   },
-  "homepage": "https://github.com/noahjl1/hyperflora#readme"
+  "homepage": "https://github.com/noahjl1/hyperflora#readme",
+  "devDependencies": {
+    "nodemon": "^1.12.5"
+  }
 }

@@ -6,4 +6,5 @@ block content
     each vid in videos
       li
         a(href=vid.url, target='_blank')
-          h3= vid.id
+          h3= vid['title']
+          span= vid.channel

@@ -1,0 +1,32 @@
+extends layouts/main
+
+block style
+  link(rel='stylesheet', href='css/admin.min.css')
+
+block content
+  a(href='/')
+    h1 Hyperflora
+  h2(style='margin: 30px;') Approval Queue
+  ul(class='videos')
+    each vid in unapproved
+      li
+        a(href=vid.url, target='_blank')
+          h3= vid.title
+        span= vid.channel
+        form(action='/delete', method='POST')
+          input(type='hidden', name='id', value=vid._id)
+          button(class='delete')
+        form(action='/approve', method='POST')
+          input(type='hidden', name='id', value=vid._id)
+          button(class='approve')
+  h2(style='margin: 30px;') Approved Videos
+  ul(class='videos')
+    each vid in approved
+      li
+        a(href=vid.url, target='_blank')
+          h3= vid.title
+        span= vid.channel
+        form(action='/delete', method='POST')
+          input(type='hidden', name='id', value=vid._id)
+          button(class='delete')
+            

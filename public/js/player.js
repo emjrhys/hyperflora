@@ -16,3 +16,5 @@ $('nav').mouseenter(function() {
 function hideNav() { console.log("hid nav"); $('.nav-bar').addClass('hidden'); }
 
 var timeoutHandle = window.setTimeout(hideNav, 2000);
+
+history.pushState('', '', '/watch/' + $('#video-player').attr('data-id') + window.location.search)
