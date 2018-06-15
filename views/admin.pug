@@ -6,6 +6,11 @@ block style
 block content
   a(href='/')
     h1 Hyperflora
+    
+  form(action='/submit', method='POST', class='submit')
+    input(type='text', placeholder='YouTube URL', name='url')
+    button(type='submit') Submit
+    
   h2(style='margin: 30px;') Approval Queue
   ul(class='videos')
     each vid in unapproved
@@ -19,6 +24,7 @@ block content
         form(action='/approve', method='POST')
           input(type='hidden', name='id', value=vid._id)
           button(class='approve')
+            
   h2(style='margin: 30px;') Approved Videos
   ul(class='videos')
     each vid in approved

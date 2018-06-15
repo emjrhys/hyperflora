@@ -1,4 +1,4 @@
-button {
+ul button {
   float: right;
   width: 24px;
   height: 24px;
@@ -15,4 +15,13 @@ button {
 .approve {
   background: url(../img/icons/check.png) no-repeat center center;
   background-size: contain;
+}
+
+.submit {
+  padding-left: 30px;
+
+  input {
+    width: 100%;
+    max-width: 400px;
+  }
 }
