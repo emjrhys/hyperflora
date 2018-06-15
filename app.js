@@ -1,23 +1,21 @@
-var express      = require('express'),
-    bodyParser   = require('body-parser'),
-    pug          = require('pug'),
-    fs           = require('fs'),
-    readline     = require('readline'),
-    google       = require('googleapis'),
-    googleAuth   = require('google-auth-library')
-    MongoClient  = require('mongodb').MongoClient,
-    ObjectID     = require('mongodb').ObjectID,
-    cookieParser = require('cookie-parser')
+const express      = require('express'),
+      youtube  = require('youtube-api'),
+      bodyParser   = require('body-parser'),
+      cookieParser = require('cookie-parser'),
+      pug          = require('pug'),
+      fs           = require('fs'),
+      readline     = require('readline'),
+      MongoClient  = require('mongodb').MongoClient,
+      ObjectID     = require('mongodb').ObjectID
 
-var SCOPES = ['https://www.googleapis.com/auth/youtube.readonly']
-var TOKEN_DIR = (process.env.HOME || process.env.HOMEPATH ||
-    process.env.USERPROFILE) + '/.credentials/'
-var TOKEN_PATH = TOKEN_DIR + 'youtube-nodejs-quickstart.json'
 
-var app = express()
-var youtube = google.youtube('v3')
-var oauth
-var db
+let app = express()
+let db
+
+let auth = youtube.authenticate({
+  type: 'key',
+  key: 'AIzaSyA-mI-1HFw5T7Ww2lsIQhmySiOcVidcBFs'
+})
 
 app.set('port', (process.env.PORT || 5000))
 
@@ -34,14 +32,14 @@ app.get('/', function (req, res) {
 
 app.get('/watch', function (req, res) {
   db.collection('videos').find({ approved: true }).toArray(function(err, results) {
-    var vid = getRandomFromArray(results)
+    let vid = getRandomFromArray(results)
 
-    var history = getHistory(req)
-    while (history.indexOf(vid['id']) > -1) {
-      vid = getRandomFromArray(results)
-    }
-
-    res.cookie('history', updateHistory(history, vid['id']))
+    // let history = getHistory(req)
+    // while (history.indexOf(vid['id']) > -1) {
+    //   vid = getRandomFromArray(results)
+    // }
+    //
+    // res.cookie('history', updateHistory(history, vid['id']))
 
     res.render('watch', { objId: vid._id, videoId: vid.id, title: vid.title })
   })
@@ -52,7 +50,7 @@ app.get('/watch/:vidId', function (req, res) {
     _id: ObjectID(req.params.vidId)
   }).toArray(function(err, results) {
     console.log(results)
-    var vid = results[0]
+    let vid = results[0]
     res.render('watch', { objId: vid._id, videoId: vid.id, title: vid.title })
   })
 })
@@ -62,7 +60,8 @@ app.get('/submit', function (req, res) {
 })
 
 app.post('/submit', function (req, res) {
-  var vid_id = youtube_parser(req.body.url)
+  let vid_id = youtube_parser(req.body.url)
+
   if (vid_id) {
     db.collection('videos').find({ id: vid_id }).toArray(function(err, results) {
       if (results.length > 0) {
@@ -73,7 +72,7 @@ app.post('/submit', function (req, res) {
       youtube.videos.list({
         id: vid_id,
         part: 'snippet',
-        auth: oauth
+        auth: auth
       }, function (err, response) {
         if (err) {
           console.log('The API returned an error: ' + err)
@@ -91,7 +90,7 @@ app.post('/submit', function (req, res) {
           if (err) return console.log(err)
 
           console.log('Saved to database!')
-          res.redirect('/')
+          res.redirect('/list')
         })
       })
     })
@@ -136,71 +135,9 @@ MongoClient.connect('mongodb://admin:kittenmittens@ds151752.mlab.com:51752/hyper
   })
 })
 
-fs.readFile('client_secret.json', function processClientSecrets(err, content) {
-  if (err) {
-    console.log('Error loading client secret file: ' + err);
-    return;
-  }
-  authorize(JSON.parse(content))
-})
-
-function authorize(credentials) {
-  var clientSecret = credentials.installed.client_secret;
-  var clientId = credentials.installed.client_id;
-  var redirectUrl = credentials.installed.redirect_uris[0];
-  var auth = new googleAuth();
-  var oauth2Client = new auth.OAuth2(clientId, clientSecret, redirectUrl);
-
-  // Check if we have previously stored a token.
-  fs.readFile(TOKEN_PATH, function(err, token) {
-    if (err) {
-      getNewToken(oauth2Client);
-    } else {
-      oauth2Client.credentials = JSON.parse(token);
-      oauth = oauth2Client
-    }
-  });
-}
-
-function getNewToken(oauth2Client) {
-  var authUrl = oauth2Client.generateAuthUrl({
-    access_type: 'offline',
-    scope: SCOPES
-  });
-  console.log('Authorize this app by visiting this url: ', authUrl);
-  var rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
-  rl.question('Enter the code from that page here: ', function(code) {
-    rl.close();
-    oauth2Client.getToken(code, function(err, token) {
-      if (err) {
-        console.log('Error while trying to retrieve access token', err);
-        return;
-      }
-      oauth2Client.credentials = token;
-      storeToken(token);
-      oauth = oauth2Client
-    });
-  });
-}
-
-function storeToken(token) {
-  try {
-    fs.mkdirSync(TOKEN_DIR);
-  } catch (err) {
-    if (err.code != 'EEXIST') {
-      throw err;
-    }
-  }
-  fs.writeFile(TOKEN_PATH, JSON.stringify(token));
-  console.log('Token stored to ' + TOKEN_PATH);
-}
-
 function getHistory(req) {
-  var history = req.cookies['history']
-
+  let history = req.cookies['history']
+  console.log(history)
   if (typeof history === undefined) {
     history = []
   }
