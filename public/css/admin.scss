@@ -91,7 +91,7 @@ ul.videos {
   margin-top: 24px;
 	list-style: none;
 
-	li {
+	> li {
 		margin-bottom: 20px;
 
 		border: 1px solid #ddd;
@@ -114,7 +114,7 @@ ul.videos {
     }
   }
 
-  button {
+  .buttons button {
     width: 24px;
     height: 24px;
     margin-left: 5px;
@@ -161,12 +161,60 @@ ul.videos {
 }
 
 .dropdown-checklist {
+  position: relative;
 
+  outline: none;
+  width: 100%;
+  max-width: 160px;
+
+  color: #444;
+
+  .anchor {
+    display: block;
+    width: 100%;
+    padding: 4px  8px;
+
+    text-align: left;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    outline: none;
+
+    background: url('../img/icons/dropdown.png') no-repeat right center,
+    #fff;
+    background-size: 30px auto;;
+
+    cursor: pointer;
+
+    span {
+      display: block;
+      max-width: 120px;
+
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
 }
 
 .dropdown-items {
-  li {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  padding: 2px 8px 6px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 
+  background: #fff;
+  border: 1px solid #ddd;
+
+  z-index: 100;
+
+  li {
+    list-style: none;
+  }
+
+  input {
+    margin-right: 6px;
   }
 }
 

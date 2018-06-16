@@ -4,8 +4,25 @@
 //   $('.tabbutton[data-tab=' + tab + '], .tabcontent[data-tab=' + tab + ']').addClass('active')
 // })
 
-$('.channel-select').change((e) => {
-  $.post('update', { id: $(e.currentTarget).attr('data-objId'), channel: $(e.currentTarget).val() } );
+$('.dropdown-checklist :checkbox').change((e) => {
+  let checklist = $(e.currentTarget).parents('.dropdown-checklist'),
+      id = checklist.attr('data-objId'),
+      channels = checklist.find(':checkbox:checked').map(function() {
+        return this.value
+      }).get()
+
+  $.post('update', { id: id, channel: channels } );
+  checklist.find('.anchor span').html(channels.join(','))
+})
+
+$('.dropdown-checklist .anchor').click((e) => {
+  let items = $(e.currentTarget).next('.dropdown-items')
+  if (items.hasClass('hidden')) {
+    $('.dropdown-items').addClass('hidden')
+    items.removeClass('hidden')
+  } else {
+    items.addClass('hidden')
+  }
 })
 
 let page = $('#page').attr('data-page')
@@ -16,5 +33,10 @@ $('.submit-nav').click((e) => {
 })
 
 $('.channel-filter').change((e) => {
-  window.location.href = '/admin?filter=' + $(e.currentTarget).val()
+  let filter = $(e.currentTarget).val()
+
+  if (filter == 'all')
+    window.location.href = '/admin'
+  else
+    window.location.href = '/admin?filter=' + filter
 })

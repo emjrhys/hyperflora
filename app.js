@@ -32,6 +32,19 @@ app.set('view engine', 'pug')
 app.locals.basedir = path.join(__dirname, 'views')
 app.use((req, res, next) => {
   res.locals.channels = channels
+  res.locals.getChannelLabel = function(channels) {
+    if (channels == null) {
+      return 'no channels'
+    }
+
+    if (typeof channels === 'string') {
+      return channels
+    } else if (channels.length >= 3) {
+      return channels.length + ' channels'
+    } else {
+      return channels.join(', ')
+    }
+  }
   next()
 })
 
@@ -90,7 +103,7 @@ app.get('/admin', (req, res) => {
   }
 
   db.collection('videos').find(searchParams).sort({ '_id': -1 }).toArray((err, results) => {
-    res.render('admin/videoList', { page: 'videos', videos: results, filters: true, channelChanger: true, buttons: { approve: false } })
+    res.render('admin/videoList', { page: 'videos', videos: results, filterEnabled: true, filter: filter, channelChanger: true, buttons: { approve: false } })
   })
 })
 
@@ -181,7 +194,6 @@ app.post('/unapprove', (req, res) => {
 app.post('/update', (req, res) => {
   db.collection('videos').update({ _id: ObjectID(req.body.id) }, { $set: { channel: req.body.channel } }, (err, results) => {
     console.log('Updated ' + req.body.id + ' with channel ' + req.body.channel)
-    //res.redirect('/admin')
   })
 })
 
