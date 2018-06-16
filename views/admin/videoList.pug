@@ -2,6 +2,13 @@ extends /layouts/admin
 
 block content
   div(data-page=page, id='page') 
+    if filters
+      section(class='filters') 
+        h4 Filter
+        select(class='channel-filter')
+          option(value='none') no channel
+          each channel in channels
+            option(value=channel)= channel
     ul(class='videos')
       each vid in videos
         li

@@ -14,3 +14,7 @@ $('nav a[data-page=' + page + ']').addClass('active')
 $('.submit-nav').click((e) => {
   $('#submit').removeClass('hidden');
 })
+
+$('.channel-filter').change((e) => {
+  window.location.href = '/admin?filter=' + 
+})

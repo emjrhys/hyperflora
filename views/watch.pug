@@ -10,10 +10,7 @@ block content
         a(href='/') Hyperflora
       h2(class='center')
         a(href='https://www.youtube.com/watch?v=' + videoId, target='_blank')= title
-      if channel
-        a(class='next right', href='/watch?channel=' + channel) Next Video
-      else
-        a(class='next right', href='/watch') Next Video
+      a(class='next right', href='/watch') Next Video
     div(class='nav-zone')
       
   div(id='video-player', data-objId=objId, data-videoId=videoId)
