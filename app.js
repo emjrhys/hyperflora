@@ -5,6 +5,7 @@ const express      = require('express'),
       pug          = require('pug'),
       fs           = require('fs'),
       readline     = require('readline'),
+      path         = require('path'),
 
       youtube      = require('youtube-api'),
       MongoClient  = require('mongodb').MongoClient,
@@ -27,6 +28,12 @@ app.use(express.static(__dirname + '/public'))
 
 app.set('views', __dirname + '/views')
 app.set('view engine', 'pug')
+
+app.locals.basedir = path.join(__dirname, 'views')
+app.use((req, res, next) => {
+  res.locals.channels = channels
+  next()
+})
 
 app.get('/', (req, res) => {
   res.render('home')
@@ -67,19 +74,23 @@ app.get('/watch/:vidId', (req, res) => {
 
 app.get('/list', (req, res) => {
   db.collection('videos').find().sort({ '_id': -1 }).toArray((err, results) => {
-    res.render('list', { videos: results })
+    res.render('admin/videoList', { videos: results, page: 'list' })
   })
 })
 
 app.get('/admin', (req, res) => {
-  db.collection('videos').find({ approved: true }).sort({ '_id': -1 }).toArray((err, approved) => {
-    db.collection('videos').find({ approved: false }).sort({ '_id': -1 }).toArray((err, unapproved) => {
-      res.render('admin', { approved: approved, unapproved: unapproved, channels: channels })
-    })
+  db.collection('videos').find({ approved: true }).sort({ '_id': -1 }).toArray((err, results) => {
+    res.render('admin/videoList', { page: 'videos', videos: results, channelChanger: true, buttons: { approve: false } })
   })
 })
 
-app.get('/stats', (req, res) => {
+app.get('/admin/unapproved', (req, res) => {
+  db.collection('videos').find({ approved: false }).sort({ '_id': -1 }).toArray((err, results) => {
+    res.render('admin/videoList', { page: 'unapproved', videos: results, channelChanger: true, buttons: { approve: true } })
+  })
+})
+
+app.get('/admin/stats', (req, res) => {
   let channelCounts = {}
   db.collection('videos').find().toArray((err, results) => {
     for (let i = 0; i < results.length; i++) {
@@ -94,7 +105,7 @@ app.get('/stats', (req, res) => {
     }
     console.log(channelCounts)
 
-    res.render('stats', { total: results.length, channelCounts: channelCounts })
+    res.render('admin/stats', { total: results.length, channelCounts: channelCounts })
   })
 })
 
@@ -146,7 +157,7 @@ app.post('/submit', (req, res) => {
 app.post('/approve', (req, res) => {
   db.collection('videos').update({ _id: ObjectID(req.body.id) }, { $set: { approved: true } }, (err, results) => {
     console.log('Approved ' + req.body.id)
-    res.redirect('/admin')
+    res.redirect('/admin/unapproved')
   })
 })
 
@@ -160,14 +171,14 @@ app.post('/unapprove', (req, res) => {
 app.post('/update', (req, res) => {
   db.collection('videos').update({ _id: ObjectID(req.body.id) }, { $set: { channel: req.body.channel } }, (err, results) => {
     console.log('Updated ' + req.body.id + ' with channel ' + req.body.channel)
-    res.redirect('/admin')
+    //res.redirect('/admin')
   })
 })
 
 app.post('/delete', (req, res) => {
   db.collection('videos').remove({ _id: ObjectID(req.body.id) }, (err, results) => {
     console.log('Deleted ' + req.body.id)
-    res.redirect('/admin')
+    //res.redirect('/admin')
   })
 })
 

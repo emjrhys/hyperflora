@@ -1,0 +1,23 @@
+extends main
+
+block style
+  link(rel='stylesheet', href='/css/admin.min.css')
+    
+block header
+  header 
+    h1(class='cutout')
+      a(href='/') Hyperflora
+      
+    nav
+      a(data-page='videos', href='/admin') All Videos
+      a(data-page='unapproved', href='/admin/unapproved') Unapproved
+      a(data-page='stats', href='/admin/stats') Stats
+      a(href='/submit') Submit
+    
+    form(action='/submit', method='POST', class='submit')
+      input(type='text', placeholder='YouTube URL', name='url')
+      button(type='submit') Submit
+    
+  
+block script
+  script(src='/js/admin.js')

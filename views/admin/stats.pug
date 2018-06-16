@@ -1,0 +1,10 @@
+extends /layouts/admin
+
+block content
+  div(data-page='stats', id='page', class='stats')
+    h1 Stats
+    p There are #{total} videos in Hyperflora!
+    p Here are the totals by channel:
+    ul
+      each val, key in channelCounts
+        li #{key}: #{val}

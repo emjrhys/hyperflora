@@ -1,0 +1,36 @@
+extends /layouts/admin
+
+block content
+  div(data-page=page, id='page') 
+    ul(class='videos')
+      each vid in videos
+        li
+          a(href=vid.url, target='_blank', class='title')
+            h3= vid.title
+          
+          div(class='controls')
+            if channelChanger
+              select(class='channel-select', data-objId=vid._id)
+                option(value='none') no channel
+                each channel in channels
+                  if (vid.channel == channel)
+                    option(value=channel selected)= channel
+                  else
+                    option(value=channel)= channel
+            else
+              span= vid.channel
+            
+             
+            if buttons
+              div(class='buttons')
+                if buttons.approve
+                  form(action='/approve', method='POST')
+                    input(type='hidden', name='id', value=vid._id)
+                    button(class='approve')
+                else 
+                  form(action='/unapprove', method='POST')
+                    input(type='hidden', name='id', value=vid._id)
+                    button(class='unapprove')
+                form(action='/delete', method='POST')
+                  input(type='hidden', name='id', value=vid._id)
+                  button(class='delete')  

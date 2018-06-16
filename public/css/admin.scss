@@ -24,6 +24,7 @@ header {
   }
 
   .submit {
+    display: none;
     margin-bottom: 30px;
     width: 100%;
     max-width: 500px;
@@ -38,31 +39,31 @@ header {
   }
 }
 
-.tabbutton {
-  background: none;
-  border: none;
-  outline: none;
+header nav {
+  a {
+    margin-right: 14px;
 
-  color: #666;
-  font-size: 1.4em;
-  line-height: 1.8em;
-  font-weight: bold;
-  text-transform: lowercase;
+    background: none;
+    border: none;
+    outline: none;
 
-  &.active {
-    color: #fff;
-  }
+    color: #666;
+    font-size: 1.5em;
+    line-height: 1.8em;
+    font-weight: bold;
+    text-transform: lowercase;
 
-  &:hover:not(.active) {
-    color: #aaa;
-  }
-}
+    &.active {
+      color: #fff;
+    }
 
-.tabcontent {
-  display: none;
+    &:hover:not(.active) {
+      color: #aaa;
+    }
 
-  &.active {
-    display: block;
+    &:last {
+      margin-right: 0;
+    }
   }
 }
 
@@ -78,10 +79,6 @@ ul button {
   &:hover {
     opacity: 1;
   }
-}
-
-ul.list button {
-  float: right;
 }
 
 ul.videos {
@@ -113,6 +110,8 @@ ul.videos {
     padding: 10px 12px;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
+
+    color: #003163;
 
     &:hover {
 			background-color: #f7faff;
@@ -149,12 +148,6 @@ ul.videos {
       display: inline;
     }
   }
-
-  &.unapproved .controls {
-    -webkit-box-pack: end;
-        -ms-flex-pack: end;
-            justify-content: space-between;
-  }
 }
 
 .delete {
@@ -173,4 +166,21 @@ ul.videos {
   background: url(../img/icons/x.png) no-repeat center center;
   background-size: contain;
   opacity: .6;
+}
+
+.stats {
+  text-align: center;
+
+  h1 {
+    font-size: 2em;
+  }
+
+  p {
+    margin: 10px 0;
+    font-size: 1.5em;
+  }
+
+  ul {
+    font-size: 1.25em;
+  }
 }
