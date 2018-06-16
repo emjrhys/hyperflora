@@ -58,7 +58,7 @@ app.get('/watch/:vidId', function (req, res) {
 })
 
 app.get('/list', function (req, res) {
-  db.collection('videos').find().toArray(function(err, results) {
+  db.collection('videos').find().sort({ '_id': -1 }).toArray(function(err, results) {
     res.render('list', { videos: results })
   })
 })
@@ -134,6 +134,13 @@ app.post('/delete', function (req, res) {
 app.post('/approve', function (req, res) {
   console.log(req.body.id)
   db.collection('videos').update({ _id: ObjectID(req.body.id) }, { $set: { approved: true } }, function(err, results) {
+    res.redirect('/admin')
+  })
+})
+
+app.post('/unapprove', function (req, res) {
+  console.log(req.body.id)
+  db.collection('videos').update({ _id: ObjectID(req.body.id) }, { $set: { approved: false } }, function(err, results) {
     res.redirect('/admin')
   })
 })

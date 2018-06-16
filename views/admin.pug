@@ -35,4 +35,7 @@ block content
         form(action='/delete', method='POST')
           input(type='hidden', name='id', value=vid._id)
           button(class='delete')
+        form(action='/unapprove', method='POST')
+          input(type='hidden', name='id', value=vid._id)
+          button(class='unapprove')
             
