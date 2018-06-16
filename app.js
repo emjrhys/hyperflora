@@ -188,7 +188,7 @@ app.post('/update', (req, res) => {
 app.post('/delete', (req, res) => {
   db.collection('videos').remove({ _id: ObjectID(req.body.id) }, (err, results) => {
     console.log('Deleted ' + req.body.id)
-    //res.redirect('/admin')
+    res.redirect('/admin')
   })
 })
 

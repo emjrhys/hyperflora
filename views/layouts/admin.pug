@@ -8,15 +8,15 @@ block header
     h1(class='cutout')
       a(href='/') Hyperflora
       
+    form(action='/submit', method='POST', id='submit', class='hidden')
+      input(type='text', placeholder='YouTube URL', name='url')
+      button(type='submit') Submit
+      
     nav
       a(data-page='videos', href='/admin') All Videos
       a(data-page='unapproved', href='/admin/unapproved') Unapproved
       a(data-page='stats', href='/admin/stats') Stats
       a(href='#', class='submit-nav') Submit
-    
-    form(action='/submit', method='POST', id='submit', class='hidden')
-      input(type='text', placeholder='YouTube URL', name='url')
-      button(type='submit') Submit
   
 block script
   script(src='/js/admin.js')

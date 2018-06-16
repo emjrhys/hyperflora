@@ -118,8 +118,13 @@ li {
     background-size: cover;
   }
 
-  &.animals {
+  &.nature {
     background: url(../img/animals.jpg) no-repeat center center;
+    background-size: cover;
+  }
+
+  &.comedy {
+    background: url(../img/comedy.png) no-repeat center center;
     background-size: cover;
   }
 }
