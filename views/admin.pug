@@ -12,38 +12,47 @@ block content
     button(type='submit') Submit
     
   nav
-    button(data-tab='videos', class='tabbutton') All Videos
+    button(data-tab='videos', class='tabbutton active') All Videos
     button(data-tab='unapproved', class='tabbutton') Unapproved
     
   section(data-tab='videos', class='tabcontent active')        
-    h2 Videos in Hyperflora
     ul(class='videos')
       each vid in approved
         li
-          a(href=vid.url, target='_blank')
+          a(href=vid.url, target='_blank', class='title')
             h3= vid.title
-          span= vid.channel
-          form(action='/delete', method='POST')
-            input(type='hidden', name='id', value=vid._id)
-            button(class='delete')
-          form(action='/unapprove', method='POST')
-            input(type='hidden', name='id', value=vid._id)
-            button(class='unapprove')
+              
+          div(class='controls')
+            select(class='channel-select', data-objId=vid._id)
+              option(value='none') no channel
+              each channel in channels
+                if (vid.channel == channel)
+                  option(value=channel selected)= channel
+                else
+                  option(value=channel)= channel
+                  
+            div(class='buttons')
+              form(action='/unapprove', method='POST')
+                input(type='hidden', name='id', value=vid._id)
+                button(class='unapprove')
+              form(action='/delete', method='POST')
+                input(type='hidden', name='id', value=vid._id)
+                button(class='delete')
     
   section(data-tab='unapproved', class='tabcontent')
-    h2 Unapproved Videos
-    ul(class='videos')
+    ul(class='videos unapproved')
       each vid in unapproved
         li
-          a(href=vid.url, target='_blank')
+          a(href=vid.url, target='_blank', class='title')
             h3= vid.title
-          span= vid.channel
-          form(action='/delete', method='POST')
-            input(type='hidden', name='id', value=vid._id)
-            button(class='delete')
-          form(action='/approve', method='POST')
-            input(type='hidden', name='id', value=vid._id)
-            button(class='approve')
+            
+          div(class='controls')
+            form(action='/delete', method='POST')
+              input(type='hidden', name='id', value=vid._id)
+              button(class='delete')
+            form(action='/approve', method='POST')
+              input(type='hidden', name='id', value=vid._id)
+              button(class='approve')
             
 block script
   script(src='/js/admin.js')

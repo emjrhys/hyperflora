@@ -2,7 +2,7 @@ extends layouts/main
 
 block content
   h2(style='margin: 30px;') Videos in Hyperflora
-  ul(class='videos')
+  ul(class='list')
     each vid in videos
       if (vimeo && vid.host == 'vimeo')
         li

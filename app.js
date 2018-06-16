@@ -9,7 +9,8 @@ const express      = require('express'),
       youtube      = require('youtube-api'),
       MongoClient  = require('mongodb').MongoClient,
       ObjectID     = require('mongodb').ObjectID,
-      oldData      = require('./data/old-database.json')
+      oldData      = require('./data/old-database.json'),
+      channels     = require('./data/channels.json')
 
 let app = express()
 let db
@@ -28,12 +29,12 @@ app.use(express.static(__dirname + '/public'))
 app.set('views', __dirname + '/views')
 app.set('view engine', 'pug')
 
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
   res.render('home')
 })
 
-app.get('/watch', function (req, res) {
-  db.collection('videos').find({ approved: true }).toArray(function(err, results) {
+app.get('/watch', (req, res) => {
+  db.collection('videos').find({ approved: true }).toArray((err, results) => {
     let vid = getRandomFromArray(results)
 
     // let history = getHistory(req)
@@ -50,23 +51,23 @@ app.get('/watch', function (req, res) {
 app.get('/watch/:vidId', function (req, res) {
   db.collection('videos').find({
     _id: ObjectID(req.params.vidId)
-  }).toArray(function(err, results) {
+  }).toArray((err, results) => {
     console.log(results)
     let vid = results[0]
     res.render('watch', { objId: vid._id, videoId: vid.id, title: vid.title })
   })
 })
 
-app.get('/list', function (req, res) {
+app.get('/list', (req, res) => {
   db.collection('videos').find().sort({ '_id': -1 }).toArray(function(err, results) {
     res.render('list', { videos: results })
   })
 })
 
-app.get('/admin', function (req, res) {
+app.get('/admin', (req, res) => {
   db.collection('videos').find({ approved: true }).sort({ '_id': -1 }).toArray(function(err, approved) {
     db.collection('videos').find({ approved: false }).sort({ '_id': -1 }).toArray(function(err, unapproved) {
-      res.render('admin', { approved: approved, unapproved: unapproved })
+      res.render('admin', { approved: approved, unapproved: unapproved, channels: channels })
     })
   })
 })
@@ -79,16 +80,16 @@ app.get('/vimeo', (req, res) => {
   res.render('old', { videos: oldData, vimeo: true })
 })
 
-app.get('/submit', function (req, res) {
+app.get('/submit', (req, res) => {
   res.render('submit')
 })
 
-app.post('/submit', function (req, res) {
+app.post('/submit', (req, res) => {
   console.log(req.originalUrl)
   let vid_id = youtube_parser(req.body.url)
 
   if (vid_id) {
-    db.collection('videos').find({ id: vid_id }).toArray(function(err, results) {
+    db.collection('videos').find({ id: vid_id }).toArray((err, results) => {
       if (results.length > 0) {
         res.render('submit', { error: 'This video has already been submitted' })
         return
@@ -98,7 +99,7 @@ app.post('/submit', function (req, res) {
         id: vid_id,
         part: 'snippet',
         auth: auth
-      }, function (err, response) {
+      }, (err, response) => {
         if (err) {
           console.log('The API returned an error: ' + err)
           return { error: 'The API returned an error: ' + err }
@@ -124,23 +125,30 @@ app.post('/submit', function (req, res) {
   }
 })
 
-app.post('/delete', function (req, res) {
-  console.log(req.body.id)
-  db.collection('videos').remove({ _id: ObjectID(req.body.id) }, function(err, results) {
+app.post('/approve', (req, res) => {
+  db.collection('videos').update({ _id: ObjectID(req.body.id) }, { $set: { approved: true } }, (err, results) => {
+    console.log('Approved ' + req.body.id)
     res.redirect('/admin')
   })
 })
 
-app.post('/approve', function (req, res) {
-  console.log(req.body.id)
-  db.collection('videos').update({ _id: ObjectID(req.body.id) }, { $set: { approved: true } }, function(err, results) {
+app.post('/unapprove', (req, res) => {
+  db.collection('videos').update({ _id: ObjectID(req.body.id) }, { $set: { approved: false } }, (err, results) => {
+    console.log('Removed ' + req.body.id + ' from approved')
     res.redirect('/admin')
   })
 })
 
-app.post('/unapprove', function (req, res) {
-  console.log(req.body.id)
-  db.collection('videos').update({ _id: ObjectID(req.body.id) }, { $set: { approved: false } }, function(err, results) {
+app.post('/update', (req, res) => {
+  db.collection('videos').update({ _id: ObjectID(req.body.id) }, { $set: { channel: req.body.channel } }, (err, results) => {
+    console.log('Updated ' + req.body.id + ' with channel ' + req.body.channel)
+    res.redirect('/admin')
+  })
+})
+
+app.post('/delete', (req, res) => {
+  db.collection('videos').remove({ _id: ObjectID(req.body.id) }, (err, results) => {
+    console.log('Deleted ' + req.body.id)
     res.redirect('/admin')
   })
 })
@@ -148,7 +156,7 @@ app.post('/unapprove', function (req, res) {
 MongoClient.connect('mongodb://admin:kittenmittens@ds151752.mlab.com:51752/hyperflora', (err, database) => {
   if (err) return console.log(err)
   db = database
-  app.listen(app.get('port'), function() {
+  app.listen(app.get('port'), () => {
     console.log('Node app is running on port', app.get('port'))
   })
 })

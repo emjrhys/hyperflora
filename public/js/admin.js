@@ -1,5 +1,9 @@
 $('.tabbutton').click((e) => {
-  $('.tabcontent').removeClass('active')
+  $('.tabbutton, .tabcontent').removeClass('active')
   let tab = $(e.currentTarget).attr('data-tab')
-  $('.tabcontent[data-tab=' + tab + ']').addClass('active')
+  $('.tabbutton[data-tab=' + tab + '], .tabcontent[data-tab=' + tab + ']').addClass('active')
+})
+
+$('.channel-select').change((e) => {
+  $.post('update', { id: $(e.currentTarget).attr('data-objId'), channel: $(e.currentTarget).val() } );
 })

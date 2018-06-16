@@ -2,7 +2,7 @@ extends layouts/main
 
 block content
   h2(style='margin: 30px;') Videos in Hyperflora
-  ul(class='videos')
+  ul(class='list')
     each vid in videos
       li
         a(href=vid.url, target='_blank')
