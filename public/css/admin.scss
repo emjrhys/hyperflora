@@ -14,7 +14,7 @@ header {
       -ms-flex-pack: justify;
           justify-content: space-between;
 
-  padding: 24px 60px;
+  padding: 24px 60px 20px;
   margin-bottom: 28px;
 
   background-color: #000;
@@ -86,19 +86,19 @@ ul.list button {
 }
 
 ul.videos {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-	-ms-flex-wrap: wrap;
-	    flex-wrap: wrap;
-	-ms-flex-pack: distribute;
-	    justify-content: space-around;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 1rem;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-around;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
 
 	padding: 0 30px;
 	list-style: none;
 
 	li {
-    width: 420px;
 		margin-bottom: 20px;
 
 		border: 1px solid #ddd;
@@ -113,8 +113,6 @@ ul.videos {
     padding: 10px 12px;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
-
-
 
     &:hover {
 			background-color: #f7faff;
