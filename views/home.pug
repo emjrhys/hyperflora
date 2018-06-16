@@ -15,23 +15,24 @@ block content
   section(class='content')
     h1 Hyperflora
 
-    //- div(class='select') Select a channel
+    div(class='select') Select a channel
     ul(class='categories')
       li(class='everything')
         a(href='/watch')
           span Everything
-      li(class='music')
-        a(href='/watch?channel=music')
-          span Music
-      li(class='animation')
-        a(href='/watch?channel=animation')
-          span Animation
-      li(class='experimental')
-        a(href='/watch?channel=experimental')
-          span Experimental
-      li(class='educational')
-        a(href='/watch?channel=educational')
-          span Educational    
+      div(class='grid')
+        li(class='music')
+          a(href='/watch?channel=music')
+            span Music
+        li(class='animation')
+          a(href='/watch?channel=animation')
+            span Animation
+        li(class='experimental')
+          a(href='/watch?channel=experimental')
+            span Experimental
+        li(class='educational')
+          a(href='/watch?channel=educational')
+            span Educational    
       //-
         Channel ideas:
         - music
