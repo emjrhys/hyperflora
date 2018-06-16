@@ -4,16 +4,17 @@ block style
   link(rel='stylesheet', href='/css/admin.min.css')
 
 block content
-  a(href='/')
-    h1 Hyperflora
+  header 
+    h1(class='cutout')
+      a(href='/') Hyperflora
+      
+    nav
+      button(data-tab='videos', class='tabbutton active') All Videos
+      button(data-tab='unapproved', class='tabbutton') Unapproved
     
-  form(action='/submit', method='POST', class='submit')
-    input(type='text', placeholder='YouTube URL', name='url')
-    button(type='submit') Submit
-    
-  nav
-    button(data-tab='videos', class='tabbutton active') All Videos
-    button(data-tab='unapproved', class='tabbutton') Unapproved
+    form(action='/submit', method='POST', class='submit')
+      input(type='text', placeholder='YouTube URL', name='url')
+      button(type='submit') Submit
     
   section(data-tab='videos', class='tabcontent active')        
     ul(class='videos')
@@ -47,12 +48,12 @@ block content
             h3= vid.title
             
           div(class='controls')
-            form(action='/delete', method='POST')
-              input(type='hidden', name='id', value=vid._id)
-              button(class='delete')
             form(action='/approve', method='POST')
               input(type='hidden', name='id', value=vid._id)
               button(class='approve')
+            form(action='/delete', method='POST')
+              input(type='hidden', name='id', value=vid._id)
+              button(class='delete')
             
 block script
   script(src='/js/admin.js')

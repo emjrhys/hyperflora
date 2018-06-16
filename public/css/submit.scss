@@ -6,14 +6,6 @@ body {
 h1 {
   margin: 0;
   margin-bottom: 60px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-
-  a {
-    background: url(../img/title.jpg) no-repeat;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
 }
 
 .content {
@@ -42,12 +34,13 @@ form {
 
 input {
   width: 100%;
-  max-width: 500px;
+  max-width: 600px;
 
   background: none;
   border: none;
   outline: none;
   border-bottom: 4px solid #fff;
+  padding: 5px;
 
   font-size: 1.4em;
 }

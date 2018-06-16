@@ -1,24 +1,42 @@
 body {
-  padding: 0 30px;
+  background-color: #fafafa;
 }
 
-h1 {
-  margin: 20px 0;
-}
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 
-.submit {
-  display: none;
-  margin-bottom: 30px;
+  padding: 24px 60px;
+  margin-bottom: 28px;
 
-  input {
-    width: 100%;
-    max-width: 400px;
+  background-color: #000;
+
+  h1 {
+    color: #fff;
   }
-}
 
-nav {
-  margin-bottom: 24px;
-  text-align: center;
+  .submit {
+    display: none;
+    margin-bottom: 30px;
+    width: 100%;
+    max-width: 500px;
+
+    input {
+      display: inline;
+    }
+
+    button {
+      display: inline;
+    }
+  }
 }
 
 .tabbutton {
@@ -26,16 +44,18 @@ nav {
   border: none;
   outline: none;
 
-  color: #888;
-  font-size: 1.5em;
+  color: #666;
+  font-size: 1.4em;
+  line-height: 1.8em;
   font-weight: bold;
+  text-transform: lowercase;
 
   &.active {
-    color: #3035cc;
+    color: #fff;
   }
 
   &:hover:not(.active) {
-    color: #555;
+    color: #aaa;
   }
 }
 
@@ -74,22 +94,11 @@ ul.videos {
 	-ms-flex-pack: distribute;
 	    justify-content: space-around;
 
-	padding: 0;
+	padding: 0 30px;
 	list-style: none;
 
 	li {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-
-    width: 400px;
+    width: 420px;
 		margin-bottom: 20px;
 
 		border: 1px solid #ddd;
@@ -100,9 +109,12 @@ ul.videos {
 	a {
 		display: block;
     width: 100%;
+    height: 46px;
     padding: 10px 12px;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
+
+
 
     &:hover {
 			background-color: #f7faff;
@@ -111,6 +123,9 @@ ul.videos {
 
   h3 {
     font-weight: normal;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   .controls {
@@ -126,6 +141,9 @@ ul.videos {
             justify-content: space-between;
 
     padding: 10px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+
     background-color: #eee;
     border-top: 1px solid #ddd;
 
@@ -137,7 +155,7 @@ ul.videos {
   &.unapproved .controls {
     -webkit-box-pack: end;
         -ms-flex-pack: end;
-            justify-content: flex-end;
+            justify-content: space-between;
   }
 }
 
