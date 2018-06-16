@@ -8,7 +8,8 @@ const express      = require('express'),
 
       youtube      = require('youtube-api'),
       MongoClient  = require('mongodb').MongoClient,
-      ObjectID     = require('mongodb').ObjectID
+      ObjectID     = require('mongodb').ObjectID,
+      oldData      = require('./old-database.json')
 
 let app = express()
 let db
@@ -56,6 +57,24 @@ app.get('/watch/:vidId', function (req, res) {
   })
 })
 
+app.get('/list', function (req, res) {
+  db.collection('videos').find().toArray(function(err, results) {
+    res.render('list', { videos: results })
+  })
+})
+
+app.get('/admin', function (req, res) {
+  db.collection('videos').find({ approved: true }).toArray(function(err, approved) {
+    db.collection('videos').find({ approved: false }).toArray(function(err, unapproved) {
+      res.render('admin', { approved: approved, unapproved: unapproved })
+    })
+  })
+})
+
+app.get('/old', function (req, res) {
+  res.render('old', { videos: oldData })
+})
+
 app.get('/submit', function (req, res) {
   res.render('submit')
 })
@@ -99,20 +118,6 @@ app.post('/submit', function (req, res) {
   } else {
     res.render('submit', { error: 'Only YouTube urls are supported' })
   }
-})
-
-app.get('/list', function (req, res) {
-  db.collection('videos').find().toArray(function(err, results) {
-    res.render('list', { videos: results })
-  })
-})
-
-app.get('/admin', function (req, res) {
-  db.collection('videos').find({ approved: true }).toArray(function(err, approved) {
-    db.collection('videos').find({ approved: false }).toArray(function(err, unapproved) {
-      res.render('admin', { approved: approved, unapproved: unapproved })
-    })
-  })
 })
 
 app.post('/delete', function (req, res) {
