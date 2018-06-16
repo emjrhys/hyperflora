@@ -21,39 +21,10 @@ block content
         a(href='/watch')
           span Everything
       div(class='grid')
-        li(class='music')
-          a(href='/watch?channel=music')
-            span Music
-        li(class='animation')
-          a(href='/watch?channel=animation')
-            span Animation
-        li(class='experimental')
-          a(href='/watch?channel=experimental')
-            span Experimental
-        li(class='discovery')
-          a(href='/watch?channel=discovery')
-            span Discovery
-        li(class='comedy')
-          a(href='/watch?channel=comedy')
-            span Comedy
-        li(class='nature')
-          a(href='/watch?channel=nature')
-            span Nature
-        li(class='food')
-          a(href='/watch?channel=food')
-            span Food
-        li(class='nightmare')
-          a(href='/watch?channel=nightmare')
-            span Nightmare
-      //-
-        Channel ideas:
-        - music
-        - animation
-        - food
-        - discovery
-        - experimental
-        - comedy
-        - nature
+        for channel in channels
+          li(class=channel)
+            a(href='/watch?channel=' + channel)
+              span= channel
             
     a(href='/submit', class='submit') Submit a video
 

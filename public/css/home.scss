@@ -127,6 +127,11 @@ li {
     background: url(../img/comedy.png) no-repeat center center;
     background-size: cover;
   }
+
+  &.nightmare {
+    background: url(../img/nightmare.png) no-repeat center center;
+    background-size: cover;
+  }
 }
 
 .grid {
