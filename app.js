@@ -71,8 +71,12 @@ app.get('/admin', function (req, res) {
   })
 })
 
-app.get('/old', function (req, res) {
+app.get('/old', (req, res) => {
   res.render('old', { videos: oldData })
+})
+
+app.get('/vimeo', (req, res) => {
+  res.render('old', { videos: oldData, vimeo: true })
 })
 
 app.get('/submit', function (req, res) {
