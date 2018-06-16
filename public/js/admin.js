@@ -10,3 +10,7 @@ $('.channel-select').change((e) => {
 
 let page = $('#page').attr('data-page')
 $('nav a[data-page=' + page + ']').addClass('active')
+
+$('.submit-nav').click((e) => {
+  $('#submit').removeClass('hidden');
+})
