@@ -11,11 +11,13 @@ html, body {
   width: 100%;
 
 	opacity: 1;
-	-webkit-transition: opacity 500ms;
-	transition: opacity 500ms;
+	-webkit-transition: opacity .5s;
+	transition: opacity .5s;
 
 	&.hidden {
     opacity: 0;
+		-webkit-transition: opacity 1.8s;
+		transition: opacity 1.8s;
   }
 }
 
@@ -33,7 +35,7 @@ nav {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 50px;
+  height: 60px;
   width: 100%;
 
   background-color: rgba(0, 0, 0, 1);
@@ -57,6 +59,8 @@ nav {
   }
 
 	h2 {
+		font-size: 1.6em;
+
 		overflow: hidden;
 		white-space: nowrap;
 		text-overflow: ellipsis;
@@ -66,9 +70,12 @@ nav {
     color: #fff;
     background-color: #000;
     height: 100%;
-    line-height: 50px;
 	}
 
+	.next {
+		line-height: 60px;
+		font-size: 1.1em;
+	}
 
 	.left {
 		text-align: left;

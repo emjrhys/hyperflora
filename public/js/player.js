@@ -1,11 +1,11 @@
 $('.nav-zone').mousemove(function() {
 	window.clearTimeout(timeoutHandle);
 	$('.nav-bar').removeClass('hidden');
-	timeoutHandle = window.setTimeout(hideNav, 1500);
+	timeoutHandle = window.setTimeout(hideNav, 3500);
 });
 
 $('nav').mouseleave(function() {
-	timeoutHandle = window.setTimeout(hideNav, 1500);
+	timeoutHandle = window.setTimeout(hideNav, 3500);
 });
 
 $('nav').mouseenter(function() {
@@ -15,7 +15,7 @@ $('nav').mouseenter(function() {
 
 function hideNav() { $('.nav-bar').addClass('hidden'); }
 
-let timeoutHandle = window.setTimeout(hideNav, 2000);
+let timeoutHandle = window.setTimeout(hideNav, 6000);
 
 history.replaceState('', '', '/watch/' + $('#video-player').attr('data-objId') + window.location.search)
 $('.next').attr('href', '/watch' + window.location.search)
