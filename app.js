@@ -64,8 +64,8 @@ app.get('/list', function (req, res) {
 })
 
 app.get('/admin', function (req, res) {
-  db.collection('videos').find({ approved: true }).toArray(function(err, approved) {
-    db.collection('videos').find({ approved: false }).toArray(function(err, unapproved) {
+  db.collection('videos').find({ approved: true }).sort({ '_id': -1 }).toArray(function(err, approved) {
+    db.collection('videos').find({ approved: false }).sort({ '_id': -1 }).toArray(function(err, unapproved) {
       res.render('admin', { approved: approved, unapproved: unapproved })
     })
   })
