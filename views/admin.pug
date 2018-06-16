@@ -11,7 +11,7 @@ block content
     input(type='text', placeholder='YouTube URL', name='url')
     button(type='submit') Submit
     
-  h2(style='margin: 30px;') Approval Queue
+  h2 Approval Queue
   ul(class='videos')
     each vid in unapproved
       li
@@ -25,7 +25,7 @@ block content
           input(type='hidden', name='id', value=vid._id)
           button(class='approve')
             
-  h2(style='margin: 30px;') Approved Videos
+  h2 Approved Videos
   ul(class='videos')
     each vid in approved
       li

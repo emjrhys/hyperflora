@@ -1,13 +1,14 @@
 const express      = require('express'),
-      youtube      = require('youtube-api'),
       bodyParser   = require('body-parser'),
       cookieParser = require('cookie-parser'),
+
       pug          = require('pug'),
       fs           = require('fs'),
       readline     = require('readline'),
+
+      youtube      = require('youtube-api'),
       MongoClient  = require('mongodb').MongoClient,
       ObjectID     = require('mongodb').ObjectID
-
 
 let app = express()
 let db
@@ -60,12 +61,13 @@ app.get('/submit', function (req, res) {
 })
 
 app.post('/submit', function (req, res) {
+  console.log(req.originalUrl)
   let vid_id = youtube_parser(req.body.url)
 
   if (vid_id) {
     db.collection('videos').find({ id: vid_id }).toArray(function(err, results) {
       if (results.length > 0) {
-        res.render('error', { error: 'This video has already been submitted' })
+        res.render('submit', { error: 'This video has already been submitted' })
         return
       }
 
@@ -95,7 +97,7 @@ app.post('/submit', function (req, res) {
       })
     })
   } else {
-    res.render('error', { 'error': 'Only YouTube urls are supported!' })
+    res.render('submit', { error: 'Only YouTube urls are supported' })
   }
 })
 
@@ -154,9 +156,9 @@ function updateHistory(history, id) {
 }
 
 function youtube_parser(url){
-  var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
-  var match = url.match(regExp);
-  return (match&&match[7].length==11)? match[7] : false;
+  let regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/
+  let match = url.match(regExp)
+  return (match&&match[7].length==11)? match[7] : false
 }
 
 function getRandomFromArray(arr) {
@@ -164,7 +166,7 @@ function getRandomFromArray(arr) {
 }
 
 function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+  min = Math.ceil(min)
+  max = Math.floor(max)
+  return Math.floor(Math.random() * (max - min)) + min //The maximum is exclusive and the minimum is inclusive
 }

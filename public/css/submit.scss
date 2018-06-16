@@ -1,5 +1,6 @@
 body {
   background: black;
+  color: #fff;
 }
 
 h1 {
@@ -16,10 +17,19 @@ h1 {
 }
 
 .content {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   text-align: center;
 
   width: 100vw;
@@ -40,7 +50,6 @@ input {
   border-bottom: 4px solid #fff;
 
   font-size: 1.4em;
-  color: #fff;
 }
 
 button {
@@ -50,7 +59,6 @@ button {
   border: none;
   outline: none;
 
-  color: #fff;
   text-transform: uppercase;
   font-size: 1.2em;
 
