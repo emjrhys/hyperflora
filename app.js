@@ -79,8 +79,18 @@ app.get('/list', (req, res) => {
 })
 
 app.get('/admin', (req, res) => {
-  db.collection('videos').find({ approved: true }).sort({ '_id': -1 }).toArray((err, results) => {
-    res.render('admin/videoList', { page: 'videos', videos: results, channelChanger: true, buttons: { approve: false } })
+  let filter = req.query.filter
+
+  let searchParams = {
+    approved: true
+  }
+
+  if (filter != null) {
+    searchParams.channel = filter
+  }
+
+  db.collection('videos').find(searchParams).sort({ '_id': -1 }).toArray((err, results) => {
+    res.render('admin/videoList', { page: 'videos', videos: results, filters: true, channelChanger: true, buttons: { approve: false } })
   })
 })
 

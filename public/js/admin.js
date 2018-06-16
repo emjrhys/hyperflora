@@ -16,5 +16,5 @@ $('.submit-nav').click((e) => {
 })
 
 $('.channel-filter').change((e) => {
-  window.location.href = '/admin?filter=' + 
+  window.location.href = '/admin?filter=' + $(e.currentTarget).val()
 })

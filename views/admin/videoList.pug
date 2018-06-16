@@ -4,9 +4,9 @@ block content
   div(data-page=page, id='page') 
     if filters
       section(class='filters') 
-        h4 Filter
+        span Filter:
         select(class='channel-filter')
-          option(value='none') no channel
+          option(value='none') none
           each channel in channels
             option(value=channel)= channel
     ul(class='videos')
