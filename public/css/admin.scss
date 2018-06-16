@@ -31,8 +31,18 @@ ul button {
 }
 
 .submit {
+  margin-bottom: 30px;
+
   input {
     width: 100%;
     max-width: 400px;
+  }
+}
+
+.tabcontent {
+  display: none;
+
+  &.active {
+    display: block;
   }
 }

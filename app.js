@@ -9,7 +9,7 @@ const express      = require('express'),
       youtube      = require('youtube-api'),
       MongoClient  = require('mongodb').MongoClient,
       ObjectID     = require('mongodb').ObjectID,
-      oldData      = require('./old-database.json')
+      oldData      = require('./data/old-database.json')
 
 let app = express()
 let db

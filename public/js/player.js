@@ -13,8 +13,37 @@ $('nav').mouseenter(function() {
 	$('.nav-bar').removeClass('hidden');
 });
 
-function hideNav() { console.log("hid nav"); $('.nav-bar').addClass('hidden'); }
+function hideNav() { $('.nav-bar').addClass('hidden'); }
 
-var timeoutHandle = window.setTimeout(hideNav, 2000);
+let timeoutHandle = window.setTimeout(hideNav, 2000);
 
-history.pushState('', '', '/watch/' + $('#video-player').attr('data-id') + window.location.search)
+history.pushState('', '', '/watch/' + $('#video-player').attr('data-objId') + window.location.search)
+
+let videoPlayer
+let videoId = $('#video-player').attr('data-videoId')
+
+function onYouTubePlayerAPIReady() {
+	console.log(videoId)
+  videoPlayer = new YT.Player('video-player', {
+    videoId: videoId,
+		playerVars: {
+			controls: 0,
+			showinfo: 0,
+			iv_load_policy: 3
+		},
+    events: {
+      onReady: onPlayerReady,
+      onStateChange: onPlayerStateChange
+    }
+  })
+}
+
+function onPlayerReady(event) {
+  event.target.playVideo()
+}
+
+function onPlayerStateChange(event) {
+  if(event.data === 0) {
+		window.location.href = $('.next').attr('href')
+  }
+}
