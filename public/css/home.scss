@@ -40,8 +40,9 @@ li {
   background-color: #222;
 
   -webkit-box-shadow: 2px 10px 20px 2px rgba(0,0,0,0.40);
-  -moz-box-shadow: 2px 10px 20px 2px rgba(0,0,0,0.40);
   box-shadow: 2px 10px 20px 2px rgba(0,0,0,0.40);
+
+  -webkit-transition: top .2s;
 
   transition: top .2s;
 
@@ -109,7 +110,7 @@ a {
   }
 
   &.submit {
-    padding: 50px 0;
+    padding: 40px 0 60px;
     font-size: 1.5em;
     letter-spacing: 3px;
   }
@@ -126,11 +127,11 @@ a {
 }
 .kal_cont{width:140%;height:140%;left:-20%;top:-20%;position:relative;margin:auto}
 .kal_cont .ks{
--webkit-transform-origin:right top;-moz-transform-origin:right top;-o-transform-origin:right top;transform-origin:right top;
+-webkit-transform-origin:right top;transform-origin:right top;
 width:50%;height:50%;position:absolute;top:50%;left:0;z-index:10;overflow:hidden;
 }
 .kal_cont .ksc{
-height:100%;width:100%;-webkit-transform:rotate(30deg);-moz-transform:rotate(30deg);-o-transform:rotate(30deg);transform:rotate(30deg);position:relative;-webkit-transform-origin:left top;-moz-transform-origin:left top;-o-transform-origin:left top;transform-origin:left top;left:100%;top:0;
+height:100%;width:100%;-webkit-transform:rotate(30deg);transform:rotate(30deg);position:relative;-webkit-transform-origin:left top;transform-origin:left top;left:100%;top:0;
 background-image:url(../img/kal/space.jpg)
 }
 
@@ -140,6 +141,7 @@ background-image:url(../img/kal/space.jpg)
   height: 70vw;
 	top: 30vw;
 	left: 0;
+	background-image: -webkit-gradient(linear,left top, left bottom,from(rgba(0,0,0,0)),to(rgba(0,0,0,1)));
 	background-image: linear-gradient(to bottom,rgba(0,0,0,0),rgba(0,0,0,1));
   z-index: 15;
 }
@@ -147,74 +149,50 @@ background-image:url(../img/kal/space.jpg)
 /* styles for each sector */
 .kal_cont .s1 {
   -webkit-transform: rotate(-30deg);
-  -moz-transform: rotate(-30deg);
-  -o-transform: rotate(-30deg);
   transform: rotate(-30deg);
 }
 .kal_cont .s2 {
   -webkit-transform: rotate(30deg) matrix(-1,0,0,1,0,0);
-  -moz-transform: rotate(30deg) matrix(-1,0,0,1,0,0);
-  -o-transform: rotate(30deg) matrix(-1,0,0,1,0,0);
   transform: rotate(30deg) matrix(-1,0,0,1,0,0);
 }
 .kal_cont .s3 {
   -webkit-transform: rotate(30deg);
-  -moz-transform: rotate(30deg);
-  -o-transform: rotate(30deg);
   transform: rotate(30deg);
 }
 .kal_cont .s4 {
   -webkit-transform: rotate(90deg) matrix(-1,0,0,1,0,0);
-  -moz-transform: rotate(90deg) matrix(-1,0,0,1,0,0);
-  -o-transform: rotate(90deg) matrix(-1,0,0,1,0,0);
   transform: rotate(90deg) matrix(-1,0,0,1,0,0);
 }
 .kal_cont .s5 {
   -webkit-transform: rotate(90deg);
-  -moz-transform: rotate(90deg);
-  -o-transform: rotate(90deg);
   transform: rotate(90deg);
 }
 .kal_cont .s6 {
   -webkit-transform: rotate(150deg) matrix(-1,0,0,1,0,0);
-  -moz-transform: rotate(150deg) matrix(-1,0,0,1,0,0);
-  -o-transform: rotate(150deg) matrix(-1,0,0,1,0,0);
   transform: rotate(150deg) matrix(-1,0,0,1,0,0);
 }
 .kal_cont .s7 {
   -webkit-transform: rotate(150deg);
-  -moz-transform: rotate(150deg);
-  -o-transform: rotate(150deg);
   transform: rotate(150deg);
 }
 .kal_cont .s8 {
   -webkit-transform: rotate(210deg) matrix(-1,0,0,1,0,0);
-  -moz-transform: rotate(210deg) matrix(-1,0,0,1,0,0);
-  -o-transform: rotate(210deg) matrix(-1,0,0,1,0,0);
   transform: rotate(210deg) matrix(-1,0,0,1,0,0);
 }
 .kal_cont .s9 {
   -webkit-transform: rotate(210deg);
-  -moz-transform: rotate(210deg);
-  -o-transform: rotate(210deg);
   transform: rotate(210deg);
 }
 .kal_cont .s10 {
   -webkit-transform: rotate(270deg) matrix(-1,0,0,1,0,0);
-  -moz-transform: rotate(270deg) matrix(-1,0,0,1,0,0);
-  -o-transform: rotate(270deg) matrix(-1,0,0,1,0,0);
   transform: rotate(270deg) matrix(-1,0,0,1,0,0);
 }
 .kal_cont .s11 {
   -webkit-transform: rotate(270deg);
-  -moz-transform: rotate(270deg);
-  -o-transform: rotate(270deg);
   transform: rotate(270deg);
 }
 .kal_cont .s12 {
   -webkit-transform: rotate(330deg) matrix(-1,0,0,1,0,0);
-  -moz-transform: rotate(330deg) matrix(-1,0,0,1,0,0);
-  -o-transform: rotate(330deg) matrix(-1,0,0,1,0,0);
   transform: rotate(330deg) matrix(-1,0,0,1,0,0);
 }
 

@@ -9,7 +9,6 @@ const express      = require('express'),
       youtube      = require('youtube-api'),
       MongoClient  = require('mongodb').MongoClient,
       ObjectID     = require('mongodb').ObjectID,
-      oldData      = require('./data/old-database.json'),
       channels     = require('./data/channels.json')
 
 let app = express()
@@ -34,21 +33,29 @@ app.get('/', (req, res) => {
 })
 
 app.get('/watch', (req, res) => {
-  db.collection('videos').find({ approved: true }).toArray((err, results) => {
+  let channel = req.query.channel
+
+  let searchParams = {
+    approved: true
+  }
+
+  if (channel != null) {
+    searchParams.channel = channel
+  }
+
+  db.collection('videos').find(searchParams).toArray((err, results) => {
     let vid = getRandomFromArray(results)
 
-    // let history = getHistory(req)
-    // while (history.indexOf(vid['id']) > -1) {
-    //   vid = getRandomFromArray(results)
-    // }
-    //
-    // res.cookie('history', updateHistory(history, vid['id']))
-
-    res.render('watch', { objId: vid._id, videoId: vid.id, title: vid.title })
+    res.render('watch', {
+      objId: vid._id,
+      videoId: vid.id,
+      title: vid.title,
+      channel: channel || null
+    })
   })
 })
 
-app.get('/watch/:vidId', function (req, res) {
+app.get('/watch/:vidId', (req, res) => {
   db.collection('videos').find({
     _id: ObjectID(req.params.vidId)
   }).toArray((err, results) => {
@@ -59,25 +66,36 @@ app.get('/watch/:vidId', function (req, res) {
 })
 
 app.get('/list', (req, res) => {
-  db.collection('videos').find().sort({ '_id': -1 }).toArray(function(err, results) {
+  db.collection('videos').find().sort({ '_id': -1 }).toArray((err, results) => {
     res.render('list', { videos: results })
   })
 })
 
 app.get('/admin', (req, res) => {
-  db.collection('videos').find({ approved: true }).sort({ '_id': -1 }).toArray(function(err, approved) {
-    db.collection('videos').find({ approved: false }).sort({ '_id': -1 }).toArray(function(err, unapproved) {
+  db.collection('videos').find({ approved: true }).sort({ '_id': -1 }).toArray((err, approved) => {
+    db.collection('videos').find({ approved: false }).sort({ '_id': -1 }).toArray((err, unapproved) => {
       res.render('admin', { approved: approved, unapproved: unapproved, channels: channels })
     })
   })
 })
 
-app.get('/old', (req, res) => {
-  res.render('old', { videos: oldData })
-})
+app.get('/stats', (req, res) => {
+  let channelCounts = {}
+  db.collection('videos').find().toArray((err, results) => {
+    for (let i = 0; i < results.length; i++) {
+      let channel = results[i]['channel']
+      if (channel != null && channel != 'none') {
+        if (!channelCounts[channel]) {
+          channelCounts[channel] = 1
+        } else {
+          channelCounts[channel] += 1
+        }
+      }
+    }
+    console.log(channelCounts)
 
-app.get('/vimeo', (req, res) => {
-  res.render('old', { videos: oldData, vimeo: true })
+    res.render('stats', { total: results.length, channelCounts: channelCounts })
+  })
 })
 
 app.get('/submit', (req, res) => {
@@ -160,6 +178,14 @@ MongoClient.connect('mongodb://admin:kittenmittens@ds151752.mlab.com:51752/hyper
     console.log('Node app is running on port', app.get('port'))
   })
 })
+
+// This goes in the watch method (doesn't really work)
+// let history = getHistory(req)
+// while (history.indexOf(vid['id']) > -1) {
+//   vid = getRandomFromArray(results)
+// }
+//
+// res.cookie('history', updateHistory(history, vid['id']))
 
 function getHistory(req) {
   let history = req.cookies['history']

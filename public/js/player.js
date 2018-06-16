@@ -17,7 +17,7 @@ function hideNav() { $('.nav-bar').addClass('hidden'); }
 
 let timeoutHandle = window.setTimeout(hideNav, 2000);
 
-history.pushState('', '', '/watch/' + $('#video-player').attr('data-objId') + window.location.search)
+history.replaceState('', '', '/watch/' + $('#video-player').attr('data-objId') + window.location.search)
 
 let videoPlayer
 let videoId = $('#video-player').attr('data-videoId')

@@ -19,13 +19,19 @@ block content
     ul(class='categories')
       li(class='everything')
         a(href='/watch')
-          span Begin
-      //- li(class='music')
-            a(href='/watch?channel=music')
-              span Music
-          li(class='animation')
-            a(href='/watch?channel=animation')
-              span Animation
+          span Everything
+      li(class='music')
+        a(href='/watch?channel=music')
+          span Music
+      li(class='animation')
+        a(href='/watch?channel=animation')
+          span Animation
+      li(class='experimental')
+        a(href='/watch?channel=experimental')
+          span Experimental
+      li(class='educational')
+        a(href='/watch?channel=educational')
+          span Educational    
       //-
         Channel ideas:
         - music
