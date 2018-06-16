@@ -11,8 +11,8 @@ $('.dropdown-checklist :checkbox').change((e) => {
         return this.value
       }).get()
 
-  $.post('update', { id: id, channel: channels } );
-  checklist.find('.anchor span').html(channels.join(','))
+  $.post('/update', { id: id, channel: channels });
+  checklist.find('.anchor span').html(getChannelLabel(channels))
 })
 
 $('.dropdown-checklist .anchor').click((e) => {
@@ -40,3 +40,17 @@ $('.channel-filter').change((e) => {
   else
     window.location.href = '/admin?filter=' + filter
 })
+
+function getChannelLabel(channels) {
+  if (channels == null) {
+    return 'no channels'
+  }
+
+  if (typeof channels === 'string') {
+    return channels
+  } else if (channels.length >= 3) {
+    return channels.length + ' channels'
+  } else {
+    return channels.join(', ')
+  }
+}

@@ -146,6 +146,9 @@ ul.videos {
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 
     padding: 10px;
     -webkit-box-sizing: border-box;
@@ -221,7 +224,7 @@ ul.videos {
 .delete {
   background: url(../img/icons/delete.png) no-repeat center center;
   background-size: contain;
-  opacity: .8;
+  opacity: .7;
 }
 
 .approve {

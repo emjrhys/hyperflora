@@ -118,11 +118,21 @@ app.get('/admin/stats', (req, res) => {
   db.collection('videos').find().toArray((err, results) => {
     for (let i = 0; i < results.length; i++) {
       let channel = results[i]['channel']
-      if (channel != null && channel != 'none') {
-        if (!channelCounts[channel]) {
-          channelCounts[channel] = 1
+      if (channel != null) {
+        if (typeof channel === 'string' && channel != 'none') {
+          if (!channelCounts[channel]) {
+            channelCounts[channel] = 1
+          } else {
+            channelCounts[channel] += 1
+          }
         } else {
-          channelCounts[channel] += 1
+          for (let i = 0; i < channel.length; i++) {
+            if (!channelCounts[channel[i]]) {
+              channelCounts[channel[i]] = 1
+            } else {
+              channelCounts[channel[i]] += 1
+            }
+          }
         }
       }
     }
