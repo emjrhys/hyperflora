@@ -64,7 +64,7 @@ header nav {
       color: #aaa;
     }
 
-    &:last {
+    &:last-child {
       margin-right: 0;
     }
   }
@@ -103,6 +103,9 @@ header nav {
 
   select {
     margin-left: 10px;
+    width: 150px;
+
+    outline: none;
   }
 
   .video-count {
@@ -214,7 +217,8 @@ ul.videos {
 
     text-align: left;
     border: 1px solid #ddd;
-    border-radius: 3px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
     outline: none;
 
     background: url('../img/icons/dropdown.png') no-repeat right center,
@@ -232,37 +236,49 @@ ul.videos {
       text-overflow: ellipsis;
     }
   }
+
+  &.closed {
+    .anchor {
+      border-bottom-left-radius: 3px;
+      border-bottom-right-radius: 3px;
+    }
+
+    .dropdown-items {
+      display: none;
+    }
+  }
 }
 
 .dropdown-items {
   position: absolute;
-  top: 100%;
+  top: calc(100% - 1px);
   width: 100%;
-  padding: 4px 8px;
+  padding: 4px 8px 6px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 
   background: #fff;
   border: 1px solid #ddd;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
 
   z-index: 100;
 
   label {
     display: block;
     margin: 2px 0;
+
+    cursor: pointer;
   }
 
   input {
     margin-right: 8px;
   }
 
-  .in-everything {
-    padding-bottom: 8px;
+  hr {
+    margin: 8px 0 4px;
+    border: none;
     border-bottom: 1px solid #ddd;
-
-    &+label {
-      margin-top: 4px;
-    }
   }
 }
 
@@ -298,8 +314,20 @@ ul.videos {
     font-size: 1.5em;
   }
 
-  ul {
+  table {
+    margin: 0 auto;
     font-size: 1.25em;
+
+    border-collapse: separate;
+    border-spacing: 20px 0px;
+
+    th:first-child {
+      text-align: left;
+    }
+
+    td:first-child {
+      text-align: left;
+    }
   }
 }
 

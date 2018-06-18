@@ -25,13 +25,14 @@ block content
           
           div(class='controls')
             if controls.channelChangerEnabled
-              div(class='dropdown-checklist', tabindex='100')
+              div(class='dropdown-checklist closed', tabindex='100')
                 button(class='anchor')
                   span= getChannelLabel(vid.channel)
-                div(class='dropdown-items hidden')
+                div(class='dropdown-items')
                   label(class='in-everything')
                     input(type='checkbox', checked=!vid.notInEverything)
                     span in everything
+                  hr
                   each channel in channels
                     label(class='channel', data-channel=channel)
                       input(type='checkbox', value=channel, checked=(vid.channel && vid.channel.includes(channel)))

@@ -4,7 +4,16 @@ block content
   div(data-page='stats', id='page', class='stats')
     h1 Stats
     p There are #{total} videos in Hyperflora!
-    p Here are the totals by channel:
-    ul
-      each val, key in channelCounts
-        li #{key}: #{val}
+    table
+      tr
+        th Channel
+        th Total
+        th Hidden
+      each count, channel in channelCounts
+        tr
+          td= channel
+          td= count.total
+          td= count.hidden
+
+    if untagged > 0
+      p #{untagged} videos haven't been tagged yet.

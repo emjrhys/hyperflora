@@ -8,8 +8,9 @@
 - password protect admin page
 - flag video for review button
 - find a replacement for the food channel
-- hide channel select when unfocused
 - add approved timestamp
 - admin indicator that video is not in everything
-- ~~hide related videos~~
+- download database page
+- ~~hide related videos (and other youtube stuff)~~
 - ~~'remove from everything' toggle~~
+- ~~hide channel select when unfocused~~

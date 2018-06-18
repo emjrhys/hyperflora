@@ -10,13 +10,24 @@ $('.dropdown-checklist :checkbox').change((e) => {
   checklist.find('.anchor span').html(getChannelLabel(channels))
 })
 
+let dropdownOpen
+
 $('.dropdown-checklist .anchor').click((e) => {
-  let items = $(e.currentTarget).next('.dropdown-items')
-  if (items.hasClass('hidden')) {
-    $('.dropdown-items').addClass('hidden')
-    items.removeClass('hidden')
+  let checklist = $(e.currentTarget).parent()
+  if (checklist.hasClass('closed')) {
+    $('.dropdown-checklist').addClass('closed')
+    checklist.removeClass('closed')
+    dropdownOpen = checklist
   } else {
-    items.addClass('hidden')
+    checklist.addClass('closed')
+    dropdownOpen = null
+  }
+})
+
+$(document).click((e) => {
+  if(dropdownOpen && !$(e.target).closest(dropdownOpen).length) {
+    dropdownOpen.addClass('closed')
+    dropdownOpen = null
   }
 })
 
@@ -32,7 +43,7 @@ $('.submit-nav').click((e) => {
 })
 
 function getChannelLabel(channels) {
-  if (channels == null) {
+  if (channels == null || channels.length == 0) {
     return 'no channels'
   }
 
@@ -51,7 +62,7 @@ $('nav a[data-page=' + page + ']').addClass('active')
 
 $('.filters select').each(function() {
   let value = $(this).attr('data-selected')
-  
+
   if (value != null) {
     $(this).val(value)
   }

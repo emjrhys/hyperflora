@@ -10,7 +10,7 @@ const express      = require('express'),
       youtube      = require('youtube-api'),
       MongoClient  = require('mongodb').MongoClient,
       ObjectID     = require('mongodb').ObjectID,
-      channels     = require('./data/channels.json')
+      channelList  = require('./data/channels.json')
 
 let app = express()
 let db
@@ -31,9 +31,9 @@ app.set('view engine', 'pug')
 
 app.locals.basedir = path.join(__dirname, 'views')
 app.use((req, res, next) => {
-  res.locals.channels = channels
+  res.locals.channels = channelList
   res.locals.getChannelLabel = function(channels) {
-    if (channels == null) {
+    if (channels == null || channels.length == 0) {
       return 'no channels'
     }
 
@@ -90,7 +90,7 @@ app.get('/watch/:vidId', (req, res) => {
 app.get('/list', (req, res) => {
   db.collection('videos').find().sort({ '_id': -1 }).toArray((err, results) => {
     res.render('admin/videoList', {
-      page: 'unapproved',
+      page: 'list',
       videos: results,
       controls: {
         filterEnabled: false,
@@ -114,9 +114,9 @@ app.get('/admin', (req, res) => {
   }
 
   if (visibilityFilter == 'visible') {
-    searchParams.notInEverything = { $in: [null, 'false'] }
+    searchParams.notInEverything = { $in: [null, false] }
   } else if (visibilityFilter == 'hidden') {
-    searchParams.notInEverything = 'true'
+    searchParams.notInEverything = true
   }
 
   db.collection('videos').find(searchParams).sort({ '_id': -1 }).toArray((err, results) => {
@@ -151,31 +151,40 @@ app.get('/admin/unapproved', (req, res) => {
 })
 
 app.get('/admin/stats', (req, res) => {
-  let channelCounts = { untagged: 0 }
+  let channelCounts = {}
+  for (let i = 0; i < channelList.length; i++) {
+    channelCounts[channelList[i]] = {
+      total: 0,
+      hidden: 0
+    }
+  }
+  let untagged = 0
+
   db.collection('videos').find({ approved: true }).toArray((err, results) => {
     for (let i = 0; i < results.length; i++) {
-      let channel = results[i]['channel']
+      let channel = results[i]['channel'],
+          hidden  = results[i]['notInEverything']
+
       if (channel == null || channel == 'none' || channel.length == 0){
-        channelCounts.untagged += 1
+        untagged += 1
+
       } else if (typeof channel === 'string') {
-        if (!channelCounts[channel]) {
-          channelCounts[channel] = 1
-        } else {
-          channelCounts[channel] += 1
+        channelCounts[channel].total += 1
+        if (hidden) {
+          channelCounts[channel].hidden += 1
         }
+
       } else {
         for (let i = 0; i < channel.length; i++) {
-          if (!channelCounts[channel[i]]) {
-            channelCounts[channel[i]] = 1
-          } else {
-            channelCounts[channel[i]] += 1
+          channelCounts[channel[i]].total += 1
+          if (hidden) {
+            channelCounts[channel[i]].hidden += 1
           }
         }
       }
     }
-    console.log(channelCounts)
 
-    res.render('admin/stats', { total: results.length, channelCounts: channelCounts })
+    res.render('admin/stats', { total: results.length, channelCounts: channelCounts, untagged: untagged })
   })
 })
 
@@ -239,15 +248,19 @@ app.post('/unapprove', (req, res) => {
 })
 
 app.post('/update', (req, res) => {
-  db.collection('videos').update({ _id: ObjectID(req.body.id) }, { $set: { channel: req.body.channel, notInEverything: req.body.notInEverything } }, (err, results) => {
-    console.log('Updated ' + req.body.id + ' with channel ' + req.body.channel + ' and flag notInEverything: ' + req.body.notInEverything)
+  let objId = req.body.id,
+      channel = req.body.channel,
+      notInEverything = (req.body.notInEverything == 'true')
+
+  db.collection('videos').update({ _id: ObjectID(objId) }, { $set: { channel: channel, notInEverything: notInEverything } }, (err, results) => {
+    console.log('Updated ' + objId + ' with channel ' + channel + ' and flag notInEverything: ' + notInEverything)
   })
 })
 
 app.post('/delete', (req, res) => {
   db.collection('videos').remove({ _id: ObjectID(req.body.id) }, (err, results) => {
     console.log('Deleted ' + req.body.id)
-    res.redirect('/admin')
+    res.redirect(req.get('referer'))
   })
 })
 
