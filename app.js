@@ -71,7 +71,9 @@ app.get('/watch', (req, res) => {
     let vid = getRandomFromArray(results)
 
     let history = getHistory(req)
-    while (results.length < historySize && history.indexOf(vid['id']) > -1) {
+    console.log(history)
+    while (results.length > historySize && history.indexOf(vid['id']) > -1) {
+      console.log('checking again')
       vid = getRandomFromArray(results)
     }
 
