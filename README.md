@@ -10,6 +10,7 @@
 - find a replacement for the food channel
 - admin indicator that video is not in everything
 - compress images (especially kaleidoscope)
+- ~~submit update request on dropdown close~~
 - ~~play/pause button~~
 - ~~hide related videos (and other youtube stuff)~~
 - ~~'remove from everything' toggle~~

@@ -244,7 +244,7 @@ app.post('/submit', (req, res) => {
           if (err) return console.log(err)
 
           console.log('Saved ' + entry.title + ' to database with id ' + entry.id)
-          res.redirect('/admin')
+          res.redirect(req.get('referer'))
         })
       })
     })
@@ -268,13 +268,17 @@ app.post('/unapprove', (req, res) => {
 })
 
 app.post('/update', (req, res) => {
-  let objId = req.body.id,
-      channel = req.body.channel,
-      notInEverything = (req.body.notInEverything == 'true')
+  let videos = req.body.videos
+  
+  for (let i = 0; i < videos.length; i++) {
+    let objId = videos[i].objId,
+        channel = videos[i].channels,
+        notInEverything = (videos[i].notInEverything == 'true')
 
-  db.collection('videos').update({ _id: ObjectID(objId) }, { $set: { channel: channel, notInEverything: notInEverything } }, (err, results) => {
-    console.log('Updated ' + objId + ' with channel ' + channel + ' and flag notInEverything: ' + notInEverything)
-  })
+    db.collection('videos').update({ _id: ObjectID(objId) }, { $set: { channel: channel, notInEverything: notInEverything } }, (err, results) => {
+      console.log('Updated ' + objId + ' with channel ' + channel + ' and flag notInEverything: ' + notInEverything)
+    })
+  }
 })
 
 app.post('/delete', (req, res) => {

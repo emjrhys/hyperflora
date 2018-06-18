@@ -1,16 +1,31 @@
-$('.dropdown-checklist :checkbox').change((e) => {
-  let checklist = $(e.currentTarget).parents('.dropdown-checklist'),
-      id = checklist.parents('li.video-item').attr('data-objId'),
-      inEverything = checklist.find('.in-everything :checkbox')[0].checked,
-      channels = checklist.find('.channel :checkbox:checked').map(function() {
-        return this.value
-      }).get()
+function updateVideos() {
+  let modifiedVideos = []
 
-  $.post('/update', { id: id, channel: channels, notInEverything: !inEverything });
-  checklist.find('.anchor span').html(getChannelLabel(channels))
+  $('.dropdown-checklist.modified').each((index, elem) => {
+    let params = {
+      objId: $(elem).parents('li.video-item').attr('data-objId'),
+      notInEverything: !$(elem).find('.in-everything :checkbox')[0].checked,
+      channels: $(elem).find('.channel :checkbox:checked').map(function() { return this.value }).get()
+    }
+
+    $(elem).find('.anchor span').html(getChannelLabel(params.channels))
+    $(elem).removeClass('modified')
+    modifiedVideos.push(params)
+  })
+
+  $.post('/update', { videos: modifiedVideos })
+}
+
+$('.dropdown-checklist :checkbox').change((e) => {
+  $(e.currentTarget).parents('.dropdown-checklist').addClass('modified')
 })
 
 let dropdownOpen
+function closeDropdown() {
+  dropdownOpen.addClass('closed')
+  dropdownOpen = null
+  updateVideos()
+}
 
 $('.dropdown-checklist .anchor').click((e) => {
   let checklist = $(e.currentTarget).parent()
@@ -19,15 +34,13 @@ $('.dropdown-checklist .anchor').click((e) => {
     checklist.removeClass('closed')
     dropdownOpen = checklist
   } else {
-    checklist.addClass('closed')
-    dropdownOpen = null
+    closeDropdown()
   }
 })
 
 $(document).click((e) => {
   if(dropdownOpen && !$(e.target).closest(dropdownOpen).length) {
-    dropdownOpen.addClass('closed')
-    dropdownOpen = null
+    closeDropdown()
   }
 })
 
