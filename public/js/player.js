@@ -53,6 +53,10 @@ $('body').keydown((e) => {
 
 $('.nav-zone').click(playPause)
 
+$('.video-link').click((e) => {
+	videoPlayer.pauseVideo()
+})
+
 $('.nav-zone').mousemove((e) => {
 	if (videoPlayer.getPlayerState() == 1) {
 		showNavBar()

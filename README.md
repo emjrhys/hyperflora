@@ -1,13 +1,13 @@
 # HYPERFLORA
 
 ## todo
-- variables for backgrounds and colors
-
-- restructure api
 - password protect admin page
 - flag video for review button
-- find a replacement for the food channel
 - add approved timestamp
+- shorter unique urls
+- variables for backgrounds and colors
+- restructure api
+- find a replacement for the food channel
 - admin indicator that video is not in everything
 - compress images (especially kaleidoscope)
 - ~~play/pause button~~
