@@ -115,7 +115,7 @@ app.get('/admin/unapproved', (req, res) => {
 
 app.get('/admin/stats', (req, res) => {
   let channelCounts = { untagged: 0 }
-  db.collection('videos').find().toArray((err, results) => {
+  db.collection('videos').find({ approved: true }).toArray((err, results) => {
     for (let i = 0; i < results.length; i++) {
       let channel = results[i]['channel']
       if (channel == null || channel == 'none' || channel.length == 0){
