@@ -1,3 +1,4 @@
+let timeoutHandle
 let videoPlayer
 let videoId = $('#video-player').attr('data-videoId')
 
@@ -23,6 +24,7 @@ function onYouTubePlayerAPIReady() {
 
 function onPlayerReady(event) {
   event.target.playVideo()
+	timeoutHandle = window.setTimeout(hideNav, 6000)
 }
 
 function onPlayerStateChange(event) {
@@ -31,26 +33,49 @@ function onPlayerStateChange(event) {
   }
 }
 
-$('.nav-zone').mousemove(function() {
-	window.clearTimeout(timeoutHandle);
-	$('.nav-bar').removeClass('hidden');
-	timeoutHandle = window.setTimeout(hideNav, 3500);
-});
+function playPause() {
+	let state = videoPlayer.getPlayerState()
+	if (state == 1) {
+		videoPlayer.pauseVideo()
+		showNavBar()
+	} else if (state == 2) {
+		videoPlayer.playVideo()
+		resetNavBarTimeout(1000)
+	}
+}
 
-$('nav').mouseleave(function() {
-	timeoutHandle = window.setTimeout(hideNav, 3500);
-});
+$('body').keydown((e) => {
+	// check if user has pressed space
+	if (e.keyCode == 32) {
+		playPause()
+  }
+})
 
-$('nav').mouseenter(function() {
-	window.clearTimeout(timeoutHandle);
-	$('.nav-bar').removeClass('hidden');
-});
+$('.nav-zone').click(playPause)
 
-function hideNav() { $('.nav-bar').addClass('hidden'); }
+$('.nav-zone').mousemove((e) => {
+	showNavBar()
+	resetNavBarTimeout(3500)
+})
+
+$('nav').mouseleave((e) => {
+	resetNavBarTimeout(3500)
+})
+
+$('nav').mouseenter(showNavBar)
+
+function showNavBar() {
+	window.clearTimeout(timeoutHandle)
+	$('.nav-bar').removeClass('hidden')
+}
+
+function resetNavBarTimeout(timeout) {
+	timeoutHandle = window.setTimeout(hideNav, timeout)
+}
+
+function hideNav() { $('.nav-bar').addClass('hidden') }
 
 /* ONLOAD */
-let timeoutHandle = window.setTimeout(hideNav, 6000);
-
 let query = window.location.search
 
 history.replaceState('', '', '/watch/' + $('#video-player').attr('data-objId') + query)
