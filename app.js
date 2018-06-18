@@ -177,7 +177,7 @@ app.post('/submit', (req, res) => {
         db.collection('videos').save(entry, (err, result) => {
           if (err) return console.log(err)
 
-          console.log('Saved to database!')
+          console.log('Saved ' + entry.title + ' to database with id ' + entry.id)
           res.redirect('/admin')
         })
       })
