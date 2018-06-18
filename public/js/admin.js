@@ -1,17 +1,12 @@
-// $('.tabbutton').click((e) => {
-//   $('.tabbutton, .tabcontent').removeClass('active')
-//   let tab = $(e.currentTarget).attr('data-tab')
-//   $('.tabbutton[data-tab=' + tab + '], .tabcontent[data-tab=' + tab + ']').addClass('active')
-// })
-
 $('.dropdown-checklist :checkbox').change((e) => {
   let checklist = $(e.currentTarget).parents('.dropdown-checklist'),
-      id = checklist.attr('data-objId'),
-      channels = checklist.find(':checkbox:checked').map(function() {
+      id = checklist.parents('li.video-item').attr('data-objId'),
+      inEverything = checklist.find('.in-everything :checkbox')[0].checked,
+      channels = checklist.find('.channel :checkbox:checked').map(function() {
         return this.value
       }).get()
 
-  $.post('/update', { id: id, channel: channels });
+  $.post('/update', { id: id, channel: channels, notInEverything: !inEverything });
   checklist.find('.anchor span').html(getChannelLabel(channels))
 })
 
@@ -25,20 +20,15 @@ $('.dropdown-checklist .anchor').click((e) => {
   }
 })
 
-let page = $('#page').attr('data-page')
-$('nav a[data-page=' + page + ']').addClass('active')
+$('.filters select').change((e) => {
+  let channelFilter = $('#channel-filter').val(),
+      visibilityFilter = $('#visibility-filter').val()
+
+  window.location.href = '/admin?channel=' + channelFilter + '&visibility=' + visibilityFilter
+})
 
 $('.submit-nav').click((e) => {
   $('#submit').removeClass('hidden');
-})
-
-$('.channel-filter').change((e) => {
-  let filter = $(e.currentTarget).val()
-
-  if (filter == 'all')
-    window.location.href = '/admin'
-  else
-    window.location.href = '/admin?filter=' + filter
 })
 
 function getChannelLabel(channels) {
@@ -54,3 +44,15 @@ function getChannelLabel(channels) {
     return channels.join(', ')
   }
 }
+
+/* ONLOAD */
+let page = $('#page').attr('data-page')
+$('nav a[data-page=' + page + ']').addClass('active')
+
+$('.filters select').each(function() {
+  let value = $(this).attr('data-selected')
+  
+  if (value != null) {
+    $(this).val(value)
+  }
+})

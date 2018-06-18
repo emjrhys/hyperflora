@@ -13,8 +13,13 @@ header {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 
-  padding: 20px 60px;
+  padding: 10px 30px;
 
   background-color: #000;
 
@@ -47,8 +52,7 @@ header nav {
     outline: none;
 
     color: #666;
-    font-size: 1.5em;
-    line-height: 1.8em;
+    font-size: 1.2em;
     font-weight: bold;
     text-transform: lowercase;
 
@@ -66,13 +70,44 @@ header nav {
   }
 }
 
-.filters {
-  // background-color: #ddd;
+.search-info {
   padding: 20px 30px 0;
   text-align: right;
 
-  span {
-    margin-right: 10px;
+  display: -webkit-box;
+
+  display: -ms-flexbox;
+
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+
+  div {
+    display: inline-block;
+
+    color: #222;
+  }
+
+  label {
+    margin-left: 20px;
+    display: inline-block;
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+
+  select {
+    margin-left: 10px;
+  }
+
+  .video-count {
+    color: #555;
+    text-align: left;
   }
 }
 
@@ -88,7 +123,7 @@ ul.videos {
       align-content: flex-start;
 
 	padding: 0 30px;
-  margin-top: 24px;
+  margin-top: 20px;
 	list-style: none;
 
 	> li {
@@ -168,7 +203,7 @@ ul.videos {
 
   outline: none;
   width: 100%;
-  max-width: 160px;
+  max-width: 180px;
 
   color: #444;
 
@@ -190,7 +225,7 @@ ul.videos {
 
     span {
       display: block;
-      max-width: 120px;
+      max-width: calc(100% - 20px);
 
       overflow: hidden;
       white-space: nowrap;
@@ -203,7 +238,7 @@ ul.videos {
   position: absolute;
   top: 100%;
   width: 100%;
-  padding: 2px 8px 6px;
+  padding: 4px 8px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 
@@ -212,12 +247,22 @@ ul.videos {
 
   z-index: 100;
 
-  li {
-    list-style: none;
+  label {
+    display: block;
+    margin: 2px 0;
   }
 
   input {
-    margin-right: 6px;
+    margin-right: 8px;
+  }
+
+  .in-everything {
+    padding-bottom: 8px;
+    border-bottom: 1px solid #ddd;
+
+    &+label {
+      margin-top: 4px;
+    }
   }
 }
 

@@ -8,7 +8,11 @@ function onYouTubePlayerAPIReady() {
 		playerVars: {
 			controls: 0,
 			showinfo: 0,
-			iv_load_policy: 3
+			iv_load_policy: 3,
+			rel: 0,
+			disablekb: 1,
+			// end: 7,
+			modestbranding: 1
 		},
     events: {
       onReady: onPlayerReady,

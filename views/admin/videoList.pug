@@ -2,44 +2,46 @@ extends /layouts/admin
 
 block content
   div(data-page=page, id='page') 
-    if filterEnabled
-      section(class='filters') 
-        span Channel:
-        select(class='channel-filter')
-          option(value='all') all
-          each channel in channels
-            if (channel == filter)
-              option(value=channel selected)= channel
-            else
-              option(value=channel)= channel
+    section(class='search-info') 
+      div(class='video-count') Displaying #{videos.length} results
+      if controls.filterEnabled
+        div(class='filters')
+          label Channel:
+            select(id='channel-filter', data-selected=channelFilter)
+              option(value='all') all
+              each channel in channels
+                option(value=channel)= channel
+          label Visibility:
+            select(id='visibility-filter', data-selected=visibilityFilter)
+              option(value='all') all
+              option(value='visible') in everything
+              option(value='hidden') not in everything
+              
     ul(class='videos')
       each vid in videos
-        li
+        li(class='video-item' data-objId=vid._id)
           a(href=vid.url, target='_blank', class='title')
             h3= vid.title
           
           div(class='controls')
-            if channelChanger
-              div(class='dropdown-checklist', data-objId=vid._id, tabindex='100')
+            if controls.channelChangerEnabled
+              div(class='dropdown-checklist', tabindex='100')
                 button(class='anchor')
                   span= getChannelLabel(vid.channel)
-                ul(class='dropdown-items hidden')
+                div(class='dropdown-items hidden')
+                  label(class='in-everything')
+                    input(type='checkbox', checked=!vid.notInEverything)
+                    span in everything
                   each channel in channels
-                    li(data-channel=channel)
-                      if (vid.channel && vid.channel.includes(channel))
-                        label
-                          input(type='checkbox', value=channel, checked)
-                          span #{channel}
-                      else
-                        label
-                          input(type='checkbox', value=channel)
-                          span #{channel}
+                    label(class='channel', data-channel=channel)
+                      input(type='checkbox', value=channel, checked=(vid.channel && vid.channel.includes(channel)))
+                      span #{channel}
             else
-              span= vid.channel
+              span= vid.channel || 'no channels'
              
-            if buttons
+            if controls.buttonsEnabled
               div(class='buttons')
-                if buttons.approve
+                if controls.approve
                   form(action='/approve', method='POST')
                     input(type='hidden', name='id', value=vid._id)
                     button(class='approve')

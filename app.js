@@ -61,6 +61,8 @@ app.get('/watch', (req, res) => {
 
   if (channel != null) {
     searchParams.channel = channel
+  } else {
+    searchParams.notInEverything = { $in: [null, 'false'] }
   }
 
   db.collection('videos').find(searchParams).toArray((err, results) => {
@@ -87,29 +89,64 @@ app.get('/watch/:vidId', (req, res) => {
 
 app.get('/list', (req, res) => {
   db.collection('videos').find().sort({ '_id': -1 }).toArray((err, results) => {
-    res.render('admin/videoList', { videos: results, page: 'list' })
+    res.render('admin/videoList', {
+      page: 'unapproved',
+      videos: results,
+      controls: {
+        filterEnabled: false,
+        channelChangerEnabled: false,
+        buttonsEnabled: false
+      }
+    })
   })
 })
 
 app.get('/admin', (req, res) => {
-  let filter = req.query.filter
+  let channelFilter = req.query.channel,
+      visibilityFilter = req.query.visibility
 
   let searchParams = {
-    approved: true
+    approved: true,
   }
 
-  if (filter != null) {
-    searchParams.channel = filter
+  if (channelFilter != null && channelFilter != 'all') {
+    searchParams.channel = channelFilter
+  }
+
+  if (visibilityFilter == 'visible') {
+    searchParams.notInEverything = { $in: [null, 'false'] }
+  } else if (visibilityFilter == 'hidden') {
+    searchParams.notInEverything = 'true'
   }
 
   db.collection('videos').find(searchParams).sort({ '_id': -1 }).toArray((err, results) => {
-    res.render('admin/videoList', { page: 'videos', videos: results, filterEnabled: true, filter: filter, channelChanger: true, buttons: { approve: false } })
+    res.render('admin/videoList', {
+      page: 'videos',
+      videos: results,
+      channelFilter: channelFilter,
+      visibilityFilter: visibilityFilter,
+      controls: {
+        filterEnabled: true,
+        channelChangerEnabled: true,
+        buttonsEnabled: true,
+        approve: false
+      }
+    })
   })
 })
 
 app.get('/admin/unapproved', (req, res) => {
   db.collection('videos').find({ approved: false }).sort({ '_id': -1 }).toArray((err, results) => {
-    res.render('admin/videoList', { page: 'unapproved', videos: results, channelChanger: true, buttons: { approve: true } })
+    res.render('admin/videoList', {
+      page: 'unapproved',
+      videos: results,
+      controls: {
+        filterEnabled: false,
+        channelChangerEnabled: true,
+        buttonsEnabled: true,
+        approve: true
+      }
+    })
   })
 })
 
@@ -202,8 +239,8 @@ app.post('/unapprove', (req, res) => {
 })
 
 app.post('/update', (req, res) => {
-  db.collection('videos').update({ _id: ObjectID(req.body.id) }, { $set: { channel: req.body.channel } }, (err, results) => {
-    console.log('Updated ' + req.body.id + ' with channel ' + req.body.channel)
+  db.collection('videos').update({ _id: ObjectID(req.body.id) }, { $set: { channel: req.body.channel, notInEverything: req.body.notInEverything } }, (err, results) => {
+    console.log('Updated ' + req.body.id + ' with channel ' + req.body.channel + ' and flag notInEverything: ' + req.body.notInEverything)
   })
 })
 
