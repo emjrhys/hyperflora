@@ -114,24 +114,24 @@ app.get('/admin/unapproved', (req, res) => {
 })
 
 app.get('/admin/stats', (req, res) => {
-  let channelCounts = {}
+  let channelCounts = { untagged: 0 }
   db.collection('videos').find().toArray((err, results) => {
     for (let i = 0; i < results.length; i++) {
       let channel = results[i]['channel']
-      if (channel != null) {
-        if (typeof channel === 'string' && channel != 'none') {
-          if (!channelCounts[channel]) {
-            channelCounts[channel] = 1
-          } else {
-            channelCounts[channel] += 1
-          }
+      if (channel == null || channel == 'none' || channel.length == 0){
+        channelCounts.untagged += 1
+      } else if (typeof channel === 'string') {
+        if (!channelCounts[channel]) {
+          channelCounts[channel] = 1
         } else {
-          for (let i = 0; i < channel.length; i++) {
-            if (!channelCounts[channel[i]]) {
-              channelCounts[channel[i]] = 1
-            } else {
-              channelCounts[channel[i]] += 1
-            }
+          channelCounts[channel] += 1
+        }
+      } else {
+        for (let i = 0; i < channel.length; i++) {
+          if (!channelCounts[channel[i]]) {
+            channelCounts[channel[i]] = 1
+          } else {
+            channelCounts[channel[i]] += 1
           }
         }
       }
