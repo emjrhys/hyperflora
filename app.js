@@ -158,7 +158,8 @@ app.get('/admin/stats', (req, res) => {
       hidden: 0
     }
   }
-  let untagged = 0
+  let untagged = 0,
+      hiddenTotal = 0
 
   db.collection('videos').find({ approved: true }).toArray((err, results) => {
     for (let i = 0; i < results.length; i++) {
@@ -171,6 +172,7 @@ app.get('/admin/stats', (req, res) => {
       } else if (typeof channel === 'string') {
         channelCounts[channel].total += 1
         if (hidden) {
+          hiddenTotal += 1
           channelCounts[channel].hidden += 1
         }
 
@@ -178,13 +180,14 @@ app.get('/admin/stats', (req, res) => {
         for (let i = 0; i < channel.length; i++) {
           channelCounts[channel[i]].total += 1
           if (hidden) {
+            hiddenTotal += 1
             channelCounts[channel[i]].hidden += 1
           }
         }
       }
     }
 
-    res.render('admin/stats', { total: results.length, channelCounts: channelCounts, untagged: untagged })
+    res.render('admin/stats', { total: results.length, hiddenTotal: hiddenTotal, channelCounts: channelCounts, untagged: untagged })
   })
 })
 

@@ -24,7 +24,7 @@ function onYouTubePlayerAPIReady() {
 
 function onPlayerReady(event) {
   event.target.playVideo()
-	timeoutHandle = window.setTimeout(hideNav, 6000)
+	resetNavBarTimeout(5000)
 }
 
 function onPlayerStateChange(event) {
@@ -40,7 +40,7 @@ function playPause() {
 		showNavBar()
 	} else if (state == 2) {
 		videoPlayer.playVideo()
-		resetNavBarTimeout(1000)
+		resetNavBarTimeout(500)
 	}
 }
 
@@ -54,12 +54,16 @@ $('body').keydown((e) => {
 $('.nav-zone').click(playPause)
 
 $('.nav-zone').mousemove((e) => {
-	showNavBar()
-	resetNavBarTimeout(3500)
+	if (videoPlayer.getPlayerState() == 1) {
+		showNavBar()
+		resetNavBarTimeout(3000)
+	}
 })
 
 $('nav').mouseleave((e) => {
-	resetNavBarTimeout(3500)
+	if (videoPlayer.getPlayerState() == 1) {
+		resetNavBarTimeout(3000)
+	}
 })
 
 $('nav').mouseenter(showNavBar)
