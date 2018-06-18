@@ -20,6 +20,8 @@ let auth = youtube.authenticate({
   key: 'AIzaSyA-mI-1HFw5T7Ww2lsIQhmySiOcVidcBFs'
 })
 
+let historySize = 20
+
 app.set('port', (process.env.PORT || 5000))
 
 app.use(bodyParser.urlencoded({extended: true}))
@@ -67,6 +69,13 @@ app.get('/watch', (req, res) => {
 
   db.collection('videos').find(searchParams).toArray((err, results) => {
     let vid = getRandomFromArray(results)
+
+    let history = getHistory(req)
+    while (results.length < historySize && history.indexOf(vid['id']) > -1) {
+      vid = getRandomFromArray(results)
+    }
+
+    res.cookie('history', updateHistory(history, vid['id']))
 
     res.render('watch', {
       objId: vid._id,
@@ -191,6 +200,12 @@ app.get('/admin/stats', (req, res) => {
   })
 })
 
+app.get('/admin/download', (req, res) => {
+  db.collection('videos').find().toArray((err, results) => {
+    res.json(results)
+  })
+})
+
 app.get('/submit', (req, res) => {
   res.render('submit')
 })
@@ -275,25 +290,12 @@ MongoClient.connect('mongodb://admin:kittenmittens@ds151752.mlab.com:51752/hyper
   })
 })
 
-// This goes in the watch method (doesn't really work)
-// let history = getHistory(req)
-// while (history.indexOf(vid['id']) > -1) {
-//   vid = getRandomFromArray(results)
-// }
-//
-// res.cookie('history', updateHistory(history, vid['id']))
-
 function getHistory(req) {
-  let history = req.cookies['history']
-  console.log(history)
-  if (typeof history === undefined) {
-    history = []
-  }
-  return history
+  return req.cookies['history'] || []
 }
 
 function updateHistory(history, id) {
-  while (history.length >= 3) {
+  while (history.length >= historySize) {
     history.splice(0, 1)
   }
 
