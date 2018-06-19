@@ -93,21 +93,6 @@ li {
     background-size: cover;
   }
 
-  &.food {
-    background: url(../img/food.jpg) no-repeat center center;
-    background-size: cover;
-  }
-
-  &.science {
-    background: url(../img/science.jpg) no-repeat center center;
-    background-size: cover;
-  }
-
-  &.philosophy {
-    background: url(../img/philosophy.jpg) no-repeat center center;
-    background-size: cover;
-  }
-
   &.experimental {
     background: url(../img/experimental.jpg) no-repeat center center;
     background-size: cover;
@@ -130,6 +115,11 @@ li {
 
   &.nightmare {
     background: url(../img/nightmare.png) no-repeat center center;
+    background-size: cover;
+  }
+
+  &.deep-dive {
+    background: url(../img/deep-dive.png) no-repeat center center;
     background-size: cover;
   }
 }

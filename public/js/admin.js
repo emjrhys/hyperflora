@@ -13,7 +13,9 @@ function updateVideos() {
     modifiedVideos.push(params)
   })
 
-  $.post('/update', { videos: modifiedVideos })
+  if (modifiedVideos.length > 0) {
+    $.post('/update', { videos: modifiedVideos })
+  }
 }
 
 $('.dropdown-checklist :checkbox').change((e) => {

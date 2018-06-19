@@ -71,7 +71,6 @@ app.get('/watch', (req, res) => {
     let vid = getRandomFromArray(results)
 
     let history = getHistory(req)
-    console.log(history)
     while (results.length > historySize && history.indexOf(vid['id']) > -1) {
       console.log('checking again')
       vid = getRandomFromArray(results)
@@ -132,6 +131,7 @@ app.get('/admin', (req, res) => {
 
   db.collection('videos').find(searchParams).sort({ '_id': -1 }).toArray((err, results) => {
     res.render('admin/videoList', {
+      title: 'Dashboard',
       page: 'videos',
       videos: results,
       channelFilter: channelFilter,
@@ -149,6 +149,7 @@ app.get('/admin', (req, res) => {
 app.get('/admin/unapproved', (req, res) => {
   db.collection('videos').find({ approved: false }).sort({ '_id': -1 }).toArray((err, results) => {
     res.render('admin/videoList', {
+      title: 'Unapproved videos',
       page: 'unapproved',
       videos: results,
       controls: {
@@ -198,7 +199,7 @@ app.get('/admin/stats', (req, res) => {
       }
     }
 
-    res.render('admin/stats', { total: results.length, hiddenTotal: hiddenTotal, channelCounts: channelCounts, untagged: untagged })
+    res.render('admin/stats', { title: 'Stats', total: results.length, hiddenTotal: hiddenTotal, channelCounts: channelCounts, untagged: untagged })
   })
 })
 
@@ -209,7 +210,7 @@ app.get('/admin/download', (req, res) => {
 })
 
 app.get('/submit', (req, res) => {
-  res.render('submit')
+  res.render('submit', { title: 'Submit a video' })
 })
 
 app.post('/submit', (req, res) => {
@@ -269,7 +270,7 @@ app.post('/unapprove', (req, res) => {
 
 app.post('/update', (req, res) => {
   let videos = req.body.videos
-  
+
   for (let i = 0; i < videos.length; i++) {
     let objId = videos[i].objId,
         channel = videos[i].channels,
