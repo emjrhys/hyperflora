@@ -1,3 +1,24 @@
+function getChannelsAsArray(checklist) {
+  return checklist.find('.channel :checkbox:checked').map(function() { return this.value }).get()
+}
+
+function getChannelLabel(channels) {
+  if (channels == null || channels.length == 0) {
+    return 'no channels'
+  }
+
+  if (channels.length >= 3) {
+    return channels.length + ' channels'
+  } else {
+    return channels.join(', ')
+  }
+}
+
+function updateChannelLabel(checklist) {
+  let channels = getChannelsAsArray(checklist)
+  checklist.find('.anchor span').html(getChannelLabel(channels))
+}
+
 function updateVideos() {
   let modifiedVideos = []
 
@@ -5,10 +26,9 @@ function updateVideos() {
     let params = {
       objId: $(elem).parents('li.video-item').attr('data-objId'),
       notInEverything: !$(elem).find('.in-everything :checkbox')[0].checked,
-      channels: $(elem).find('.channel :checkbox:checked').map(function() { return this.value }).get()
+      channels: getChannelsAsArray($(elem))
     }
 
-    $(elem).find('.anchor span').html(getChannelLabel(params.channels))
     $(elem).removeClass('modified')
     modifiedVideos.push(params)
   })
@@ -19,7 +39,9 @@ function updateVideos() {
 }
 
 $('.dropdown-checklist :checkbox').change((e) => {
-  $(e.currentTarget).parents('.dropdown-checklist').addClass('modified')
+  let checklist = $(e.currentTarget).parents('.dropdown-checklist')
+  checklist.addClass('modified')
+  updateChannelLabel(checklist)
 })
 
 let dropdownOpen
@@ -56,20 +78,6 @@ $('.filters select').change((e) => {
 $('.submit-nav').click((e) => {
   $('#submit').removeClass('hidden');
 })
-
-function getChannelLabel(channels) {
-  if (channels == null || channels.length == 0) {
-    return 'no channels'
-  }
-
-  if (typeof channels === 'string') {
-    return channels
-  } else if (channels.length >= 3) {
-    return channels.length + ' channels'
-  } else {
-    return channels.join(', ')
-  }
-}
 
 /* ONLOAD */
 let page = $('#page').attr('data-page')
