@@ -8,7 +8,6 @@
 - variables for backgrounds and colors
 - refactor css
 - restructure api
-- find a replacement for the food channel
 - admin page indicator that video is not in everything
 - compress images (especially kaleidoscope)
 - ~~submit update request on dropdown close~~
@@ -18,6 +17,7 @@
 - ~~hide channel select when unfocused~~
 - ~~download database page~~
 - ~~watch history~~
+- ~~find a replacement for the food channel~~
 
 
 ## TODO before launch

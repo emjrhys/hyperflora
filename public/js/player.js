@@ -24,7 +24,7 @@ function onYouTubePlayerAPIReady() {
 
 function onPlayerReady(event) {
   event.target.playVideo()
-	resetNavBarTimeout(5000)
+	resetNavBarTimeout(4000)
 }
 
 function onPlayerStateChange(event) {
