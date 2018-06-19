@@ -22,7 +22,7 @@ block content
           span Everything
       div(class='grid')
         for channel in channels
-          li(class=channel)
+          li(class=channel.replace(' ', '-'))
             a(href='/watch?channel=' + channel)
               span= channel
             

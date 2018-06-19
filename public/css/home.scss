@@ -98,11 +98,6 @@ li {
     background-size: cover;
   }
 
-  &.discovery {
-    background: url(../img/discovery.png) no-repeat center center;
-    background-size: cover;
-  }
-
   &.nature {
     background: url(../img/nature.png) no-repeat center center;
     background-size: cover;
@@ -113,13 +108,18 @@ li {
     background-size: cover;
   }
 
-  &.nightmare {
-    background: url(../img/nightmare.png) no-repeat center center;
+  &.discovery {
+    background: url(../img/discovery.png) no-repeat center center;
     background-size: cover;
   }
 
-  &.unabridged {
+  &.deep-dive {
     background: url(../img/deep-dive.png) no-repeat center center;
+    background-size: cover;
+  }
+
+  &.nightmare {
+    background: url(../img/nightmare.png) no-repeat center center;
     background-size: cover;
   }
 }
