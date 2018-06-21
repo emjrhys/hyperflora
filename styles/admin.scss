@@ -24,7 +24,7 @@ header {
   padding: 10px 30px;
 
   @include breakpoint('small') {
-    padding: 10px;
+    padding: 10px 20px;
   }
 
   background-color: #000;
@@ -91,7 +91,7 @@ header nav {
   text-align: right;
 
   @include breakpoint('small') {
-    padding: 20px 10px 0;
+    padding: 20px 20px 0;
   }
 
   div {
@@ -140,7 +140,7 @@ ul.videos {
 	list-style: none;
 
   @include breakpoint('small') {
-    padding: 0 10px;
+    padding: 0 20px;
   }
 
 	> li {
