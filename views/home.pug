@@ -1,6 +1,7 @@
 extends layouts/main
 
 block style
+  link(rel='stylesheet', href='/css/kaleido.css')
   link(rel='stylesheet', href='/css/home.min.css')
 
 block content
@@ -20,11 +21,10 @@ block content
       li(class='everything')
         a(href='/watch')
           span Everything
-      div(class='grid')
-        for channel in channels
-          li(class=channel.replace(' ', '-'))
-            a(href='/watch?channel=' + channel)
-              span= channel
+      for channel in channels
+        li(class=channel.replace(' ', '-'))
+          a(href='/watch?channel=' + channel)
+            span= channel
             
     a(href='/submit', class='submit') Submit a video
 

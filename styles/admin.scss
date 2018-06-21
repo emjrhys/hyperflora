@@ -1,3 +1,5 @@
+@import 'common';
+
 body {
   background-color: #fafafa;
 }
@@ -56,6 +58,10 @@ header nav {
     font-weight: bold;
     text-transform: lowercase;
 
+    @include breakpoint('small') {
+      font-size: 1em;
+    }
+
     &.active {
       color: #fff;
     }
@@ -75,9 +81,7 @@ header nav {
   text-align: right;
 
   display: -webkit-box;
-
   display: -ms-flexbox;
-
   display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
@@ -88,7 +92,6 @@ header nav {
 
   div {
     display: inline-block;
-
     color: #222;
   }
 
@@ -106,6 +109,10 @@ header nav {
     width: 150px;
 
     outline: none;
+
+    @include breakpoint('small') {
+      width: 120px;
+    }
   }
 
   .video-count {
@@ -118,7 +125,6 @@ ul.videos {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 1rem;
-  grid-row-gap: .5rem;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-around;
@@ -130,8 +136,6 @@ ul.videos {
 	list-style: none;
 
 	> li {
-		margin-bottom: 20px;
-
 		border: 1px solid #ddd;
 		border-radius: 2px;
 		background-color: #fff;

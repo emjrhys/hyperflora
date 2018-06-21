@@ -1,0 +1,137 @@
+/*********************
+VARIABLES
+*********************/
+
+$banner-bgs: (
+	'title': url(../img/title.jpg),
+  'everything': url(../img/banners/everything.jpg),
+  'music': url(../img/banners/music.png),
+	'animation': url(../img/banners/animation.jpg),
+	'experimental': url(../img/banners/experimental.jpg),
+	'nature': url(../img/banners/nature.png),
+	'comedy': url(../img/banners/comedy.png),
+	'discovery': url(../img/banners/discovery.png),
+	'deep-dive': url(../img/banners/deep-dive.png),
+	'nightmare': url(../img/banners/nightmare.png)
+);
+
+/*********************
+MIXINS & FUNCTIONS
+*********************/
+
+@mixin breakpoint($point) {
+   @if $point == large {
+     @media (min-width: 64em) { @content ; }
+  }
+    @else if $point == medium {
+     @media (max-width: 64em) { @content ; }
+  }
+   @else if $point == small {
+     @media (max-width: 50em)  { @content ; }
+  }
+}
+
+@mixin banner-background($channel) {
+	background: map-get($banner-bgs, $channel) no-repeat center center;
+	background-size: cover;
+}
+
+@mixin title-cutout($channel) {
+	background: map-get($banner-bgs, $channel) no-repeat;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	@content ;
+}
+
+/*********************
+STYLES
+*********************/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-family: 'Circular';
+	vertical-align: baseline;
+}
+
+a {
+	text-decoration: none;
+}
+
+h1.cutout {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+	a {
+    @include title-cutout('title')
+  }
+
+	&.music a {
+		@include title-cutout('music') {
+			background-size: 120% auto;
+			background-position: center center;
+		}
+	}
+
+	&.animation a {
+		@include title-cutout('animation') {
+			background-size: 200% auto;
+			background-position: center bottom;
+		}
+	}
+
+	&.comedy a {
+		@include title-cutout('comedy') {
+			background-size: 100% auto;
+			background-position: center top;
+		}
+	}
+
+	&.experimental a {
+		@include title-cutout('experimental') {
+			background-size: 200% auto;
+			background-position: center center;
+		}
+	}
+
+	&.nature a {
+		@include title-cutout('nature') {
+			background-size: 200% auto;
+			background-position: center center;
+		}
+	}
+
+	&.discovery a {
+		@include title-cutout('discovery') {
+			background-size: 300% auto;
+			background-position: left bottom;
+		}
+	}
+
+	&.food a {
+		@include title-cutout('food') {
+			background-size: 400% auto;
+			background-position: center center;
+		}
+	}
+
+	&.nightmare a {
+		@include title-cutout('nightmare') {
+			background-size: 500% auto;
+			background-position: center bottom -80px;
+		}
+	}
+}

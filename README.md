@@ -6,10 +6,11 @@
 - add approved timestamp
 - shorter unique urls
 - variables for backgrounds and colors
-- refactor css
 - restructure api
 - admin page indicator that video is not in everything
 - compress images (especially kaleidoscope)
+- ~~breakpoints~~
+- ~~refactor css~~
 - ~~submit update request on dropdown close~~
 - ~~play/pause button~~
 - ~~hide related videos (and other youtube stuff)~~
@@ -18,7 +19,6 @@
 - ~~download database page~~
 - ~~watch history~~
 - ~~find a replacement for the food channel~~
-
 
 ## TODO before launch
 - a whole lot
