@@ -45,6 +45,21 @@ html, body {
 .nav-zone {
   width: 100%;
 	height: calc(100vh - 60px);
+
+	.pause-icon {
+		height: calc(100% - 30px);
+		background: url(../img/icons/pause.png) no-repeat;
+		background-size: 10% auto;
+		background-position: center calc(50% - 20px);
+
+		opacity: 0;
+		-webkit-transition: opacity .3s;
+		transition: opacity .3s;
+	}
+
+	&.paused .pause-icon {
+		opacity: .6;
+	}
 }
 
 nav {

@@ -56,9 +56,11 @@ function playPause() {
 	let state = videoPlayer.getPlayerState()
 	if (state == 1) {
 		videoPlayer.pauseVideo()
+		$('.nav-zone').addClass('paused')
 		showNavBar(false)
 	} else if (state == 2) {
 		videoPlayer.playVideo()
+		$('.nav-zone').removeClass('paused')
 		resetNavBarTimeout(1000)
 	}
 }
