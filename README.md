@@ -1,13 +1,13 @@
 # HYPERFLORA
 
 ## TODO
-- password protect admin page
 - flag video for review button
 - add approved timestamp
 - shorter unique urls
 - variables for backgrounds and colors
 - admin page indicator that video is not in everything
-- compress images (especially kaleidoscope) 
+- compress images (especially kaleidoscope)
+- ~~password protect admin page~~
 - ~~restructure app.js and api~~
 - ~~breakpoints~~
 - ~~refactor css~~
@@ -23,6 +23,6 @@
 ## TODO before launch
 - a whole lot
 - find better hosting
-- secure the api/admin page
 - waaaaaaay more videos
 - better channel banners
+- ~~secure the api/admin page~~
