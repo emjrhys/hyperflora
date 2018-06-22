@@ -39,6 +39,10 @@ html, body {
 		&, a, button {
 			cursor: none;
 		}
+
+		nav {
+			pointer-events: none;
+		}
   }
 }
 
@@ -81,6 +85,11 @@ nav {
 
   background-color: rgba(0, 0, 0, 1);
 
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
+
   a {
 		display: inline-block;
 		height: 100%;
@@ -89,6 +98,8 @@ nav {
     color: #fff;
 		text-align: left;
 		line-height: 60px;
+
+		cursor: pointer;
 	}
 
 	.video-link {
