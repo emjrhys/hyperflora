@@ -67,7 +67,11 @@ $('body').keydown((e) => {
 	// check if user has pressed space
 	if (e.keyCode == 32) {
 		playPause()
-  }
+  } else if (e.which == 70 || e.keyCode == 70) {
+		toggleFullscreen()
+	}
+
+	console.log(e.which || e.keyCode)
 })
 
 $('.skip').click((e) => {
@@ -79,7 +83,7 @@ $('.skip').click((e) => {
 
 $('.nav-zone').click(playPause)
 
-$('.fullscreen-toggle').click((e) => {
+function toggleFullscreen() {
 	let video = $('#video-wrapper')[0]
 
 	if (document.fullscreenElement ||
@@ -102,7 +106,9 @@ $('.fullscreen-toggle').click((e) => {
 		req.call(video)
 		$('.fullscreen-toggle').addClass('active')
 	}
-})
+}
+
+$('.fullscreen-toggle').click(toggleFullscreen)
 
 $('.video-link').click((e) => {
 	videoPlayer.pauseVideo()
