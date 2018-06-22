@@ -9,7 +9,9 @@
 - compress images (especially kaleidoscope)
 - "watch on hyperflora" button
 - favicon
-- page history (maybe)
+- paused indicator
+- admin video controls when logged in
+
 - ~~fullscreen toggle~~
 - ~~password protect admin page~~
 - ~~restructure app.js and api~~

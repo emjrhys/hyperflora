@@ -41,7 +41,7 @@ function playNextVideo() {
 	$('.video-link').html(nextVideo.title)
 
 	replaceURL(nextVideo._id, query)
-	document.title = 'Hyperflora | ' + nextVideo.title
+	// document.title = 'Hyperflora | ' + nextVideo.title
 
 	loadNextVideo()
 }
@@ -64,14 +64,12 @@ function playPause() {
 }
 
 $('body').keydown((e) => {
-	// check if user has pressed space
+	// check if user has pressed space or f
 	if (e.keyCode == 32) {
 		playPause()
   } else if (e.which == 70 || e.keyCode == 70) {
 		toggleFullscreen()
 	}
-
-	console.log(e.which || e.keyCode)
 })
 
 $('.skip').click((e) => {
@@ -157,3 +155,9 @@ loadNextVideo()
 
 replaceURL(objId, query)
 $('.cutout').addClass(channel)
+
+let title = 'Everything'
+if (channel) {
+	title = channel.charAt(0).toUpperCase() + channel.slice(1)
+}
+document.title = 'Hyperflora | ' + title

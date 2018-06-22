@@ -35,7 +35,7 @@ router.get('/random/:channel?', getRandomVideoFromChannel, (req, res) => {
 })
 
 router.get('/watch', getRandomVideoFromChannel, (req, res) => {
-  res.render('watch', { video: res.video, title: res.video.title })
+  res.render('watch', { video: res.video })
 })
 
 router.get('/watch/:vidId', (req, res) => {
@@ -43,7 +43,7 @@ router.get('/watch/:vidId', (req, res) => {
     _id: ObjectID(req.params.vidId)
   }).toArray((err, results) => {
     let vid = results[0]
-    res.render('watch', { video: vid, title: vid.title})
+    res.render('watch', { video: vid })
   })
 })
 
