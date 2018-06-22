@@ -6,11 +6,11 @@ block style
 block content
   div(class='nav-bar')
     nav
-      h1(class='left cutout') 
+      h1(class='home cutout') 
         a(href='/') Hyperflora
-      h2(class='center')
+      h2(class='title')
         a(href='https://www.youtube.com/watch?v=' + videoId, target='_blank', class='video-link')= title
-      a(class='next right', href='/watch') Skip Video
+      a(class='skip', href='/watch') Skip Video
     div(class='nav-zone')
       
   div(id='video-player', data-objId=objId, data-videoId=videoId)

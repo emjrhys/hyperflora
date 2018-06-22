@@ -65,7 +65,6 @@ router.get('/watch/:vidId', (req, res) => {
   req.db.collection('videos').find({
     _id: ObjectID(req.params.vidId)
   }).toArray((err, results) => {
-    console.log(results)
     let vid = results[0]
     res.render('watch', { objId: vid._id, videoId: vid.id, title: vid.title })
   })
