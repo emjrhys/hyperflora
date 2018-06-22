@@ -40,7 +40,7 @@ router.get('/watch', getRandomVideoFromChannel, (req, res) => {
 
 router.get('/watch/:vidId', (req, res) => {
   req.db.collection('videos').find({
-    _id: ObjectID(req.params.vidId)
+    searchId: req.params.vidId
   }).toArray((err, results) => {
     let vid = results[0]
     res.render('watch', { video: vid })
@@ -73,13 +73,18 @@ router.post('/submit', (req, res) => {
 
         var entry = {
           url: req.body.url,
-          id: vid_id,
+          youtubeId: vid_id,
           title: response.items[0].snippet.title,
           approved: false
         }
 
         req.db.collection('videos').save(entry, (err, result) => {
           if (err) return console.log(err)
+
+          let objId = result.ops[0]._id,
+              searchId = objId.toString().slice(0, 8)
+          req.db.collection('videos').update({ _id: objId }, { $set: { searchId: searchId } })
+
           console.log('Saved ' + entry.title + ' to database with id ' + entry.id)
 
           if (req.body.admin) {

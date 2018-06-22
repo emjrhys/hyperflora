@@ -3,7 +3,6 @@ let videoPlayer
 let videoId = $('#video-player').attr('data-videoId')
 
 function onYouTubePlayerAPIReady() {
-	console.log(videoId)
   videoPlayer = new YT.Player('video-player', {
     videoId: videoId,
 		playerVars: {
@@ -36,13 +35,12 @@ function onPlayerStateChange(event) {
 }
 
 function playNextVideo() {
-	videoPlayer.loadVideoById(nextVideo.id)
-	$('.video-link').attr('href', 'https://www.youtube.com/watch?v=' + nextVideo.id)
+	videoPlayer.loadVideoById(nextVideo.youtubeId)
+	$('.nav-zone').removeClass('paused')
+	$('.video-link').attr('href', 'https://www.youtube.com/watch?v=' + nextVideo.youtubeId)
 	$('.video-link').html(nextVideo.title)
 
-	replaceURL(nextVideo._id, query)
-	// document.title = 'Hyperflora | ' + nextVideo.title
-
+	replaceURL(nextVideo.searchId, query)
 	loadNextVideo()
 }
 
@@ -143,19 +141,15 @@ function replaceURL(id, query) {
 	history.replaceState('', '', '/watch/' + id + query)
 }
 
-function pushURL(id, query) {
-	history.pushState('', '', '/watch/' + id + query)
-}
-
 /* ONLOAD */
 let query = window.location.search,
 		channel = query.split('channel=')[1],
-		objId = $('#video-player').attr('data-objId'),
+		searchId = $('#video-player').attr('data-searchId'),
 		nextVideo
 
 loadNextVideo()
 
-replaceURL(objId, query)
+replaceURL(searchId, query)
 $('.cutout').addClass(channel)
 
 let title = 'Everything'

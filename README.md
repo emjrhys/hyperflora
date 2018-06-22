@@ -1,17 +1,17 @@
 # HYPERFLORA
 
 ## TODO
+- admin video controls when logged in
+- favicon
 - flag video for review button
 - add approved timestamp
-- shorter unique urls
 - variables for backgrounds and colors
 - admin page indicator that video is not in everything
 - compress images (especially kaleidoscope)
 - "watch on hyperflora" button
-- favicon
-- paused indicator
-- admin video controls when logged in
 
+- ~~shorter unique urls~~
+- ~~paused indicator~~
 - ~~fullscreen toggle~~
 - ~~password protect admin page~~
 - ~~restructure app.js and api~~

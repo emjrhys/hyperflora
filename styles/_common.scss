@@ -74,10 +74,11 @@ a {
 h1.cutout {
   text-transform: uppercase;
   letter-spacing: 1px;
+	text-indent: 1px;
 
   @include title-cutout('title')
 
-	&.music { 
+	&.music {
 		@include title-cutout('music') {
 			background-size: 120% auto;
 			background-position: center center;
