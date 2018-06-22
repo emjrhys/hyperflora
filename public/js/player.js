@@ -66,6 +66,7 @@ function playPause() {
 $('body').keydown((e) => {
 	// check if user has pressed space or f
 	if (e.keyCode == 32) {
+		e.preventDefault()
 		playPause()
   } else if (e.which == 70 || e.keyCode == 70) {
 		toggleFullscreen()
