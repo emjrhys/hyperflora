@@ -53,19 +53,19 @@ app.use((req, res, next) => {
 })
 
 app.use('/', require('./routes/client'))
-app.use('/admin', isAuthenticated, require('./routes/admin'))
-app.use('/api', isAuthenticated, require('./routes/api'))
+app.use('/admin', authenticate, require('./routes/admin'))
+app.use('/api', authenticate, require('./routes/api'))
 
 app.get('/login', (req, res) => {
   res.render('admin/login')
-}) 
+})
 
 app.post('/login',
   passport.authenticate('local', { failureRedirect: '/login' }),
   (req, res) => { res.redirect('/admin') }
 )
 
-function isAuthenticated(req, res, next) {
+function authenticate(req, res, next) {
   if (req.user) {
     next()
   } else {
