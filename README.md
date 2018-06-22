@@ -7,6 +7,10 @@
 - variables for backgrounds and colors
 - admin page indicator that video is not in everything
 - compress images (especially kaleidoscope)
+- "watch on hyperflora" button
+- favicon
+- page history (maybe)
+- ~~fullscreen toggle~~
 - ~~password protect admin page~~
 - ~~restructure app.js and api~~
 - ~~breakpoints~~

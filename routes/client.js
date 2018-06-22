@@ -30,35 +30,12 @@ router.get('/', (req, res) => {
   res.render('home')
 })
 
-router.get('/watch', (req, res) => {
-  let channel = req.query.channel
+router.get('/random/:channel?', getRandomVideoFromChannel, (req, res) => {
+  res.send(res.video)
+})
 
-  let searchParams = {
-    approved: true
-  }
-
-  if (channel != null) {
-    searchParams.channel = channel
-  } else {
-    searchParams.notInEverything = { $in: [null, 'false'] }
-  }
-
-  req.db.collection('videos').find(searchParams).toArray((err, results) => {
-    let vid = getRandomFromArray(results)
-
-    while (results.length > historySize && res.locals.history.indexOf(vid['id']) > -1) {
-      console.log('checking again')
-      vid = getRandomFromArray(results)
-    }
-    res.updateHistory(vid)
-
-    res.render('watch', {
-      objId: vid._id,
-      videoId: vid.id,
-      title: vid.title,
-      channel: channel || null
-    })
-  })
+router.get('/watch', getRandomVideoFromChannel, (req, res) => {
+  res.render('watch', { video: res.video, title: res.video.title })
 })
 
 router.get('/watch/:vidId', (req, res) => {
@@ -66,7 +43,7 @@ router.get('/watch/:vidId', (req, res) => {
     _id: ObjectID(req.params.vidId)
   }).toArray((err, results) => {
     let vid = results[0]
-    res.render('watch', { objId: vid._id, videoId: vid.id, title: vid.title })
+    res.render('watch', { video: vid, title: vid.title})
   })
 })
 
@@ -132,6 +109,30 @@ router.get('/list', (req, res) => {
     })
   })
 })
+
+function getRandomVideoFromChannel(req, res, next) {
+  let searchParams = { approved: true },
+      channel = req.params.channel || req.query.channel || null
+
+  if (channel != null) {
+    searchParams.channel = channel
+  } else {
+    searchParams.notInEverything = { $in: [null, 'false'] }
+  }
+
+  req.db.collection('videos').find(searchParams).toArray((err, results) => {
+    let vid = getRandomFromArray(results)
+
+    while (results.length > historySize && res.locals.history.indexOf(vid['id']) > -1) {
+      console.log('checking again')
+      vid = getRandomFromArray(results)
+    }
+    res.updateHistory(vid)
+
+    res.video = vid
+    next()
+  })
+ }
 
 function youtube_parser(url){
   let regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/

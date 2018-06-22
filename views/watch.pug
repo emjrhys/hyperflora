@@ -4,15 +4,17 @@ block style
   link(rel='stylesheet', href='/css/watch.min.css')
 
 block content
-  div(class='nav-bar')
-    nav
-      a(href='/', class='home')
-        h1(class='cutout') Hyperflora
-      a(href='https://www.youtube.com/watch?v=' + videoId, target='_blank', class='video-link title')= title
-      a(href='/watch', class='skip') Skip Video
-    div(class='nav-zone')
+  div(id='video-wrapper')
+    div(class='nav-bar clean')
+      nav
+        a(href='/', class='home')
+          h1(class='cutout') Hyperflora
+        a(href='https://www.youtube.com/watch?v=' + video.id, target='_blank', class='video-link')= video.title
+        a(href='/watch', class='skip') Skip Video
+      div(class='nav-zone')
+      button(class='fullscreen-toggle')
       
-  div(id='video-player', data-objId=objId, data-videoId=videoId)
+    div(id='video-player', data-objId=video._id, data-videoId=video.id)
 
 block script
   script(src='http://www.youtube.com/player_api')

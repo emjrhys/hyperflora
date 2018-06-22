@@ -29,15 +29,34 @@ function onPlayerReady(event) {
 
 function onPlayerStateChange(event) {
   if(event.data === 0) {
-		window.location.href = $('.skip').attr('href')
+		playNextVideo()
+		showNavBar(true)
+		resetNavBarTimeout(4000)
   }
+}
+
+function playNextVideo() {
+	videoPlayer.loadVideoById(nextVideo.id)
+	$('.video-link').attr('href', 'https://www.youtube.com/watch?v=' + nextVideo.id)
+	$('.video-link').html(nextVideo.title)
+
+	replaceURL(nextVideo._id, query)
+	document.title = 'Hyperflora | ' + nextVideo.title
+
+	loadNextVideo()
+}
+
+function loadNextVideo() {
+	$.get('/random/' + (channel || ''), (data) => {
+		nextVideo = data
+	})
 }
 
 function playPause() {
 	let state = videoPlayer.getPlayerState()
 	if (state == 1) {
 		videoPlayer.pauseVideo()
-		showNavBar()
+		showNavBar(false)
 	} else if (state == 2) {
 		videoPlayer.playVideo()
 		resetNavBarTimeout(1000)
@@ -51,30 +70,61 @@ $('body').keydown((e) => {
   }
 })
 
+$('.skip').click((e) => {
+	e.preventDefault()
+	playNextVideo()
+	showNavBar(false)
+	resetNavBarTimeout(4000)
+})
+
 $('.nav-zone').click(playPause)
+
+$('.fullscreen-toggle').click((e) => {
+	let video = $('#video-wrapper')[0]
+
+	if (document.fullscreenElement ||
+      document.mozFullScreenElement ||
+			document.webkitFullscreenElement ||
+			document.msFullscreenElement) {
+
+		let exit = document.exitFullscreen ||
+							 document.msExitFullscreen ||
+							 document.mozCancelFullScreen ||
+							 document.webkitExitFullscreen
+		exit.call(document)
+		$('.fullscreen-toggle').removeClass('active')
+
+  } else {
+		let req = video.requestFullScreen ||
+							video.msRequestFullscreen ||
+							video.webkitRequestFullScreen ||
+							video.mozRequestFullScreen
+		req.call(video)
+		$('.fullscreen-toggle').addClass('active')
+	}
+})
 
 $('.video-link').click((e) => {
 	videoPlayer.pauseVideo()
 })
 
-$('.nav-zone').mousemove((e) => {
-	if (videoPlayer.getPlayerState() == 1) {
-		showNavBar()
+$('.nav-zone, nav').mousemove((e) => {
+	showNavBar(false)
+
+	if (videoPlayer.getPlayerState() != 2) {
 		resetNavBarTimeout(3000)
 	}
 })
 
-$('nav').mouseleave((e) => {
-	if (videoPlayer.getPlayerState() == 1) {
-		resetNavBarTimeout(3000)
+function showNavBar(clean) {
+	if (clean) {
+		$('.nav-bar').addClass('clean')
+	} else {
+		$('.nav-bar').removeClass('clean')
 	}
-})
 
-$('nav').mouseenter(showNavBar)
-
-function showNavBar() {
-	window.clearTimeout(timeoutHandle)
 	$('.nav-bar').removeClass('hidden')
+	window.clearTimeout(timeoutHandle)
 }
 
 function resetNavBarTimeout(timeout) {
@@ -83,10 +133,21 @@ function resetNavBarTimeout(timeout) {
 
 function hideNav() { $('.nav-bar').addClass('hidden') }
 
+function replaceURL(id, query) {
+	history.replaceState('', '', '/watch/' + id + query)
+}
+
+function pushURL(id, query) {
+	history.pushState('', '', '/watch/' + id + query)
+}
+
 /* ONLOAD */
-let query = window.location.search
+let query = window.location.search,
+		channel = query.split('channel=')[1],
+		objId = $('#video-player').attr('data-objId'),
+		nextVideo
 
-history.replaceState('', '', '/watch/' + $('#video-player').attr('data-objId') + query)
-$('.skip').attr('href', '/watch' + query)
+loadNextVideo()
 
-$('.cutout').addClass(query.split('channel=')[1])
+replaceURL(objId, query)
+$('.cutout').addClass(channel)

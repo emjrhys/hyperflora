@@ -1,9 +1,14 @@
 @import 'common';
 
 html, body {
-	height: 100%;
+	height: 100vh;
 	overflow: hidden;
   background-color: #000;
+}
+
+#video-wrapper {
+	width: 100vw;
+	height: 100vh;
 }
 
 .nav-bar {
@@ -16,18 +21,30 @@ html, body {
 	-webkit-transition: opacity .5s;
 	transition: opacity .5s;
 
+	&.clean {
+		.skip {
+			opacity: 0;
+		}
+
+		.fullscreen-toggle {
+			opacity: 0;
+		}
+	}
+
 	&.hidden {
     opacity: 0;
 		-webkit-transition: opacity 1.5s;
 		transition: opacity 1.5s;
 
-		cursor: none;
+		&, a, button {
+			cursor: none;
+		}
   }
 }
 
 .nav-zone {
   width: 100%;
-	height: 100vh;
+	height: calc(100vh - 60px);
 }
 
 nav {
@@ -59,7 +76,7 @@ nav {
 		line-height: 60px;
 	}
 
-	.title {
+	.video-link {
 		padding: 0;
 
 		font-size: 1.5em;
@@ -78,6 +95,41 @@ nav {
 		font-size: 1.1em;
 		font-weight: bold;
 		text-align: right;
+
+		opacity: 1;
+		-webkit-transition: opacity .2s;
+		transition: opacity .2s;
+	}
+}
+
+.fullscreen-toggle {
+	position: absolute;
+	left: 30px;
+	bottom: 16px;
+	width: 50px;
+	height: 50px;
+
+	background: url(../img/icons/fullscreen.png) no-repeat center center;
+	background-size: 90% auto;
+	border: none;
+	outline: none;
+	opacity: .6;
+
+	-webkit-transition: opacity .2s;
+	-webkit-transition: opacity .2s, background-size .2s;
+	transition: opacity .2s, background-size .2s;
+
+	&:hover {
+		opacity: .8;
+		background-size: 100% auto;
+	}
+
+	&.active {
+		background-size: 90% auto;
+
+		&:hover {
+			background-size: 80% auto;
+		}
 	}
 }
 
