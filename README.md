@@ -6,9 +6,9 @@
 - add approved timestamp
 - shorter unique urls
 - variables for backgrounds and colors
-- restructure app.js and api
 - admin page indicator that video is not in everything
-- compress images (especially kaleidoscope)
+- compress images (especially kaleidoscope) 
+- ~~restructure app.js and api~~
 - ~~breakpoints~~
 - ~~refactor css~~
 - ~~submit update request on dropdown close~~

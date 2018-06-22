@@ -1,0 +1,10 @@
+extends /layouts/main
+
+block style
+  link(rel='stylesheet', href='/css/submit.min.css')
+
+block content
+  form(action='/login', method='POST')
+    input(type='hidden', value='admin', name='username')
+    input(type='password', placeholder='Password', name='password')
+    button(type='submit') Submit

@@ -21,6 +21,7 @@ function updateChannelLabel(checklist) {
 
 function updateVideos() {
   let modifiedVideos = []
+  console.log('triggered video update')
 
   $('.dropdown-checklist.modified').each((index, elem) => {
     let params = {
@@ -34,7 +35,7 @@ function updateVideos() {
   })
 
   if (modifiedVideos.length > 0) {
-    $.post('/update', { videos: modifiedVideos })
+    $.post('/api/update', { videos: modifiedVideos })
   }
 }
 

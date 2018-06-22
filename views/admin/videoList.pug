@@ -43,13 +43,13 @@ block content
             if controls.buttonsEnabled
               div(class='buttons')
                 if controls.approve
-                  form(action='/approve', method='POST')
+                  form(action='/api/approve', method='POST')
                     input(type='hidden', name='id', value=vid._id)
                     button(class='approve')
                 else 
-                  form(action='/unapprove', method='POST')
+                  form(action='/api/unapprove', method='POST')
                     input(type='hidden', name='id', value=vid._id)
                     button(class='unapprove')
-                form(action='/delete', method='POST')
+                form(action='/api/delete', method='POST')
                   input(type='hidden', name='id', value=vid._id)
                   button(class='delete')  

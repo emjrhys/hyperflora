@@ -9,6 +9,7 @@ block header
       a(href='/') Hyperflora
       
     form(action='/submit', method='POST', id='submit', class='hidden')
+      input(type='hidden', value='true', name='admin')
       input(type='text', placeholder='YouTube URL', name='url')
       button(type='submit') Submit
       
