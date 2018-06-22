@@ -5,10 +5,12 @@
 - favicon
 - flag video for review button
 - add approved timestamp
+- store video length
 - variables for backgrounds and colors
 - admin page indicator that video is not in everything
 - compress images (especially kaleidoscope)
 - "watch on hyperflora" button
+- dropdown above button if near bottom on admin page
 
 - ~~shorter unique urls~~
 - ~~paused indicator~~

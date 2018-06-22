@@ -135,12 +135,12 @@ ul.videos {
   -ms-flex-line-pack: start;
       align-content: flex-start;
 
-	padding: 0 30px;
+	padding: 0 30px 30px;
   margin-top: 20px;
 	list-style: none;
 
   @include breakpoint('small') {
-    padding: 0 20px;
+    padding: 0 20px 30px;
   }
 
 	> li {
