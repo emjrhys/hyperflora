@@ -20,6 +20,8 @@ html, body {
     opacity: 0;
 		-webkit-transition: opacity 1.5s;
 		transition: opacity 1.5s;
+
+		cursor: none;
   }
 }
 
@@ -30,7 +32,7 @@ html, body {
 
 nav {
 	display: grid;
-  grid-template-columns: 250px minmax(200px, 800px) minmax(150px, 1fr);
+  grid-template-columns: 280px minmax(200px, 800px) minmax(150px, 1fr);
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -44,29 +46,27 @@ nav {
 
   height: 60px;
   width: 100%;
-	padding: 0 30px;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
 
   background-color: rgba(0, 0, 0, 1);
 
   a {
+		display: inline-block;
+		height: 100%;
+		padding: 0 30px;
+
     color: #fff;
-	}
-
-	.home {
-		margin: 0;
-
 		text-align: left;
+		line-height: 60px;
 	}
 
 	.title {
-		font-size: 1.6em;
+		padding: 0;
+
+		font-size: 1.5em;
 		font-weight: lighter;
+
 		white-space: nowrap;
 		text-overflow: ellipsis;
-		text-align: left;
-
 		overflow: hidden;
 
 		@include breakpoint('small') {
@@ -75,7 +75,6 @@ nav {
 	}
 
 	.skip {
-		line-height: 60px;
 		font-size: 1.1em;
 		font-weight: bold;
 		text-align: right;

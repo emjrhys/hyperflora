@@ -25,4 +25,5 @@
 - find better hosting
 - waaaaaaay more videos
 - better channel banners
+- test on other browsers
 - ~~secure the api/admin page~~

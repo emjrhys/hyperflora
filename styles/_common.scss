@@ -75,60 +75,58 @@ h1.cutout {
   text-transform: uppercase;
   letter-spacing: 1px;
 
-	a {
-    @include title-cutout('title')
-  }
+  @include title-cutout('title')
 
-	&.music a {
+	&.music { 
 		@include title-cutout('music') {
 			background-size: 120% auto;
 			background-position: center center;
 		}
 	}
 
-	&.animation a {
+	&.animation {
 		@include title-cutout('animation') {
 			background-size: 200% auto;
 			background-position: center bottom;
 		}
 	}
 
-	&.comedy a {
+	&.comedy {
 		@include title-cutout('comedy') {
 			background-size: 100% auto;
 			background-position: center top;
 		}
 	}
 
-	&.experimental a {
+	&.experimental {
 		@include title-cutout('experimental') {
 			background-size: 200% auto;
 			background-position: center center;
 		}
 	}
 
-	&.nature a {
+	&.nature {
 		@include title-cutout('nature') {
 			background-size: 200% auto;
 			background-position: center center;
 		}
 	}
 
-	&.discovery a {
+	&.discovery {
 		@include title-cutout('discovery') {
 			background-size: 300% auto;
 			background-position: left bottom;
 		}
 	}
 
-	&.food a {
+	&.food {
 		@include title-cutout('food') {
 			background-size: 400% auto;
 			background-position: center center;
 		}
 	}
 
-	&.nightmare a {
+	&.nightmare {
 		@include title-cutout('nightmare') {
 			background-size: 500% auto;
 			background-position: center bottom -80px;

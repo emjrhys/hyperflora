@@ -29,7 +29,7 @@ function onPlayerReady(event) {
 
 function onPlayerStateChange(event) {
   if(event.data === 0) {
-		window.location.href = $('.next').attr('href')
+		window.location.href = $('.skip').attr('href')
   }
 }
 
@@ -40,7 +40,7 @@ function playPause() {
 		showNavBar()
 	} else if (state == 2) {
 		videoPlayer.playVideo()
-		resetNavBarTimeout(500)
+		resetNavBarTimeout(1000)
 	}
 }
 
@@ -87,6 +87,6 @@ function hideNav() { $('.nav-bar').addClass('hidden') }
 let query = window.location.search
 
 history.replaceState('', '', '/watch/' + $('#video-player').attr('data-objId') + query)
-$('.next').attr('href', '/watch' + query)
+$('.skip').attr('href', '/watch' + query)
 
 $('.cutout').addClass(query.split('channel=')[1])
