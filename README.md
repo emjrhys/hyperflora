@@ -33,3 +33,6 @@
 - better channel banners
 - test on other browsers
 - ~~secure the api/admin page~~
+
+## known bugs
+- video sometimes doesn't play if skip is clicked several times
