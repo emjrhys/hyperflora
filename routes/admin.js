@@ -15,7 +15,9 @@ router.get('/', (req, res) => {
     approved: true,
   }
 
-  if (channelFilter != null && channelFilter != 'all') {
+  if (channelFilter == 'none') {
+    searchParams.channels = []
+  } else if (channelFilter != null && channelFilter != 'all') {
     searchParams.channels = channelFilter
   }
 
