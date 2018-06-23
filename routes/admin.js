@@ -66,22 +66,24 @@ router.get('/stats', (req, res) => {
       hidden: 0
     }
   }
+
   let untagged = 0,
       hiddenTotal = 0
 
   req.db.collection('videos').find({ approved: true }).toArray((err, results) => {
     for (let i = 0; i < results.length; i++) {
       let channels = results[i]['channels'],
-          hidden  = results[i]['notInEverything']
+          hidden   = results[i]['notInEverything']
 
-      if (channels == null || channels == 'none' || channel.length == 0){
+      if (hidden) { hiddenTotal += 1 }
+
+      if (channels == null || channels.length == 0) {
         untagged += 1
 
       } else {
-        for (let i = 0; i < channel.length; i++) {
+        for (let i = 0; i < channels.length; i++) {
           channelCounts[channels[i]].total += 1
           if (hidden) {
-            hiddenTotal += 1
             channelCounts[channels[i]].hidden += 1
           }
         }
