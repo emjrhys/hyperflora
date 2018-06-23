@@ -1,7 +1,6 @@
 # HYPERFLORA
 
 ## TODO
-- watch approval queue
 - favicon
 - flag video for review button
 - add approved timestamp
@@ -9,6 +8,8 @@
 - variables for backgrounds and colors
 - compress images (especially kaleidoscope)
 
+- ~~put helper methods in other function~~
+- ~~watch with search params~~
 - ~~admin page indicator that video is not in everything~~
 - ~~"watch on hyperflora" button~~
 - ~~dropdown above button if near bottom on admin page~~

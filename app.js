@@ -49,7 +49,7 @@ app.use((req, res, next) => {
   res.locals.channels = channels
   req.db = db
 
-  res.locals.getChannelLabel = function(video) {
+  res.locals.getChannelLabel = (video) => {
     let channels = video.channels,
         notInEverything = video.notInEverything
 

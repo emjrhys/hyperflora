@@ -1,39 +1,21 @@
-const express  = require('express')
+const express  = require('express'),
+
+      generateSearchParams = require('./helper.js').generateSearchParams
 
 let router = express.Router()
 
 router.use((req, res, next) => {
-
   next()
 })
 
-router.get('/', (req, res) => {
-  let channelFilter = req.query.channel,
-      visibilityFilter = req.query.visibility
-
-  let searchParams = {
-    approved: true,
-  }
-
-  if (channelFilter == 'none') {
-    searchParams.channels = []
-  } else if (channelFilter != null && channelFilter != 'all') {
-    searchParams.channels = channelFilter
-  }
-
-  if (visibilityFilter == 'visible') {
-    searchParams.notInEverything = { $in: [null, false] }
-  } else if (visibilityFilter == 'hidden') {
-    searchParams.notInEverything = true
-  }
-
-  req.db.collection('videos').find(searchParams).sort({ '_id': -1 }).toArray((err, results) => {
+router.get('/', generateSearchParams, (req, res) => {
+  req.db.collection('videos').find(req.searchParams).sort({ '_id': -1 }).toArray((err, results) => {
     res.render('admin/videoList', {
       title: 'Dashboard',
       page: 'videos',
       videos: results,
-      channelFilter: channelFilter,
-      visibilityFilter: visibilityFilter,
+      channelFilter: req.channelFilter,
+      visibilityFilter: req.visibilityFilter,
       controls: {
         filterEnabled: true,
         channelChangerEnabled: true,

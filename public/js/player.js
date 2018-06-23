@@ -35,7 +35,8 @@ function onPlayerStateChange(event) {
 }
 
 function loadNextVideo() {
-	$.get('/random/' + (channel || ''), (data) => {
+	$.get('/random/' + (query || ''), (data) => {
+    console.log(data)
 		nextVideo = data
 	})
 }
@@ -51,9 +52,7 @@ function updatePage() {
   $('.video-link').attr('href', 'https://www.youtube.com/watch?v=' + nextVideo.youtubeId)
 	$('.video-link').html(nextVideo.title)
 
-  if (updateAdminControls) {
-    updateAdminControls()
-  }
+  if (admin) updateAdminControls()
   replaceURL(nextVideo.searchId, query)
 }
 
@@ -149,11 +148,23 @@ function replaceURL(id, query) {
 	history.replaceState('', '', '/watch/' + id + query)
 }
 
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1)
+}
+
 /* ONLOAD */
 let query = window.location.search,
-		channel = query.split('channel=')[1],
+    searchParams = {},
 		searchId = $('#video-player').attr('data-searchId'),
+    admin = $('.admin-controls').length,
 		nextVideo
+
+query.substr(1).split("&").forEach(function (pair) {
+  if (pair === "") return
+  var parts = pair.split("=")
+  searchParams[parts[0]] = parts[1] &&
+    decodeURIComponent(parts[1].replace(/\+/g, " "))
+})
 
 loadNextVideo()
 
@@ -161,11 +172,10 @@ loadNextVideo()
 replaceURL(searchId, query)
 
 // change home button style to match channel
-$('.cutout').addClass(channel)
+$('.cutout').addClass(searchParams.channel)
 
 // set page title from channel
 let title = 'Everything'
-if (channel) {
-	title = channel.charAt(0).toUpperCase() + channel.slice(1)
-}
+if (searchParams.channel) { title = capitalize(searchParams.channel) }
+
 document.title = 'Hyperflora | ' + title

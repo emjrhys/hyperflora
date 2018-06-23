@@ -1,6 +1,8 @@
 const express  = require('express'),
       ObjectID = require('mongodb').ObjectID,
-      youtube  = require('youtube-api')
+      youtube  = require('youtube-api'),
+
+      generateSearchParams = require('./helper.js').generateSearchParams
 
 let router = express.Router()
 
@@ -30,13 +32,20 @@ router.get('/', (req, res) => {
   res.render('home')
 })
 
-router.get('/random/:channel?', getRandomVideoFromChannel, (req, res) => {
-  res.send(res.video)
+router.get('/random/:channel?',
+  generateSearchParams,
+  getRandomVideoFromSearch,
+  (req, res) => {
+    res.send(res.video)
 })
 
-router.get('/watch', getRandomVideoFromChannel, (req, res) => {
-  res.render('watch', { video: res.video, loggedIn: req.user })
-})
+router.get('/watch',
+  generateSearchParams,
+  getRandomVideoFromSearch,
+  (req, res) => {
+    res.render('watch', { video: res.video, loggedIn: req.user })
+  }
+)
 
 router.get('/watch/:searchId', (req, res) => {
   req.db.collection('videos').find({
@@ -115,17 +124,8 @@ router.get('/list', (req, res) => {
   })
 })
 
-function getRandomVideoFromChannel(req, res, next) {
-  let searchParams = { approved: true },
-      channel = req.params.channel || req.query.channel || null
-
-  if (channel != null) {
-    searchParams.channels = channel
-  } else {
-    searchParams.notInEverything = { $in: [null, 'false'] }
-  }
-
-  req.db.collection('videos').find(searchParams).toArray((err, results) => {
+function getRandomVideoFromSearch(req, res, next) {
+  req.db.collection('videos').find(req.searchParams).toArray((err, results) => {
     let vid = getRandomFromArray(results)
 
     while (results.length > historySize && res.locals.history.indexOf(vid.searchId) > -1) {

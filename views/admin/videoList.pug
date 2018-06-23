@@ -3,8 +3,10 @@ extends /layouts/admin
 block content
   div(data-page=page, id='page') 
     section(class='search-info') 
-      div(class='video-count') Displaying #{videos.length} results
-      if controls.filterEnabled
+      div(class='video-count') 
+        span Displaying #{videos.length} results
+        a(class='watch-link', href='/watch/?channel=' + channelFilter + '&visibility=' + visibilityFilter)
+      if controls.filterEnabled        
         div(class='filters')
           label Channel:
             select(id='channel-filter', data-selected=channelFilter)
