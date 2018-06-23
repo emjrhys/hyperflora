@@ -1,6 +1,8 @@
 # HYPERFLORA
 
 ## TODO
+- admin page search
+- watch unapproved videos
 - favicon
 - flag video for review button
 - add approved timestamp

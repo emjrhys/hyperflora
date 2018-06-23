@@ -61,17 +61,17 @@ router.get('/submit', (req, res) => {
 })
 
 router.post('/submit', (req, res) => {
-  let vid_id = youtube_parser(req.body.url)
+  let youtubeId = youtube_parser(req.body.url)
 
-  if (vid_id) {
-    req.db.collection('videos').find({ id: vid_id }).toArray((err, results) => {
+  if (youtubeId) {
+    req.db.collection('videos').find({ youtubeId: youtubeId }).toArray((err, results) => {
       if (results.length > 0) {
         res.render('submit', { message: 'This video has already been submitted' })
         return
       }
 
       youtube.videos.list({
-        id: vid_id,
+        id: youtubeId,
         part: 'snippet',
         auth: auth
       }, (err, response) => {
@@ -82,7 +82,7 @@ router.post('/submit', (req, res) => {
 
         var entry = {
           url: req.body.url,
-          youtubeId: vid_id,
+          youtubeId: youtubeId,
           title: response.items[0].snippet.title,
           approved: false
         }
