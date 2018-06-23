@@ -1,19 +1,18 @@
 # HYPERFLORA
 
 ## TODO
-- admin video controls when logged in
-- better way to set controls on admin page
-- dropdown above button if near bottom on admin page
 - watch approval queue
 - favicon
 - flag video for review button
 - add approved timestamp
 - store video length
 - variables for backgrounds and colors
-- admin page indicator that video is not in everything
 - compress images (especially kaleidoscope)
-- "watch on hyperflora" button
 
+- ~~admin page indicator that video is not in everything~~
+- ~~"watch on hyperflora" button~~
+- ~~dropdown above button if near bottom on admin page~~
+- ~~admin video controls when logged in~~
 - ~~shorter unique urls~~
 - ~~paused indicator~~
 - ~~fullscreen toggle~~
@@ -37,6 +36,9 @@
 - better channel banners
 - test on other browsers
 - ~~secure the api/admin page~~
+
+## TODO someday maybe
+- vimeo support
 
 ## known bugs
 - video sometimes doesn't play if skip is clicked several times

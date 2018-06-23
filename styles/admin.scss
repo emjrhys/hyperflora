@@ -149,18 +149,36 @@ ul.videos {
 		background-color: #fff;
   }
 
-	a {
-		display: block;
-    width: 100%;
-    height: 46px;
-    padding: 10px 12px;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
+  .video-links {
+    display: grid;
+    grid-template-columns: 1fr 50px;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 
-    color: #003163;
+    height: 45px;
 
-    &:hover {
-			background-color: #f7faff;
+    a {
+      display: inline-block;
+      -webkit-box-sizing: border-box;
+              box-sizing: border-box;
+
+      color: #003163;
+
+      &:hover {
+  			color: #074d94;
+      }
+    }
+
+    .title {
+      padding: 0 12px;
+
+      font-size: 1.1em;
+      font-weight: normal;
+
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
   }
 
@@ -176,13 +194,6 @@ ul.videos {
     &:hover {
       opacity: 1;
     }
-  }
-
-  h3 {
-    font-weight: normal;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
   }
 
   .controls {
@@ -259,6 +270,22 @@ ul.videos {
     td:first-child {
       text-align: left;
     }
+  }
+}
+
+.watch-link {
+  height: 100%;
+
+  background: url(../img/icons/watch.png) no-repeat center center;
+  background-size: 30px auto;
+
+  opacity: .6;
+
+  -webkit-transition: opacity .1s;
+  transition: opacity .1s;
+
+  &:hover {
+    opacity: 1;
   }
 }
 

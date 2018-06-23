@@ -21,8 +21,9 @@ block content
     ul(class='videos')
       each vid in videos
         li(class='video-item' data-objId=vid._id)
-          a(href=vid.url, target='_blank', class='title')
-            h3= vid.title
+          div(class='video-links')
+            a(href=vid.url, target='_blank', class='title')= vid.title
+            a(href='/watch/' + vid.searchId, class='watch-link')
           
           div(class='controls')
             if controls.channelChangerEnabled
