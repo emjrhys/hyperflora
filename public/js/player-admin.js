@@ -25,7 +25,7 @@ function updateAdminControls() {
   $('.dropdown-items .in-everything :checkbox').prop('checked', !nextVideo.notInEverything)
   $('.dropdown-items .channel :checkbox').prop('checked', false)
   for (let i = 0; i < nextVideo.channels.length; i++) {
-    $('.dropdown-items .channel :checkbox[value=' + nextVideo.channels[i] + ']').prop('checked', true)
+    $('.dropdown-items .channel :checkbox[value="' + nextVideo.channels[i] + '"]').prop('checked', true)
   }
   updateChannelLabel($('.dropdown-checklist'))
 }

@@ -94,7 +94,7 @@ router.post('/submit', (req, res) => {
               searchId = objId.toString().slice(0, 8)
           req.db.collection('videos').update({ _id: objId }, { $set: { searchId: searchId } })
 
-          console.log('Saved ' + entry.title + ' to database with id ' + entry.id)
+          console.log('Saved ' + entry.title + ' to database with id ' + searchId)
 
           if (req.body.admin) {
             res.redirect('/admin/unapproved')
