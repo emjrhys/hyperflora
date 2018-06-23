@@ -23,25 +23,15 @@ function onYouTubePlayerAPIReady() {
 
 function onPlayerReady(event) {
   event.target.playVideo()
-	resetNavBarTimeout(4000)
+	resetControlsTimeout(4000)
 }
 
 function onPlayerStateChange(event) {
   if(event.data === 0) {
 		playNextVideo()
-		showNavBar(true)
-		resetNavBarTimeout(4000)
+		showControls(true)
+		resetControlsTimeout(4000)
   }
-}
-
-function playNextVideo() {
-	videoPlayer.loadVideoById(nextVideo.youtubeId)
-	$('.nav-zone').removeClass('paused')
-	$('.video-link').attr('href', 'https://www.youtube.com/watch?v=' + nextVideo.youtubeId)
-	$('.video-link').html(nextVideo.title)
-
-	replaceURL(nextVideo.searchId, query)
-	loadNextVideo()
 }
 
 function loadNextVideo() {
@@ -50,16 +40,33 @@ function loadNextVideo() {
 	})
 }
 
+function playNextVideo() {
+	videoPlayer.loadVideoById(nextVideo.youtubeId)
+  updatePage()
+	$('.hover-zone').removeClass('paused')
+	loadNextVideo()
+}
+
+function updatePage() {
+  $('.video-link').attr('href', 'https://www.youtube.com/watch?v=' + nextVideo.youtubeId)
+	$('.video-link').html(nextVideo.title)
+
+  if (updateAdminControls) {
+    updateAdminControls()
+  }
+  replaceURL(nextVideo.searchId, query)
+}
+
 function playPause() {
 	let state = videoPlayer.getPlayerState()
 	if (state == 1) {
 		videoPlayer.pauseVideo()
-		$('.nav-zone').addClass('paused')
-		showNavBar(false)
+		$('.hover-zone').addClass('paused')
+		showControls(false)
 	} else if (state == 2) {
 		videoPlayer.playVideo()
-		$('.nav-zone').removeClass('paused')
-		resetNavBarTimeout(1000)
+		$('.hover-zone').removeClass('paused')
+		resetControlsTimeout(1000)
 	}
 }
 
@@ -76,11 +83,11 @@ $('body').keydown((e) => {
 $('.skip').click((e) => {
 	e.preventDefault()
 	playNextVideo()
-	showNavBar(false)
-	resetNavBarTimeout(4000)
+	showControls(false)
+	resetControlsTimeout(4000)
 })
 
-$('.nav-zone').click(playPause)
+$('.hover-zone').click(playPause)
 
 function toggleFullscreen() {
 	let video = $('#video-wrapper')[0]
@@ -113,30 +120,30 @@ $('.video-link').click((e) => {
 	videoPlayer.pauseVideo()
 })
 
-$('.nav-zone, nav').mousemove((e) => {
-	showNavBar(false)
+$('.controls').mousemove((e) => {
+	showControls(false)
 
 	if (videoPlayer.getPlayerState() != 2) {
-		resetNavBarTimeout(3000)
+		resetControlsTimeout(3000)
 	}
 })
 
-function showNavBar(clean) {
+function showControls(clean) {
 	if (clean) {
-		$('.nav-bar').addClass('clean')
+		$('.controls').addClass('clean')
 	} else {
-		$('.nav-bar').removeClass('clean')
+		$('.controls').removeClass('clean')
 	}
 
-	$('.nav-bar').removeClass('hidden')
+	$('.controls').removeClass('hidden')
 	window.clearTimeout(timeoutHandle)
 }
 
-function resetNavBarTimeout(timeout) {
-	timeoutHandle = window.setTimeout(hideNav, timeout)
+function resetControlsTimeout(timeout) {
+	timeoutHandle = window.setTimeout(hideControls, timeout)
 }
 
-function hideNav() { $('.nav-bar').addClass('hidden') }
+function hideControls() { $('.controls').addClass('hidden') }
 
 function replaceURL(id, query) {
 	history.replaceState('', '', '/watch/' + id + query)
@@ -150,9 +157,13 @@ let query = window.location.search,
 
 loadNextVideo()
 
+// set custom page url
 replaceURL(searchId, query)
+
+// change home button style to match channel
 $('.cutout').addClass(channel)
 
+// set page title from channel
 let title = 'Everything'
 if (channel) {
 	title = channel.charAt(0).toUpperCase() + channel.slice(1)

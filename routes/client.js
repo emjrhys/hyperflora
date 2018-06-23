@@ -19,7 +19,7 @@ router.use((req, res, next) => {
       res.locals.history.splice(0, 1)
     }
 
-    res.locals.history.push(vid['id'])
+    res.locals.history.push(vid.searchId)
     res.cookie('history', res.locals.history)
   }
 
@@ -35,15 +35,15 @@ router.get('/random/:channel?', getRandomVideoFromChannel, (req, res) => {
 })
 
 router.get('/watch', getRandomVideoFromChannel, (req, res) => {
-  res.render('watch', { video: res.video })
+  res.render('watch', { video: res.video, loggedIn: req.user })
 })
 
-router.get('/watch/:vidId', (req, res) => {
+router.get('/watch/:searchId', (req, res) => {
   req.db.collection('videos').find({
-    searchId: req.params.vidId
+    searchId: req.params.searchId
   }).toArray((err, results) => {
     let vid = results[0]
-    res.render('watch', { video: vid })
+    res.render('watch', { video: vid, loggedIn: req.user })
   })
 })
 
@@ -120,7 +120,7 @@ function getRandomVideoFromChannel(req, res, next) {
       channel = req.params.channel || req.query.channel || null
 
   if (channel != null) {
-    searchParams.channel = channel
+    searchParams.channels = channel
   } else {
     searchParams.notInEverything = { $in: [null, 'false'] }
   }
@@ -128,7 +128,7 @@ function getRandomVideoFromChannel(req, res, next) {
   req.db.collection('videos').find(searchParams).toArray((err, results) => {
     let vid = getRandomFromArray(results)
 
-    while (results.length > historySize && res.locals.history.indexOf(vid['id']) > -1) {
+    while (results.length > historySize && res.locals.history.indexOf(vid.searchId) > -1) {
       console.log('checking again')
       vid = getRandomFromArray(results)
     }
@@ -137,7 +137,7 @@ function getRandomVideoFromChannel(req, res, next) {
     res.video = vid
     next()
   })
- }
+}
 
 function youtube_parser(url){
   let regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/

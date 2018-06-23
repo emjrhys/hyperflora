@@ -5,18 +5,35 @@ block style
 
 block content
   div(id='video-wrapper')
-    div(class='nav-bar clean')
+    div(class='controls clean')
       nav
         a(href='/', class='home')
           h1(class='cutout') Hyperflora
         a(href='https://www.youtube.com/watch?v=' + video.youtubeId, target='_blank', class='video-link')= video.title
         a(class='skip') Skip Video
-      div(class='nav-zone')
+      div(class='hover-zone')
         div(class='pause-icon')
       button(class='fullscreen-toggle')
+      if loggedIn
+        div(class='admin-controls', data-objId=video._id)
+          div(class='dropdown-checklist closed', tabindex='100')
+            button(class='anchor')
+              span= getChannelLabel(video)
+            div(class='dropdown-items')
+              label(class='in-everything')
+                input(type='checkbox', checked=!video.notInEverything)
+                span in everything
+              hr
+              each channel in channels
+                label(class='channel', data-channel=channel)
+                  input(type='checkbox', value=channel, checked=(video.channels && video.channels.includes(channel)))
+                  span #{channel}
+          a(href='/admin/' + video.searchId, class='admin-link')
       
     div(id='video-player', data-searchId=video.searchId, data-videoId=video.youtubeId)
 
 block script
   script(src='http://www.youtube.com/player_api')
   script(src='/js/player.js')
+  if loggedIn
+    script(src='/js/player-admin.js')

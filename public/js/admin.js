@@ -1,27 +1,5 @@
-function getChannelsAsArray(checklist) {
-  return checklist.find('.channel :checkbox:checked').map(function() { return this.value }).get()
-}
-
-function getChannelLabel(channels) {
-  if (channels == null || channels.length == 0) {
-    return 'no channels'
-  }
-
-  if (channels.length >= 3) {
-    return channels.length + ' channels'
-  } else {
-    return channels.join(', ')
-  }
-}
-
-function updateChannelLabel(checklist) {
-  let channels = getChannelsAsArray(checklist)
-  checklist.find('.anchor span').html(getChannelLabel(channels))
-}
-
 function updateVideos() {
   let modifiedVideos = []
-  console.log('triggered video update')
 
   $('.dropdown-checklist.modified').each((index, elem) => {
     let params = {
@@ -45,29 +23,11 @@ $('.dropdown-checklist :checkbox').change((e) => {
   updateChannelLabel(checklist)
 })
 
-let dropdownOpen
 function closeDropdown() {
-  dropdownOpen.addClass('closed')
-  dropdownOpen = null
+  openDropdown.addClass('closed')
+  openDropdown = null
   updateVideos()
 }
-
-$('.dropdown-checklist .anchor').click((e) => {
-  let checklist = $(e.currentTarget).parent()
-  if (checklist.hasClass('closed')) {
-    $('.dropdown-checklist').addClass('closed')
-    checklist.removeClass('closed')
-    dropdownOpen = checklist
-  } else {
-    closeDropdown()
-  }
-})
-
-$(document).click((e) => {
-  if(dropdownOpen && !$(e.target).closest(dropdownOpen).length) {
-    closeDropdown()
-  }
-})
 
 $('.filters select').change((e) => {
   let channelFilter = $('#channel-filter').val(),

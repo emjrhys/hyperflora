@@ -11,7 +11,7 @@ html, body {
 	height: 100vh;
 }
 
-.nav-bar {
+.controls {
 	position: absolute;
   top: 0;
 
@@ -22,11 +22,7 @@ html, body {
 	transition: opacity .5s;
 
 	&.clean {
-		.skip {
-			opacity: 0;
-		}
-
-		.fullscreen-toggle {
+		.skip, .fullscreen-toggle, .admin-controls {
 			opacity: 0;
 		}
 	}
@@ -46,7 +42,7 @@ html, body {
   }
 }
 
-.nav-zone {
+.hover-zone {
   width: 100%;
 	height: calc(100vh - 60px);
 
@@ -155,6 +151,47 @@ nav {
 
 		&:hover {
 			background-size: 80% auto;
+		}
+	}
+}
+
+.admin-controls {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+
+	position: absolute;
+	bottom: 16px;
+	right: 26px;
+	width: 220px;
+	padding: 8px 10px;
+
+	background-color: #eee;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+
+	opacity: 1;
+	-webkit-transition: opacity .2s;
+	transition: opacity .2s;
+
+	.admin-link {
+		display: inline-block;
+		width: 30px;
+		height: 30px;
+
+		background: url(../img/icons/edit.png) no-repeat center center;
+		background-size: contain;
+
+		opacity: .8;
+
+		&:hover {
+			opacity: 1;
 		}
 	}
 }

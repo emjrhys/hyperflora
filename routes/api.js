@@ -26,11 +26,11 @@ router.post('/update', (req, res) => {
 
   for (let i = 0; i < videos.length; i++) {
     let objId = videos[i].objId,
-        channel = videos[i].channels,
+        channels = videos[i].channels,
         notInEverything = (videos[i].notInEverything == 'true')
 
-    req.db.collection('videos').update({ _id: ObjectID(objId) }, { $set: { channel: channel, notInEverything: notInEverything } }, (err, results) => {
-      console.log('Updated ' + objId + ' with channel ' + channel + ' and flag notInEverything: ' + notInEverything)
+    req.db.collection('videos').update({ _id: ObjectID(objId) }, { $set: { channels: channels, notInEverything: notInEverything } }, (err, results) => {
+      console.log('Updated ' + objId + ' with channel ' + channels + ' and flag notInEverything: ' + notInEverything)
     })
   }
 })

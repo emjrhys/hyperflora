@@ -49,6 +49,24 @@ app.use((req, res, next) => {
   res.locals.channels = channels
   req.db = db
 
+  res.locals.getChannelLabel = function(video) {
+    let channels = video.channels,
+        notInEverything = video.notInEverything
+
+    let hiddenMarker = ''
+    if (notInEverything) {
+      hiddenMarker = '*'
+    }
+
+    if (channels == null || channels.length == 0) {
+      return hiddenMarker + 'no channels'
+    } else if (channels.length >= 3) {
+      return hiddenMarker + channels.length + ' channels'
+    } else {
+      return hiddenMarker + channels.join(', ')
+    }
+  }
+
   next()
 })
 

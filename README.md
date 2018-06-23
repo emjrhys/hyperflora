@@ -2,6 +2,9 @@
 
 ## TODO
 - admin video controls when logged in
+- better way to set controls on admin page
+- dropdown above button if near bottom on admin page
+- watch approval queue
 - favicon
 - flag video for review button
 - add approved timestamp
@@ -10,7 +13,6 @@
 - admin page indicator that video is not in everything
 - compress images (especially kaleidoscope)
 - "watch on hyperflora" button
-- dropdown above button if near bottom on admin page
 
 - ~~shorter unique urls~~
 - ~~paused indicator~~

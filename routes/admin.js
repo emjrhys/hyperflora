@@ -3,19 +3,6 @@ const express  = require('express')
 let router = express.Router()
 
 router.use((req, res, next) => {
-  res.locals.getChannelLabel = function(channels) {
-    if (channels == null || channels.length == 0) {
-      return 'no channels'
-    }
-
-    if (typeof channels === 'string') {
-      return channels
-    } else if (channels.length >= 3) {
-      return channels.length + ' channels'
-    } else {
-      return channels.join(', ')
-    }
-  }
 
   next()
 })
@@ -29,7 +16,7 @@ router.get('/', (req, res) => {
   }
 
   if (channelFilter != null && channelFilter != 'all') {
-    searchParams.channel = channelFilter
+    searchParams.channels = channelFilter
   }
 
   if (visibilityFilter == 'visible') {
@@ -84,25 +71,18 @@ router.get('/stats', (req, res) => {
 
   req.db.collection('videos').find({ approved: true }).toArray((err, results) => {
     for (let i = 0; i < results.length; i++) {
-      let channel = results[i]['channel'],
+      let channels = results[i]['channels'],
           hidden  = results[i]['notInEverything']
 
-      if (channel == null || channel == 'none' || channel.length == 0){
+      if (channels == null || channels == 'none' || channel.length == 0){
         untagged += 1
-
-      } else if (typeof channel === 'string') {
-        channelCounts[channel].total += 1
-        if (hidden) {
-          hiddenTotal += 1
-          channelCounts[channel].hidden += 1
-        }
 
       } else {
         for (let i = 0; i < channel.length; i++) {
-          channelCounts[channel[i]].total += 1
+          channelCounts[channels[i]].total += 1
           if (hidden) {
             hiddenTotal += 1
-            channelCounts[channel[i]].hidden += 1
+            channelCounts[channels[i]].hidden += 1
           }
         }
       }
@@ -115,6 +95,24 @@ router.get('/stats', (req, res) => {
 router.get('/download', (req, res) => {
   req.db.collection('videos').find().toArray((err, results) => {
     res.json(results)
+  })
+})
+
+router.get('/:searchId', (req, res) => {
+  req.db.collection('videos').find({
+    searchId: req.params.searchId
+  }).toArray((err, results) => {
+    res.render('admin/videoList', {
+      title: 'Dashboard',
+      page: 'videos',
+      videos: results,
+      controls: {
+        filterEnabled: false,
+        channelChangerEnabled: true,
+        buttonsEnabled: true,
+        approve: false
+      }
+    })
   })
 })
 
