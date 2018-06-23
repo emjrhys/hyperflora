@@ -33,7 +33,7 @@ $('.filters select').change((e) => {
   let channelFilter = $('#channel-filter').val(),
       visibilityFilter = $('#visibility-filter').val()
 
-  window.location.href = '/admin?channel=' + channelFilter + '&visibility=' + visibilityFilter
+  window.location.href = window.location.pathname + '?channel=' + channelFilter + '&visibility=' + visibilityFilter
 })
 
 $('.submit-nav').click((e) => {

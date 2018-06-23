@@ -110,13 +110,15 @@ router.post('/submit', (req, res) => {
   }
 })
 
-router.get('/list', (req, res) => {
-  req.db.collection('videos').find().sort({ '_id': -1 }).toArray((err, results) => {
+router.get('/list', generateSearchParams, (req, res) => {
+  req.db.collection('videos').find(req.searchParams).sort({ '_id': -1 }).toArray((err, results) => {
     res.render('admin/videoList', {
       page: 'list',
       videos: results,
+      channelFilter: req.channelFilter,
+      visibilityFilter: req.visibilityFilter,
       controls: {
-        filterEnabled: false,
+        filterEnabled: true,
         channelChangerEnabled: false,
         buttonsEnabled: false
       }
