@@ -6,13 +6,13 @@
 - admin page search
 - watch unapproved videos
 - confirm delete
-- logout page
 - separate unapproved into other collection maybe
 - flag video for review button
 - add approved timestamp
 - store video length
 - variables for backgrounds and colors
 
+- ~~logout page~~
 - ~~save deleted videos somewhere~~
 - ~~compress images (especially kaleidoscope)~~
 - ~~favicon~~
