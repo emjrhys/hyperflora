@@ -1,6 +1,6 @@
-let timeoutHandle
-let videoPlayer
-let videoId = $('#video-player').attr('data-videoId')
+let timeoutHandle, videoPlayer,
+    videoId = $('#video-player').attr('data-videoId'),
+    playerReady = false
 
 function onYouTubePlayerAPIReady() {
   videoPlayer = new YT.Player('video-player', {
@@ -16,12 +16,16 @@ function onYouTubePlayerAPIReady() {
 		},
     events: {
       onReady: onPlayerReady,
-      onStateChange: onPlayerStateChange
+      onStateChange: onPlayerStateChange,
+      onError: (event) => {
+        console.log(event.data)
+      }
     }
   })
 }
 
 function onPlayerReady(event) {
+  playerReady = true
   event.target.playVideo()
 	resetControlsTimeout(4000)
 }
@@ -35,17 +39,18 @@ function onPlayerStateChange(event) {
 }
 
 function loadNextVideo() {
-	$.get('/random/' + (query || ''), (data) => {
+  $.get('/random/' + (query || ''), (data) => {
     console.log(data)
 		nextVideo = data
 	})
 }
 
 function playNextVideo() {
-	videoPlayer.loadVideoById(nextVideo.youtubeId)
+  videoPlayer.loadVideoById(nextVideo.youtubeId)
+
+  $('.hover-zone').removeClass('paused')
   updatePage()
-	$('.hover-zone').removeClass('paused')
-	loadNextVideo()
+  loadNextVideo()
 }
 
 function updatePage() {
@@ -122,7 +127,7 @@ $('.video-link').click((e) => {
 $('.controls').mousemove((e) => {
 	showControls(false)
 
-	if (videoPlayer.getPlayerState() != 2) {
+	if (playerReady && videoPlayer.getPlayerState() != 2) {
 		resetControlsTimeout(3000)
 	}
 })
