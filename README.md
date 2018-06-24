@@ -12,8 +12,8 @@
 - add approved timestamp
 - store video length
 - variables for backgrounds and colors
-- compress images (especially kaleidoscope)
 
+- ~~compress images (especially kaleidoscope)~~
 - ~~favicon~~
 - ~~put helper methods in other function~~
 - ~~watch with search params~~
