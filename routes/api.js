@@ -36,9 +36,15 @@ router.post('/update', (req, res) => {
 })
 
 router.post('/delete', (req, res) => {
-  req.db.collection('videos').remove({ _id: ObjectID(req.body.id) }, (err, results) => {
-    console.log('Deleted ' + req.body.id)
-    res.redirect(req.get('referer'))
+  req.db.collection('videos').findOne({ _id: ObjectID(req.body.id) }, (err, result) => {
+    req.db.collection('deleted').save(result, (err, result) => {
+      if (err) return console.log(err)
+
+      req.db.collection('videos').remove({ _id: ObjectID(req.body.id) }, true, (err, results) => {
+        console.log('Deleted ' + req.body.id)
+        res.redirect(req.get('referer'))
+      })
+    })
   })
 })
 

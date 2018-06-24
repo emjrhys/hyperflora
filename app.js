@@ -83,6 +83,11 @@ app.post('/login',
   (req, res) => { res.redirect('/admin') }
 )
 
+app.get('/logout', (req, res) => {
+  req.logout()
+  res.redirect('/')
+})
+
 function authenticate(req, res, next) {
   if (req.user) {
     next()

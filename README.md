@@ -2,17 +2,18 @@
 
 ## TODO
 - log requests
+- save server output
 - admin page search
 - watch unapproved videos
 - confirm delete
 - logout page
-- save deleted videos somewhere
 - separate unapproved into other collection maybe
 - flag video for review button
 - add approved timestamp
 - store video length
 - variables for backgrounds and colors
 
+- ~~save deleted videos somewhere~~
 - ~~compress images (especially kaleidoscope)~~
 - ~~favicon~~
 - ~~put helper methods in other function~~

@@ -48,10 +48,10 @@ router.get('/watch',
 )
 
 router.get('/watch/:searchId', (req, res) => {
-  req.db.collection('videos').find({
+  req.db.collection('videos').findOne({
     searchId: req.params.searchId
-  }).toArray((err, results) => {
-    let vid = results[0]
+  }, (err, result) => {
+    let vid = result
     res.render('watch', { video: vid, loggedIn: req.user })
   })
 })

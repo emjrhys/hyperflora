@@ -5,7 +5,8 @@ block content
     section(class='search-info') 
       div(class='video-count') 
         span Displaying #{videos.length} results
-        a(class='watch-link', href='/watch/?channel=' + channelFilter + '&visibility=' + visibilityFilter)
+        unless controls.hideWatch
+          a(class='watch-link', href='/watch/?channel=' + channelFilter + '&visibility=' + visibilityFilter)
       if controls.filterEnabled        
         div(class='filters')
           label Channel:

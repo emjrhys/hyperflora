@@ -36,7 +36,25 @@ router.get('/unapproved', (req, res) => {
         filterEnabled: false,
         channelChangerEnabled: true,
         buttonsEnabled: true,
-        approve: true
+        approve: true,
+        hideWatch: true
+      }
+    })
+  })
+})
+
+router.get('/deleted', (req, res) => {
+  req.db.collection('deleted').find().sort({ '_id': -1 }).toArray((err, results) => {
+    res.render('admin/videoList', {
+      title: 'Deleted videos',
+      page: 'deleted',
+      videos: results,
+      controls: {
+        filterEnabled: false,
+        channelChangerEnabled: true,
+        buttonsEnabled: false,
+        approve: true,
+        hideWatch: true
       }
     })
   })
