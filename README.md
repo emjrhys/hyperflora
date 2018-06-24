@@ -7,6 +7,7 @@
 - confirm delete
 - logout page
 - save deleted videos somewhere
+- separate unapproved into other collection maybe
 - flag video for review button
 - add approved timestamp
 - store video length
