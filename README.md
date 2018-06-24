@@ -4,14 +4,13 @@
 - log requests
 - save server output
 - admin page search
-- watch unapproved videos
+- watch unapproved videos button
 - confirm delete
 - separate unapproved into other collection maybe
 - flag video for review button
 - add approved timestamp
 - store video length
 - variables for backgrounds and colors
-
 - ~~logout page~~
 - ~~save deleted videos somewhere~~
 - ~~compress images (especially kaleidoscope)~~
