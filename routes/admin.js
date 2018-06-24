@@ -1,6 +1,6 @@
 const express  = require('express'),
 
-      generateSearchParams = require('./helper.js').generateSearchParams
+      generateSearchParams = require('./middleware.js').generateSearchParams
 
 let router = express.Router()
 

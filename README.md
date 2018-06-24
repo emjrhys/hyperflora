@@ -1,17 +1,19 @@
 # HYPERFLORA
 
 ## TODO
+- log requests
 - admin page search
 - watch unapproved videos
 - confirm delete
+- logout page
 - save deleted videos somewhere
-- favicon
 - flag video for review button
 - add approved timestamp
 - store video length
 - variables for backgrounds and colors
 - compress images (especially kaleidoscope)
 
+- ~~favicon~~
 - ~~put helper methods in other function~~
 - ~~watch with search params~~
 - ~~admin page indicator that video is not in everything~~
@@ -47,4 +49,3 @@
 
 ## known bugs
 - video sometimes doesn't play if skip is clicked several times
-- hidden videos are not being filtered out of everything

@@ -2,7 +2,8 @@ const express  = require('express'),
       ObjectID = require('mongodb').ObjectID,
       youtube  = require('youtube-api'),
 
-      generateSearchParams = require('./helper.js').generateSearchParams
+      generateSearchParams = require('./middleware.js').generateSearchParams,
+      getRandomVideoFromSearch = require('./middleware.js').getRandomVideoFromSearch
 
 let router = express.Router()
 
@@ -11,13 +12,12 @@ let auth = youtube.authenticate({
   key: 'AIzaSyA-mI-1HFw5T7Ww2lsIQhmySiOcVidcBFs'
 })
 
-let historySize = 20
-
 router.use((req, res, next) => {
+  res.locals.historySize = 20
   res.locals.history = req.cookies['history'] || []
 
   res.updateHistory = (vid) => {
-    while (res.locals.history.length >= historySize) {
+    while (res.locals.history.length >= res.locals.historySize) {
       res.locals.history.splice(0, 1)
     }
 
@@ -126,35 +126,10 @@ router.get('/list', generateSearchParams, (req, res) => {
   })
 })
 
-function getRandomVideoFromSearch(req, res, next) {
-  req.db.collection('videos').find(req.searchParams).toArray((err, results) => {
-    let vid = getRandomFromArray(results)
-
-    while (results.length > historySize && res.locals.history.indexOf(vid.searchId) > -1) {
-      console.log('checking again')
-      vid = getRandomFromArray(results)
-    }
-    res.updateHistory(vid)
-
-    res.video = vid
-    next()
-  })
-}
-
 function youtube_parser(url){
   let regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/
   let match = url.match(regExp)
   return (match&&match[7].length==11)? match[7] : false
-}
-
-function getRandomFromArray(arr) {
-  return arr[getRandomInt(0, arr.length)]
-}
-
-function getRandomInt(min, max) {
-  min = Math.ceil(min)
-  max = Math.floor(max)
-  return Math.floor(Math.random() * (max - min)) + min //The maximum is exclusive and the minimum is inclusive
 }
 
 module.exports = router
