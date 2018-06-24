@@ -1,4 +1,5 @@
 function generateSearchParams(req, res, next) {
+  console.log(req.path)
   let channelFilter = req.query.channel || req.params.channel,
       visibilityFilter = req.query.visibility
 

@@ -3,6 +3,8 @@
 ## TODO
 - admin page search
 - watch unapproved videos
+- confirm delete
+- save deleted videos somewhere
 - favicon
 - flag video for review button
 - add approved timestamp
@@ -45,3 +47,4 @@
 
 ## known bugs
 - video sometimes doesn't play if skip is clicked several times
+- hidden videos are not being filtered out of everything
