@@ -16,7 +16,7 @@ body {
   padding: calc(20vw - 40px) 0 0;
 }
 
-h1 {
+h1 { 
   margin: 0 auto 10vw;
 
   font-size: 4em;
@@ -57,7 +57,7 @@ a {
 
 ul {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   grid-gap: 1rem;
   grid-row-gap: 1rem;
   -webkit-box-pack: justify;
@@ -84,7 +84,7 @@ li {
 
   a {
     padding: 80px 0;
-    font-size: 2.5em;
+    font-size: 2rem;
     letter-spacing: 6px;
 
     background: rgba(255, 255, 255, 0);
@@ -93,12 +93,10 @@ li {
 
     @include breakpoint('medium') {
       padding: 70px 0;
-      font-size: 2.5em;
     }
 
     @include breakpoint('small') {
       padding: 50px 0;
-      font-size: 2em;
     }
 
     span {
@@ -113,12 +111,13 @@ li {
 
   &.everything {
     grid-column: 1 / -1;
+    font-size: 2.5rem;
 
     @include banner-background('everything')
 
     @include breakpoint('large') {
       a {
-        font-size: 3em;
+        font-size: 3rem;
       }
     }
   }
