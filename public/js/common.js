@@ -54,3 +54,12 @@ function closeDropdown() {
   openDropdown.addClass('closed')
   openDropdown = null
 }
+
+window.addEventListener('beforeInstallPrompt', (e) => {
+  e.preventDefault()
+  e.prompt()
+})
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/service-worker.js')
+}
